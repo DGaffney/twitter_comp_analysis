@@ -5,7 +5,7 @@ require 'dm-aggregates'
 require 'models/user'
 
 DataMapper.finalize
-DataMapper.setup(:default, 'mysql://gonkclub:cakebread@deebee.yourdefaulthomepage.com/ian_140kit')
+DataMapper.setup(:default, 'mysql://username:password@hostname.com/database')
 
 require 'utils'
 require 'em-http'
