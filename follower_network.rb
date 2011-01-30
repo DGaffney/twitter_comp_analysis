@@ -22,11 +22,6 @@ def go(title='My Great Graph')
   for user_id in user_ids
     followers = Utils.get_followers_from_id(user_id) & user_ids
     for follower in followers
-      # puts "Following #{index[follower]}."
-      # Edge.create(  :graph_id => g.id,
-      #               :start_node => follower,
-      #               :end_node => user_id,
-      #               :style => 'follow' )
       edges << Edge.new({:graph_id => g.id, :start_node => index[follower], :end_node => index[user_id], :style => 'follow'})
       if edges.length >= MAX_BATCH_SIZE
         bulk_insert_edges(edges)
@@ -56,7 +51,7 @@ def bulk_insert_edges(edges)
     sql += " (#{edge.graph_id}, \'#{edge.start_node}\', \'#{edge.end_node}\', \'#{edge.style}\'),"
   end
   sql.chop!
-  puts sql.inspect
+  # puts sql.inspect
   DataMapper.repository(:default).adapter.execute(sql)
 end
 
