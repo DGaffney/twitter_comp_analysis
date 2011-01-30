@@ -81,6 +81,7 @@ def tunisia_clean
         tweet.screen_name = tweet.author
         tweet.created_at = tweet.pubdate
         tweet_data,user_data = Utils.tweet_data(tweet.twitter_id) rescue nil
+        debugger
         if tweet_data && user_data
           user = User.first({:twitter_id => user_data["id"]}) || User.new
           tweet_data.keys.each do |key|
@@ -128,6 +129,7 @@ def egypt_clean
         tweet.screen_name = tweet.author
         tweet.created_at = tweet.pubdate
         tweet_data,user_data = Utils.tweet_data(tweet.twitter_id) rescue nil
+        debugger
         if tweet_data && user_data
           user = User.first({:twitter_id => user_data["id"]}) || User.new
           tweet_data.keys.each do |key|
