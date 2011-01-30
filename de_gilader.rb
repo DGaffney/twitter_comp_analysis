@@ -80,8 +80,8 @@ def tunisia_clean
         tweet.twitter_id = tweet.link.scan(/statuses\%2F(.*)/).compact.flatten.first.to_i
         tweet.screen_name = tweet.author
         tweet.created_at = tweet.pubdate
-        user = User.first({:screen_name => tweet.author}) || User.new
         tweet_data,user_data = Utils.tweet_data(tweet.twitter_id) rescue nil
+        user = User.first({:twitter_id => user_data["twitter_id"]}) || User.new
         if tweet_data
           tweet_data.each_key do |key|
             if tweet.methods.include?(key)
@@ -126,8 +126,8 @@ def egypt_clean
         tweet.twitter_id = tweet.link.scan(/statuses\%2F(.*)/).compact.flatten.first.to_i
         tweet.screen_name = tweet.author
         tweet.created_at = tweet.pubdate
-        user = User.first({:screen_name => tweet.author}) || User.new
         tweet_data,user_data = Utils.tweet_data(tweet.twitter_id) rescue nil
+        user = User.first({:twitter_id => user_data["twitter_id"]}) || User.new
         if tweet_data
           tweet_data.keys.each do |key|
             if tweet.methods.include?(key)
