@@ -63,7 +63,7 @@ class NewDeGilader
                   tweet.in_reply_to_status_id = tweet_data[key]["in_reply_to_status_id"]
                   tweet.in_reply_to_screen_name = tweet_data[key]["in_reply_to_screen_name"]
                 elsif key=="retweet_count"
-                  tweet.retweet_count = tweet_data[key]
+                  tweet.retweet_count = tweet_data[key].to_i
                 else
                   tweet.send("#{key}=", tweet_data[key]) if !disallowed_tweet_keys.include?(key)
                 end
