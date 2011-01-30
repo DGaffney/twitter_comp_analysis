@@ -90,3 +90,7 @@ class NewDeGilader
     end
   end
 end
+
+gg = NewDeGilader.new
+gg.initialize_connect
+gg.gilad_clean(:tunisia)
