@@ -69,7 +69,10 @@ class NewDeGilader
   def run_tweets(database,tweet_ids)
     disallowed_user_keys = ["friends_count", "followers_count"]
     disallowed_tweet_keys = ["id_str"]
+    puts "blergh"
+    puts tweet_ids.inspect
     tweet_ids.each do |tweet_id|
+      
       tweet = DataMapper.repository(database){Tweet.first(:id => tweet_id)}
       if !tweet.source
         puts "Processing tweet from #{tweet.author}"
