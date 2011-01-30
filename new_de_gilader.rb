@@ -30,12 +30,10 @@ class NewDeGilader
     DataMapper.repository(database) do
       tweet_ids = DataMapper.repository(database).adapter.select("SELECT id FROM tweets where source is NULL")
       tweet_id_groupings =  tweet_ids.chunk(HAT_WOBBLE)
-      while !tweet_id_groupings.empty?
-        tweet_id_groupings.each do |grouping|
-          Thread.new{
-            run_tweets(database,grouping)
-          }
-        end
+      tweet_id_groupings.each do |grouping|
+        Thread.new{
+          run_tweets(database,grouping)
+        }
       end
     end
   end
