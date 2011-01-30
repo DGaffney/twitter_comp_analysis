@@ -48,7 +48,6 @@ class NewDeGilader
       disallowed_user_keys = ["friends_count", "followers_count"]
       disallowed_tweet_keys = ["id_str"]
       tweet_ids.each do |tweet_id|
-              debugger
         tweet = DataMapper.repository(database){Tweet.first(:id => tweet_id)}
         if !tweet.source
           puts "Processing tweet from #{tweet.author}"
@@ -56,6 +55,7 @@ class NewDeGilader
           tweet.screen_name = tweet.author
           tweet.created_at = tweet.pubdate
           tweet_data,user_data = Utils.tweet_data(tweet.twitter_id) rescue nil
+          debugger
           if tweet_data && user_data
             user = DataMapper.repository(database){User.first({:twitter_id => user_data["id"]})} || DataMapper.repository(database){User.new}
             tweet_data.keys.each do |key|
