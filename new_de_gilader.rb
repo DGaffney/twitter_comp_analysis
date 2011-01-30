@@ -34,7 +34,9 @@ class NewDeGilader
       while !tweet_id_groupings.empty?
         tweet_id_groupings.each do |grouping|
           if current_threads < HAT_WOBBLE
-            Thread.new{|x|run_tweets(database,grouping);tweet_id_groupings=tweet_id_groupings-[grouping];current_threads-=1}
+            Thread.new{|x|
+              run_tweets(database,grouping);tweet_id_groupings=tweet_id_groupings-[grouping];current_threads-=1
+            }
             current_threads+=1
           end
         end
