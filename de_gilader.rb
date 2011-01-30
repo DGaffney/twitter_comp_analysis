@@ -72,7 +72,7 @@ def tunisia_clean
   DataMapper.repository(:tunisia) do
     disallowed_user_keys = ["friends_count", "followers_count"]
     disallowed_tweet_keys = ["id_str"]
-    tweet_ids = DataMapper.repository(:tunisia).adapter.select("SELECT id FROM tweets")
+    tweet_ids = DataMapper.repository(:tunisia).adapter.select("SELECT id FROM tweets where screen_name is NULL")
     tweet_ids.each do |tweet_id|
       tweet = Tweet.first(:id => tweet_id)
       if !tweet.screen_name
@@ -116,7 +116,7 @@ def egypt_clean
   DataMapper.repository(:egypt) do
     disallowed_user_keys = ["friends_count", "followers_count"]
     disallowed_tweet_keys = ["id_str"]
-    tweet_ids = DataMapper.repository(:egypt).adapter.select("SELECT id FROM tweets")
+    tweet_ids = DataMapper.repository(:egypt).adapter.select("SELECT id FROM tweets where screen_name is NULL")
     tweet_ids.each do |tweet_id|
       tweet = Tweet.first(:id => tweet_id)
       if !tweet.screen_name
