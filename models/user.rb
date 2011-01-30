@@ -43,4 +43,5 @@ class User
   property :more_tweet_checked, Boolean
   property :user_stats_checked, Boolean
   property :analysis_finished, Boolean
+  has n, :tweets
 end

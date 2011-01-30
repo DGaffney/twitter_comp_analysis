@@ -33,4 +33,5 @@ class Tweet
   property :tweet_collector_id, Integer
   property :user_name, String
   property :retweet_count,  Integer
+  belongs_to :user
 end
