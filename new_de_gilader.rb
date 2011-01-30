@@ -28,16 +28,12 @@ class NewDeGilader
   def gilad_clean(database)
     DataMapper.repository(database) do
       tweet_ids = DataMapper.repository(database).adapter.select("SELECT id FROM tweets where source is NULL")
-      tweet_id_groupings =  tweet_ids.chunk(tweet_ids.length/FLAHRGUNNSTOW)
-      current_threads = 0
+      tweet_id_groupings =  tweet_ids.chunk(HAT_WOBBLE)
       while !tweet_id_groupings.empty?
         tweet_id_groupings.each do |grouping|
-          if current_threads < HAT_WOBBLE
-            Thread.new{|x|
-              run_tweets(database,grouping);tweet_id_groupings=tweet_id_groupings-[grouping];current_threads-=1
-            }
-            current_threads+=1
-          end
+          Thread.new{|x|
+            run_tweets(database,grouping)
+          }
         end
       end
     end
