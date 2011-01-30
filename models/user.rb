@@ -27,6 +27,7 @@ class User
   property :verified, Boolean
   property :following, Boolean
   property :statuses_count, Integer
+  # property :contributers_enabled, Boolean
   property :lang, String
   property :listed_count, Integer
   property :dataset_id, Integer

@@ -5,6 +5,5 @@ class Edge
   property :start_node, String
   property :end_node, String
   property :edge_id, Integer
-  property :time, DateTime
   property :style, String
 end

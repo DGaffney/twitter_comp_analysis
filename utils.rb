@@ -244,8 +244,8 @@ end
 # end
 # 
 # def rate_limited?
-#   api_url = "http://api.twitter.com/1/account/rate_limit_status.json"
-#   json = JSON.parse(open(api_url).read) rescue nil
+  # api_url = "http://api.twitter.com/1/account/rate_limit_status.json"
+  # json = JSON.parse(open(api_url).read) rescue nil
 #   if json.nil? || json['remaining_hits'] <= 0
 #     puts "RATE LIMITED!"
 #     return true
