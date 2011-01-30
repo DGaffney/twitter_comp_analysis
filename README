@@ -2,6 +2,6 @@ mysql
 create database tunisia;
 create database iran; 
 create database egypt;
-mysql -u root -p tunisia < sidibouzid.sql
-mysql -u root -p egypt < #egypt.sql
-mysql -u root -p iran < iran_election.sql
+mysql -u root -p tunisia < tunisia.sql
+mysql -u root -p egypt < egypt.sql
+mysql -u root -p iran < iran.sql
