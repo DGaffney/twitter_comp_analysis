@@ -7,8 +7,18 @@ module Utils
     return self.user(screen_name)['id'] rescue nil
   end
 
+  def self.tweet_data(twitter_id)
+    data = JSON.parse(open("http://api.twitter.com/1/statuses/show/#{twitter_id}.json").read)
+    user = data.delete("user")
+    return data, user   
+  end
+
   def self.user(screen_name)
     JSON.parse(open("http://api.twitter.com/1/users/show.json?screen_name=#{screen_name}").read)
+  end
+
+  def self.twitter_status(screen_name)
+    JSON.parse(open("http://api.twitter.com/1/statuses/show/#{twitter_id}.json").read)
   end
 
   def self.screenname(user_id)
