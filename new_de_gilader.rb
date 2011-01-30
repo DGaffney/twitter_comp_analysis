@@ -55,13 +55,16 @@ class NewDeGilader
           tweet.screen_name = tweet.author
           tweet.created_at = tweet.pubdate
           tweet_data,user_data = Utils.tweet_data(tweet.twitter_id) rescue nil
-          debugger
           if tweet_data && user_data
             user = DataMapper.repository(database){User.first({:twitter_id => user_data["id"]})} || DataMapper.repository(database){User.new}
             tweet_data.keys.each do |key|
               if tweet.methods.include?(key)
                 if key=="id"
                   tweet.send("twitter_id=", tweet_data[key])
+                elsif key == "retweeted_status"
+                  tweet.in_reply_to_user_id = tweet_data[key]["in_reply_to_user_id"]
+                  tweet.in_reply_to_status_id = tweet_data[key]["in_reply_to_status_id"]
+                  tweet.in_reply_to_screen_name = tweet_data[key]["in_reply_to_screen_name"]
                 else
                   tweet.send("#{key}=", tweet_data[key]) if !disallowed_tweet_keys.include?(key)
                 end
