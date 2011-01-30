@@ -81,9 +81,9 @@ def tunisia_clean
         tweet.screen_name = tweet.author
         tweet.created_at = tweet.pubdate
         tweet_data,user_data = Utils.tweet_data(tweet.twitter_id) rescue nil
-        user = User.first({:twitter_id => user_data["id"]}) || User.new
-        if tweet_data
-          tweet_data.each_key do |key|
+        if tweet_data && user_data
+          user = User.first({:twitter_id => user_data["id"]}) || User.new
+          tweet_data.keys.each do |key|
             if tweet.methods.include?(key)
               if key=="id"
                 tweet.send("twitter_id=", tweet_data[key])
@@ -92,22 +92,23 @@ def tunisia_clean
               end
             end
           end
-        end
-        tweet.save
-        if user_data && user.new?
-          user.screen_name = tweet.author
-          puts "Saving user #{user.screen_name||user.username}"
-          user_data.keys.each do |key|
-            if user.methods.include?(key)
-              if key=="id"
-                user.send("twitter_id=", user_data[key])
-              else
-                user.send("#{key}=", user_data[key]) if !disallowed_user_keys.include?(key)
+          tweet.save
+          if user.new?
+            user.screen_name = tweet.author
+            puts "Saving user #{user.screen_name||user.username}"
+            user_data.keys.each do |key|
+              if user.methods.include?(key)
+                if key=="id"
+                  user.send("twitter_id=", user_data[key])
+                else
+                  user.send("#{key}=", user_data[key]) if !disallowed_user_keys.include?(key)
+                end
               end
             end
+            debugger
+            user.save
+            puts "Saved user #{user.screen_name}"
           end
-          user.save
-          puts "Saved user #{user.screen_name}"
         end
       end
     end
@@ -127,8 +128,8 @@ def egypt_clean
         tweet.screen_name = tweet.author
         tweet.created_at = tweet.pubdate
         tweet_data,user_data = Utils.tweet_data(tweet.twitter_id) rescue nil
-        user = User.first({:twitter_id => user_data["id"]}) || User.new
-        if tweet_data
+        if tweet_data && user_data
+          user = User.first({:twitter_id => user_data["id"]}) || User.new
           tweet_data.keys.each do |key|
             if tweet.methods.include?(key)
               if key=="id"
@@ -138,23 +139,23 @@ def egypt_clean
               end
             end
           end
-        end
-        tweet.save
-        if user_data && user.new?
-          user.screen_name = tweet.author
-          puts "Saving user #{user.screen_name||user.username}"
-          user_data.keys.each do |key|
-            if user.methods.include?(key)
-              if key=="id"
-                user.send("twitter_id=", user_data[key])
-              else
-                user.send("#{key}=", user_data[key]) if !disallowed_user_keys.include?(key)
+          tweet.save
+          if user.new?
+            user.screen_name = tweet.author
+            puts "Saving user #{user.screen_name||user.username}"
+            user_data.keys.each do |key|
+              if user.methods.include?(key)
+                if key=="id"
+                  user.send("twitter_id=", user_data[key])
+                else
+                  user.send("#{key}=", user_data[key]) if !disallowed_user_keys.include?(key)
+                end
               end
             end
+            debugger
+            user.save
+            puts "Saved user #{user.screen_name}"
           end
-          debugger
-          user.save
-          puts "Saved user #{user.screen_name}"
         end
       end
     end
