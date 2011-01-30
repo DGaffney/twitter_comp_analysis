@@ -31,7 +31,7 @@ class NewDeGilader
       tweet_id_groupings =  tweet_ids.chunk(HAT_WOBBLE)
       while !tweet_id_groupings.empty?
         tweet_id_groupings.each do |grouping|
-          Thread.new{|x|
+          Thread.new{
             run_tweets(database,grouping)
           }
         end
