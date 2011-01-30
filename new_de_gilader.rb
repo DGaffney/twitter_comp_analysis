@@ -39,60 +39,52 @@ class NewDeGilader
   end
 
   def run_tweets(database,tweet_ids)
-    puts database.inspect
-    puts tweet_ids.length
-    if database.to_s == "egypt" || database.to_s == "tunisia"
-      puts "1"
-      disallowed_user_keys = ["friends_count", "followers_count"]
-      disallowed_tweet_keys = ["id_str"]
-      tweet_ids.each do |tweet_id|
-        puts "2"
-        tweet = DataMapper.repository(database){Tweet.first(:id => tweet_id)}
-        if !tweet.source
-          puts "Processing tweet from #{tweet.author}"
-          tweet.twitter_id = tweet.link.scan(/statuses\%2F(.*)/).compact.flatten.first.to_i
-          tweet.screen_name = tweet.author
-          tweet.created_at = tweet.pubdate
-          tweet_data,user_data = Utils.tweet_data(tweet.twitter_id) rescue nil
-          if tweet_data && user_data
-            user = DataMapper.repository(database){User.first({:twitter_id => user_data["id"]})} || DataMapper.repository(database){User.new}
-            tweet_data.keys.each do |key|
-              if tweet.methods.include?(key)
-                if key=="id"
-                  tweet.send("twitter_id=", tweet_data[key])
-                elsif key == "retweeted_status"
-                  tweet.in_reply_to_user_id = tweet_data[key]["in_reply_to_user_id"]
-                  tweet.in_reply_to_status_id = tweet_data[key]["in_reply_to_status_id"]
-                  tweet.in_reply_to_screen_name = tweet_data[key]["in_reply_to_screen_name"]
-                elsif key=="retweet_count"
-                  tweet.retweet_count = tweet_data[key].to_i
-                else
-                  tweet.send("#{key}=", tweet_data[key]) if !disallowed_tweet_keys.include?(key)
-                end
+    disallowed_user_keys = ["friends_count", "followers_count"]
+    disallowed_tweet_keys = ["id_str"]
+    tweet_ids.each do |tweet_id|
+      tweet = DataMapper.repository(database){Tweet.first(:id => tweet_id)}
+      if !tweet.source
+        puts "Processing tweet from #{tweet.author}"
+        tweet.twitter_id = tweet.link.scan(/statuses\%2F(.*)/).compact.flatten.first.to_i
+        tweet.screen_name = tweet.author
+        tweet.created_at = tweet.pubdate
+        tweet_data,user_data = Utils.tweet_data(tweet.twitter_id) rescue nil
+        if tweet_data && user_data
+          user = DataMapper.repository(database){User.first({:twitter_id => user_data["id"]})} || DataMapper.repository(database){User.new}
+          tweet_data.keys.each do |key|
+            if tweet.methods.include?(key)
+              if key=="id"
+                tweet.send("twitter_id=", tweet_data[key])
+              elsif key == "retweeted_status"
+                tweet.in_reply_to_user_id = tweet_data[key]["in_reply_to_user_id"]
+                tweet.in_reply_to_status_id = tweet_data[key]["in_reply_to_status_id"]
+                tweet.in_reply_to_screen_name = tweet_data[key]["in_reply_to_screen_name"]
+              elsif key=="retweet_count"
+                tweet.retweet_count = tweet_data[key].to_i
+              else
+                tweet.send("#{key}=", tweet_data[key]) if !disallowed_tweet_keys.include?(key)
               end
             end
-            tweet.save
-            if user.new?
-              user.screen_name = tweet.author
-              puts "Saving user #{user.screen_name||user.username}"
-              user_data.keys.each do |key|
-                if user.methods.include?(key)
-                  if key=="id"
-                    user.send("twitter_id=", user_data[key])
-                  else
-                    user.send("#{key}=", user_data[key]) if !disallowed_user_keys.include?(key)
-                  end
-                end
-              end
-              user.save
-              puts "Saved user #{user.screen_name}"
-            end
-          else puts "404 fuckle"
           end
+          tweet.save
+          if user.new?
+            user.screen_name = tweet.author
+            puts "Saving user #{user.screen_name||user.username}"
+            user_data.keys.each do |key|
+              if user.methods.include?(key)
+                if key=="id"
+                  user.send("twitter_id=", user_data[key])
+                else
+                  user.send("#{key}=", user_data[key]) if !disallowed_user_keys.include?(key)
+                end
+              end
+            end
+            user.save
+            puts "Saved user #{user.screen_name}"
+          end
+        else puts "404 fuckle"
         end
       end
-    else
-      
     end
   end
 end
