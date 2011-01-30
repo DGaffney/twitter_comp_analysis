@@ -1,3 +1,4 @@
+require 'rubygems'
 require 'dm-core'
 `ls models`.split("\n").each {|model| require "models/#{model}"}
 require 'utils.rb'
