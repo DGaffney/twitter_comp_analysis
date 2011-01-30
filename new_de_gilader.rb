@@ -29,7 +29,7 @@ class NewDeGilader
     DataMapper.repository(database) do
       tweet_ids = DataMapper.repository(database).adapter.select("SELECT id FROM tweets where source is NULL")
       tweet_id_groupings =  tweet_ids.chunk(tweet_ids.length/FLAHRGUNNSTOW)
-      current_threads = 0 
+      current_threads = 0
       while !tweet_id_groupings.empty?
         tweet_id_groupings.each do |grouping|
           if current_threads < HAT_WOBBLE
@@ -47,8 +47,8 @@ class NewDeGilader
     if database == :egypt || database == :tunisia
       disallowed_user_keys = ["friends_count", "followers_count"]
       disallowed_tweet_keys = ["id_str"]
-      debugger
       tweet_ids.each do |tweet_id|
+              debugger
         tweet = DataMapper.repository(database){Tweet.first(:id => tweet_id)}
         if !tweet.source
           puts "Processing tweet from #{tweet.author}"
