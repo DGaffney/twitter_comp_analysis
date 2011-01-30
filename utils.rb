@@ -3,8 +3,12 @@ require 'json'
 require 'open-uri'
 
 module Utils
-  def self.user_id(screenname)
-    return JSON.parse(open("http://api.twitter.com/1/users/show.json?screen_name=#{screenname}").read)['id'] rescue nil
+  def self.user_id(screen_name)
+    return self.user(screen_name)['id'] rescue nil
+  end
+
+  def self.user(screen_name)
+    JSON.parse(open("http://api.twitter.com/1/users/show.json?screen_name=#{screen_name}").read)
   end
 
   def self.screenname(user_id)

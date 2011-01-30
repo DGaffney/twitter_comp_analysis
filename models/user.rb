@@ -27,7 +27,6 @@ class User
   property :verified, Boolean
   property :following, Boolean
   property :statuses_count, Integer
-  property :contributers_enabled, Boolean
   property :lang, String
   property :listed_count, Integer
   property :dataset_id, Integer
@@ -35,12 +34,13 @@ class User
   property :listed_count, Integer
   property :dataset_id, Integer
   property :username, String
-  property :updated_at, Datetime
+  property :updated_at, DateTime
   property :total_tweets, Integer
-  property :account_birth, Datetime
+  property :account_birth, DateTime
   property :friends, Integer
   property :followers, Integer
   property :more_tweet_checked, Boolean
   property :user_stats_checked, Boolean
   property :analysis_finished, Boolean
+  has n, :tweets
 end
