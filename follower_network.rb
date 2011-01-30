@@ -28,8 +28,10 @@ def go(title='My Great Graph')
       #               :end_node => user_id,
       #               :style => 'follow' )
       edges << Edge.new({:graph_id => g.id, :start_node => index[follower], :end_node => index[user_id], :style => 'follow'})
-      bulk_insert_edges(edges) if edges.length >= MAX_BATCH_SIZE
-      edges.clear
+      if edges.length >= MAX_BATCH_SIZE
+        bulk_insert_edges(edges)
+        edges.clear
+      end
     end
   end
   bulk_insert_edges(edges)
