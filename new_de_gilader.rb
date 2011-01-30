@@ -85,6 +85,7 @@ class NewDeGilader
               user.save
               puts "Saved user #{user.screen_name}"
             end
+          else puts "404 fuckle"
           end
         end
       end
