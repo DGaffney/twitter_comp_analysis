@@ -31,4 +31,16 @@ class User
   property :lang, String
   property :listed_count, Integer
   property :dataset_id, Integer
+  property :flagged, Boolean
+  property :listed_count, Integer
+  property :dataset_id, Integer
+  property :username, String
+  property :updated_at, Datetime
+  property :total_tweets, Integer
+  property :account_birth, Datetime
+  property :friends, Integer
+  property :followers, Integer
+  property :more_tweet_checked, Boolean
+  property :user_stats_checked, Boolean
+  property :analysis_finished, Boolean
 end
