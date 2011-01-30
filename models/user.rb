@@ -35,9 +35,9 @@ class User
   property :listed_count, Integer
   property :dataset_id, Integer
   property :username, String
-  property :updated_at, Datetime
+  property :updated_at, DateTime
   property :total_tweets, Integer
-  property :account_birth, Datetime
+  property :account_birth, DateTime
   property :friends, Integer
   property :followers, Integer
   property :more_tweet_checked, Boolean

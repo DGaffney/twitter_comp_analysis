@@ -22,7 +22,7 @@ class Tweet
   property :lat,          String
   property :lon,          String
   property :dataset_id,   Integer
-  property :pubdate,   Datetime
+  property :pubdate,   DateTime
   property :link,   String
   property :author,   String
   property :realname,   String
