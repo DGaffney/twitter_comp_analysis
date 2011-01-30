@@ -17,15 +17,14 @@ class NewDeGilader
   end
   
   def run_clean(database)
-    database = DataMapper.repository(database)
     self.send(database.to_s+"_clean", database)
   end
   
   def iran_clean(database)
-    database do
+    DataMapper.repository(database) do
       disallowed_user_keys = ["friends_count", "followers_count"]
       disallowed_tweet_keys = ["id_str"]
-      tweet_ids = database.adapter.select("SELECT id FROM tweets where source is NULL")
+      tweet_ids = DataMapper.repository(database).adapter.select("SELECT id FROM tweets where source is NULL")
       tweet_id_groupings =  tweet_ids.chunk(tweet_ids.length/FLAHRGUNNSTOW)
       current_threads = 0 
       while !tweet_id_groupings.empty?
@@ -39,10 +38,10 @@ class NewDeGilader
   end
   
   def tunisia_clean(database)
-    database do
+    DataMapper.repository(database) do
       disallowed_user_keys = ["friends_count", "followers_count"]
       disallowed_tweet_keys = ["id_str"]
-      tweet_ids = database.adapter.select("SELECT id FROM tweets where source is NULL")
+      tweet_ids = DataMapper.repository(database).adapter.select("SELECT id FROM tweets where source is NULL")
       tweet_id_groupings =  tweet_ids.chunk(tweet_ids.length/FLAHRGUNNSTOW)
       current_threads = 0 
       while !tweet_id_groupings.empty?
@@ -56,10 +55,10 @@ class NewDeGilader
   end
   
   def egypt_clean(database)
-    database do
+    DataMapper.repository(database) do
       disallowed_user_keys = ["friends_count", "followers_count"]
       disallowed_tweet_keys = ["id_str"]
-      tweet_ids = database.adapter.select("SELECT id FROM tweets where source is NULL")
+      tweet_ids = DataMapper.repository(database).adapter.select("SELECT id FROM tweets where source is NULL")
       tweet_id_groupings =  tweet_ids.chunk(tweet_ids.length/FLAHRGUNNSTOW)
       current_threads = 0 
       while !tweet_id_groupings.empty?
@@ -74,7 +73,7 @@ class NewDeGilader
   
   def run_tweets(database,tweet_ids)
     tweet_ids.each do |tweet_id|
-      tweet = Tweet.first(:id => tweet_id)
+      tweet = DataMapper.repository(database){Tweet.first(:id => tweet_id)}
       if !tweet.source
         puts "Processing tweet from #{tweet.author}"
         tweet.twitter_id = tweet.link.scan(/statuses\%2F(.*)/).compact.flatten.first.to_i
@@ -82,7 +81,7 @@ class NewDeGilader
         tweet.created_at = tweet.pubdate
         tweet_data,user_data = Utils.tweet_data(tweet.twitter_id) rescue nil
         if tweet_data && user_data
-          user = User.first({:twitter_id => user_data["id"]}) || User.new
+          user = DataMapper.repository(database){User.first({:twitter_id => user_data["id"]})} || DataMapper.repository(database){User.new}
           tweet_data.keys.each do |key|
             if tweet.methods.include?(key)
               if key=="id"
