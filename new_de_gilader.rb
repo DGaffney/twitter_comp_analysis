@@ -27,8 +27,6 @@ class NewDeGilader
   
   def gilad_clean(database)
     DataMapper.repository(database) do
-      disallowed_user_keys = ["friends_count", "followers_count"]
-      disallowed_tweet_keys = ["id_str"]
       tweet_ids = DataMapper.repository(database).adapter.select("SELECT id FROM tweets where source is NULL")
       tweet_id_groupings =  tweet_ids.chunk(tweet_ids.length/FLAHRGUNNSTOW)
       current_threads = 0 
@@ -46,7 +44,8 @@ class NewDeGilader
 
   def run_tweets(database,tweet_ids)
     if database == :egypt || database == :tunisia
-      debugger
+      disallowed_user_keys = ["friends_count", "followers_count"]
+      disallowed_tweet_keys = ["id_str"]
       tweet_ids.each do |tweet_id|
         tweet = DataMapper.repository(database){Tweet.first(:id => tweet_id)}
         if !tweet.source
