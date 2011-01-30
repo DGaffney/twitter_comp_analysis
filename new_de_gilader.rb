@@ -34,7 +34,7 @@ class NewDeGilader
       tweet_id_groupings.each do |grouping|
         Thread.new{|x|
           run_tweets(database,grouping)
-        }.join
+        }
       end
     end
   end
