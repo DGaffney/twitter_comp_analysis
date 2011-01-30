@@ -7,8 +7,7 @@ class NewDeGilader
   require 'utils.rb'
   require 'extensions/array.rb'
   
-  HAT_WOBBLE = 10
-  FLAHRGUNNSTOW = 1000.0
+  HAT_WOBBLE = 40
 
   def initialize_connect
     DataMapper.finalize
@@ -26,6 +25,16 @@ class NewDeGilader
     end
   end
   
+  def devin_clean(database)
+    DataMapper.repository(database) do 
+      user_ids = DataMapper.repository(database).adapter.select("select id from users where screen_name is NULL")
+      user_id_groupings = user_ids.chunk(HAT_WOBBLE)
+      user_id_groupings.each do |grouping|
+        Thread.new{|x|self.run_users(database,grouping)}
+      end
+    end
+  end
+  
   def gilad_clean(database)
     DataMapper.repository(database) do
       tweet_ids = DataMapper.repository(database).adapter.select("SELECT id FROM tweets where source is NULL")
@@ -33,6 +42,26 @@ class NewDeGilader
       tweet_id_groupings.each do |grouping|
         Thread.new{|x|self.run_tweets(database,grouping)}
       end
+    end
+  end
+  
+  def run_users(database,user_ids)
+    user_ids.each do |user_id|
+      user = DataMapper.repository(database){User.first(:id => user_id)}
+      user.screen_name = user.username
+      user.statuses_count = user.total_tweets
+      user.created_at = user.account_birth
+      user_data = Utils.user(user.screen_name)
+      user_data.keys.each do |key|
+        if user.methods.include?(key)
+          if key=="id"
+            user.send("twitter_id=", user_data[key])
+          else
+            user.send("#{key}=", user_data[key]) if !disallowed_user_keys.include?(key)
+          end
+        end
+      end
+      user.save
     end
   end
 
