@@ -1,4 +1,5 @@
 class NewDeGilader
+  
   require 'rubygems'
   require 'dm-core'
   require 'dm-validations'
