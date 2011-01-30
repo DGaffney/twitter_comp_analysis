@@ -1,6 +1,7 @@
 class NewDeGilader
   require 'rubygems'
   require 'dm-core'
+  require 'dm-validations'
   require 'dm-mysql-adapter'
   `ls models`.split("\n").each {|model| require "models/#{model}"}
   require 'utils.rb'
@@ -61,12 +62,13 @@ class NewDeGilader
                   tweet.in_reply_to_user_id = tweet_data[key]["in_reply_to_user_id"]
                   tweet.in_reply_to_status_id = tweet_data[key]["in_reply_to_status_id"]
                   tweet.in_reply_to_screen_name = tweet_data[key]["in_reply_to_screen_name"]
+                elsif key=="retweet_count"
+                  tweet.retweet_count = tweet_data[key]
                 else
                   tweet.send("#{key}=", tweet_data[key]) if !disallowed_tweet_keys.include?(key)
                 end
               end
             end
-            debugger
             tweet.save
             if user.new?
               user.screen_name = tweet.author
