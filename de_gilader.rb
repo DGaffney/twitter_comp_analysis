@@ -72,22 +72,24 @@ def tunisia_clean
   DataMapper.repository(:tunisia) do
     disallowed_user_keys = ["friends_count", "followers_count"]
     disallowed_tweet_keys = ["id_str"]
-    tweet_ids = DataMapper.repository(:tunisia).adapter.select("SELECT id FROM tweets where screen_name is NULL")
+    tweet_ids = DataMapper.repository(:tunisia).adapter.select("SELECT id FROM tweets where location is NULL")
     tweet_ids.each do |tweet_id|
       tweet = Tweet.first(:id => tweet_id)
-      if !tweet.screen_name
+      if !tweet.location
         puts "Processing tweet from #{tweet.author}"
         tweet.twitter_id = tweet.link.scan(/statuses\%2F(.*)/).compact.flatten.first.to_i
         tweet.screen_name = tweet.author
         tweet.created_at = tweet.pubdate
         user = User.first({:screen_name => tweet.author}) || User.new
         tweet_data,user_data = Utils.tweet_data(tweet.twitter_id) rescue nil
-        tweet_data.keys.each do |key|
-          if tweet.methods.include?(key)
-            if key=="id"
-              tweet.send("twitter_id=", tweet_data[key])
-            else
-              tweet.send("#{key}=", tweet_data[key]) if !disallowed_tweet_keys.include?(key)
+        if tweet_data
+          tweet_data.each_key do |key|
+            if tweet.methods.include?(key)
+              if key=="id"
+                tweet.send("twitter_id=", tweet_data[key])
+              else
+                tweet.send("#{key}=", tweet_data[key]) if !disallowed_tweet_keys.include?(key)
+              end
             end
           end
         end
@@ -116,22 +118,24 @@ def egypt_clean
   DataMapper.repository(:egypt) do
     disallowed_user_keys = ["friends_count", "followers_count"]
     disallowed_tweet_keys = ["id_str"]
-    tweet_ids = DataMapper.repository(:egypt).adapter.select("SELECT id FROM tweets where screen_name is NULL")
+    tweet_ids = DataMapper.repository(:egypt).adapter.select("SELECT id FROM tweets where location is NULL")
     tweet_ids.each do |tweet_id|
       tweet = Tweet.first(:id => tweet_id)
-      if !tweet.screen_name
+      if !tweet.location
         puts "Processing tweet from #{tweet.author}"
         tweet.twitter_id = tweet.link.scan(/statuses\%2F(.*)/).compact.flatten.first.to_i
         tweet.screen_name = tweet.author
         tweet.created_at = tweet.pubdate
         user = User.first({:screen_name => tweet.author}) || User.new
         tweet_data,user_data = Utils.tweet_data(tweet.twitter_id) rescue nil
-        tweet_data.keys.each do |key|
-          if tweet.methods.include?(key)
-            if key=="id"
-              tweet.send("twitter_id=", tweet_data[key])
-            else
-              tweet.send("#{key}=", tweet_data[key]) if !disallowed_tweet_keys.include?(key)
+        if tweet_data
+          tweet_data.keys.each do |key|
+            if tweet.methods.include?(key)
+              if key=="id"
+                tweet.send("twitter_id=", tweet_data[key])
+              else
+                tweet.send("#{key}=", tweet_data[key]) if !disallowed_tweet_keys.include?(key)
+              end
             end
           end
         end
@@ -148,6 +152,7 @@ def egypt_clean
               end
             end
           end
+          debugger
           user.save
           puts "Saved user #{user.screen_name}"
         end
