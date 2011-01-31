@@ -2,7 +2,6 @@ class NewDeGilader
   require 'rubygems'
   require 'dm-core'
   require 'dm-validations'
-  require 'dm-mysql-adapter'
   `ls models`.split("\n").each {|model| require "models/#{model}"}
   require 'utils.rb'
   require 'extensions/array.rb'
@@ -49,6 +48,7 @@ class NewDeGilader
         tweet.created_at = tweet.pubdate
         tweet_data,user_data = Utils.tweet_data(tweet.twitter_id) rescue nil
         if tweet_data && user_data
+          debugger
           user = DataMapper.repository(database){User.first({:twitter_id => user_data["id"]})} || DataMapper.repository(database){User.new}
           tweet_data.keys.each do |key|
             if tweet.methods.include?(key)
