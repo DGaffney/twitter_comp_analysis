@@ -50,6 +50,8 @@ class NewDeGilader
         tweet_data,user_data = Utils.tweet_data(tweet.twitter_id) rescue nil
         if tweet_data && user_data
           user = DataMapper.repository(database){User.first({:twitter_id => user_data["id"]})} || DataMapper.repository(database){User.new}
+          user.followers_count = user_data["followers_count"]
+          user.friends_count = user_data["friends_count"]
           tweet_data.keys.each do |key|
             if tweet.methods.include?(key)
               if key=="id"
@@ -80,6 +82,7 @@ class NewDeGilader
             end
             user.save
             puts "Saved user #{user.screen_name}"
+          else user.save
           end
         else puts "404 fuckle"
         end
