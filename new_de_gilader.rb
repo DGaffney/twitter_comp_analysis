@@ -27,7 +27,7 @@ class NewDeGilader
   
   def gilad_clean(database)
     DataMapper.repository(database) do
-      tweet_ids = DataMapper.repository(database).adapter.select("SELECT id FROM tweets where source is NULL order by random()")
+      tweet_ids = DataMapper.repository(database).adapter.select("SELECT id FROM tweets where source is NULL order by rand()")
       tweet_id_groupings =  tweet_ids.chunk(HAT_WOBBLE)
       threads = []
       tweet_id_groupings.each do |grouping|
