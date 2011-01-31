@@ -77,7 +77,6 @@ def tunisia_clean
     disallowed_user_keys = ["friends_count", "followers_count"]
     disallowed_tweet_keys = ["id_str"]
     tweet_ids = DataMapper.repository(:tunisia).adapter.select("SELECT id FROM tweets where source is NULL")
-
   end
 end
 

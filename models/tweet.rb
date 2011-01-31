@@ -5,7 +5,7 @@ class Tweet
   property :tweet_id,   Integer
   property :text,         Text
   property :language,     String
-  property :source,     String
+  property :source,     Text
   property :user_id,      Integer
   property :screen_name,  String
   property :username,  String
@@ -23,7 +23,7 @@ class Tweet
   property :lon,          String
   property :dataset_id,   Integer
   property :pubdate,   DateTime
-  property :link,   String
+  property :link,   Text
   property :author,   String
   property :realname,   String
   property :storyquery,   String

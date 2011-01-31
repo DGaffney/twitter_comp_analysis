@@ -1,12 +1,13 @@
 class NewDeGilader
   require 'rubygems'
   require 'dm-core'
+  require 'dm-validations'
   require 'dm-mysql-adapter'
   `ls models`.split("\n").each {|model| require "models/#{model}"}
   require 'utils.rb'
+  require 'extensions/array.rb'
   
-  HAT_WOBBLE = 10
-  FLAHRGUNNSTOW = 1000.0
+  HAT_WOBBLE = 20
 
   def initialize_connect
     DataMapper.finalize
@@ -17,64 +18,30 @@ class NewDeGilader
   end
   
   def run_clean(database)
-    database = DataMapper.repository(database)
-    self.send(database.to_s+"_clean", database)
-  end
-  
-  def iran_clean(database)
-    database do
-      disallowed_user_keys = ["friends_count", "followers_count"]
-      disallowed_tweet_keys = ["id_str"]
-      tweet_ids = database.adapter.select("SELECT id FROM tweets where source is NULL")
-      tweet_id_groupings =  tweet_ids.chunk(tweet_ids.length/FLAHRGUNNSTOW)
-      current_threads = 0 
-      while !tweet_id_groupings.empty?
-        tweet_id_groupings.each do |grouping|
-          if current_threads < HAT_WOBBLE
-            Thread.new{|x|run_tweets(database,grouping);tweet_id_groupings=tweet_id_groupings-[grouping]}
-          end
-        end
-      end
+    if database==:iran
+      devin_clean(database)
+    else
+      gilad_clean(database)
     end
   end
   
-  def tunisia_clean(database)
-    database do
-      disallowed_user_keys = ["friends_count", "followers_count"]
-      disallowed_tweet_keys = ["id_str"]
-      tweet_ids = database.adapter.select("SELECT id FROM tweets where source is NULL")
-      tweet_id_groupings =  tweet_ids.chunk(tweet_ids.length/FLAHRGUNNSTOW)
-      current_threads = 0 
-      while !tweet_id_groupings.empty?
-        tweet_id_groupings.each do |grouping|
-          if current_threads < HAT_WOBBLE
-            Thread.new{|x|run_tweets(database,grouping);tweet_id_groupings=tweet_id_groupings-[grouping]}
-          end
-        end
+  def gilad_clean(database)
+    DataMapper.repository(database) do
+      tweet_ids = DataMapper.repository(database).adapter.select("SELECT id FROM tweets where source is NULL order by rand()")
+      tweet_id_groupings =  tweet_ids.chunk(HAT_WOBBLE)
+      threads = []
+      tweet_id_groupings.each do |grouping|
+        threads<<Thread.new{run_tweets(database,grouping)}
       end
+      threads.collect{|x| x.join}
     end
   end
-  
-  def egypt_clean(database)
-    database do
-      disallowed_user_keys = ["friends_count", "followers_count"]
-      disallowed_tweet_keys = ["id_str"]
-      tweet_ids = database.adapter.select("SELECT id FROM tweets where source is NULL")
-      tweet_id_groupings =  tweet_ids.chunk(tweet_ids.length/FLAHRGUNNSTOW)
-      current_threads = 0 
-      while !tweet_id_groupings.empty?
-        tweet_id_groupings.each do |grouping|
-          if current_threads < HAT_WOBBLE
-            Thread.new{|x|run_tweets(database,grouping);tweet_id_groupings=tweet_id_groupings-[grouping]}
-          end
-        end
-      end
-    end
-  end
-  
+
   def run_tweets(database,tweet_ids)
+    disallowed_user_keys = ["friends_count", "followers_count"]
+    disallowed_tweet_keys = ["id_str"]
     tweet_ids.each do |tweet_id|
-      tweet = Tweet.first(:id => tweet_id)
+      tweet = DataMapper.repository(database){Tweet.first(:id => tweet_id)}
       if !tweet.source
         puts "Processing tweet from #{tweet.author}"
         tweet.twitter_id = tweet.link.scan(/statuses\%2F(.*)/).compact.flatten.first.to_i
@@ -82,11 +49,17 @@ class NewDeGilader
         tweet.created_at = tweet.pubdate
         tweet_data,user_data = Utils.tweet_data(tweet.twitter_id) rescue nil
         if tweet_data && user_data
-          user = User.first({:twitter_id => user_data["id"]}) || User.new
+          user = DataMapper.repository(database){User.first({:twitter_id => user_data["id"]})} || DataMapper.repository(database){User.new}
           tweet_data.keys.each do |key|
             if tweet.methods.include?(key)
               if key=="id"
                 tweet.send("twitter_id=", tweet_data[key])
+              elsif key == "retweeted_status"
+                tweet.in_reply_to_user_id = tweet_data[key]["in_reply_to_user_id"]
+                tweet.in_reply_to_status_id = tweet_data[key]["in_reply_to_status_id"]
+                tweet.in_reply_to_screen_name = tweet_data[key]["in_reply_to_screen_name"]
+              elsif key=="retweet_count"
+                tweet.retweet_count = tweet_data[key].to_i
               else
                 tweet.send("#{key}=", tweet_data[key]) if !disallowed_tweet_keys.include?(key)
               end
@@ -108,8 +81,13 @@ class NewDeGilader
             user.save
             puts "Saved user #{user.screen_name}"
           end
+        else puts "404 fuckle"
         end
       end
     end
   end
 end
+
+gg = NewDeGilader.new
+gg.initialize_connect
+gg.gilad_clean(:tunisia)
