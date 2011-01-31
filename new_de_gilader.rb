@@ -27,7 +27,7 @@ class NewDeGilader
   
   def gilad_clean(database)
     DataMapper.repository(database) do
-      tweet_ids = DataMapper.repository(database).adapter.select("SELECT id FROM tweets where source is NULL order by rand()")
+      tweet_ids = DataMapper.repository(database).adapter.select("SELECT id FROM tweets where source is NULL order by ranom")
       tweet_id_groupings =  tweet_ids.chunk(HAT_WOBBLE)
       threads = []
       tweet_id_groupings.each do |grouping|
@@ -38,7 +38,7 @@ class NewDeGilader
   end
 
   def run_tweets(database,tweet_ids)
-    disallowed_user_keys = []
+    disallowed_user_keys = ["friends_count", "followers_count"]
     disallowed_tweet_keys = ["id_str"]
     tweet_ids.each do |tweet_id|
       tweet = DataMapper.repository(database){Tweet.first(:id => tweet_id)}
@@ -50,8 +50,6 @@ class NewDeGilader
         tweet_data,user_data = Utils.tweet_data(tweet.twitter_id) rescue nil
         if tweet_data && user_data
           user = DataMapper.repository(database){User.first({:twitter_id => user_data["id"]})} || DataMapper.repository(database){User.new}
-          user.followers_count = user_data["followers_count"]
-          user.friends_count = user_data["friends_count"]
           tweet_data.keys.each do |key|
             if tweet.methods.include?(key)
               if key=="id"
@@ -82,7 +80,6 @@ class NewDeGilader
             end
             user.save
             puts "Saved user #{user.screen_name}"
-          else user.save
           end
         else puts "404 fuckle"
         end
