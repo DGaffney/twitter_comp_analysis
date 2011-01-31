@@ -38,7 +38,7 @@ class NewDeGilader
   end
 
   def run_tweets(database,tweet_ids)
-    disallowed_user_keys = ["friends_count", "followers_count"]
+    disallowed_user_keys = []
     disallowed_tweet_keys = ["id_str"]
     tweet_ids.each do |tweet_id|
       tweet = DataMapper.repository(database){Tweet.first(:id => tweet_id)}
@@ -87,7 +87,3 @@ class NewDeGilader
     end
   end
 end
-
-gg = NewDeGilader.new
-gg.initialize_connect
-gg.gilad_clean(:tunisia)
