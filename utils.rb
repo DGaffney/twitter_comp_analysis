@@ -8,7 +8,9 @@ module Utils
   end
 
   def self.tweet_data(twitter_id)
+    puts "http://api.twitter.com/1/statuses/show/#{twitter_id}.json"
     data = JSON.parse(open("http://api.twitter.com/1/statuses/show/#{twitter_id}.json").read)
+    debugger
     user = data.delete("user")
     return data, user   
   end
@@ -23,6 +25,23 @@ module Utils
 
   def self.screenname(user_id)
     return JSON.parse(open("http://api.twitter.com/1/users/show.json?user_id=#{user_id}").read)['screen_name'] rescue nil
+  end
+  
+  def self.rate_limited?
+    api_url = "http://api.twitter.com/1/account/rate_limit_status.json"
+    json = JSON.parse(open(api_url).read) rescue nil
+    if json.nil? || json['remaining_hits'] <= 0
+      # puts "RATE LIMITED!"
+      return true
+    else
+      return false
+    end
+  end
+  
+  def self.wait_until_not_rate_limited
+    puts "Waiting until we're not rate limited..."
+    sleep(30) while self.rate_limited?
+    puts "Yay! We are no longer rate limited!"
   end
   
   def self.follows?(user_a, user_b)
