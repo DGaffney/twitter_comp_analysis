@@ -193,4 +193,3 @@ gg.gilad_clean
 # gg = NewDeGilader.new
 # gg.initialize_connect
 # gg.gilad_clean(:egypt)
->>>>>>> 2813cf1ad5aedbeaadcd1f76f550f38d0f452028
