@@ -8,9 +8,9 @@ module Utils
   end
 
   def self.tweet_data(twitter_id)
-    puts "http://api.twitter.com/1/statuses/show/#{twitter_id}.json"
+    # puts "http://api.twitter.com/1/statuses/show/#{twitter_id}.json"
     data = JSON.parse(open("http://api.twitter.com/1/statuses/show/#{twitter_id}.json").read)
-    debugger
+    # debugger
     user = data.delete("user")
     return data, user   
   end
