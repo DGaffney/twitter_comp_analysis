@@ -8,7 +8,7 @@ DataMapper.finalize
 
 class NewDeGilader
   
-  HAT_WOBBLE = 1#0
+  HAT_WOBBLE = 10
 
   def initialize(username, password, hostname, database)
     DataMapper.setup(:default, "mysql://#{username}:#{password}@#{hostname}/#{database}")
@@ -29,7 +29,7 @@ class NewDeGilader
   def gilad_clean
     # DataMapper.repository(database) do
       # tweet_ids = DataMapper.repository(database).adapter.select("SELECT id FROM tweets where source is NULL order by rand()")
-      tweet_ids = DataMapper.repository(:default).adapter.select("SELECT id FROM tweets where source is NULL order by rand()")
+      tweet_ids = DataMapper.repository(:default).adapter.select("SELECT id FROM tweets")# where source is NULL order by rand()")
       tweet_id_groupings =  tweet_ids.chunk(HAT_WOBBLE)
       threads = []
       tweet_id_groupings.each do |grouping|
@@ -104,7 +104,7 @@ class NewDeGilader
     end
   end
 end
-gg = NewDeGilader.new('gonkclub', 'cakebread', 'deebee.yourdefaulthomepage.com', '140kit_scratch_2')
+gg = NewDeGilader.new('gonkclub', 'cakebread', 'deebee.yourdefaulthomepage.com', '140kit_scratch_1')
 gg.gilad_clean
 
 
