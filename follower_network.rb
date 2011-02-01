@@ -1,15 +1,11 @@
 require 'rubygems'
 require 'dm-core'
-# require 'dm-migrations'
-# require 'dm-aggregates'
 require 'extensions/array'
 require 'models/graph'
 require 'models/edge'
 require 'models/tweet'
 require 'models/user'
-
 DataMapper.finalize
-
 require 'db'
 require 'utils'
 
