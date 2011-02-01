@@ -9,6 +9,7 @@ DataMapper.finalize
 
 DataMapper.setup(:tunisia, "mysql://gonkclub:cakebread@deebee.yourdefaulthomepage.com/140kit_scratch_1")
 DataMapper.setup(:test, "mysql://gonkclub:cakebread@deebee.yourdefaulthomepage.com/140kit")
+DataMapper.setup(:egypt, "mysql://gonkclub:cakebread@deebee.yourdefaulthomepage.com/140kit_scratch_2")
 
 tunisia_result = {"200" => 0, "404" => 0}
 test_result = {"200" => 0, "404" => 0}
@@ -41,6 +42,6 @@ DataMapper.repository(:egypt).adapter.select("select twitter_id from tweets orde
   end
 end
 
-puts "Test 200/404 Ratio:#{test_result["200"]/test_result["404"].to_i}"
-puts "Tunisia 200/404 Ratio:#{tunisia_result["200"]/tunisia_result["404"].to_i}"
-puts "Egypt 200/404 Ratio:#{egypt_result["200"]/egypt_result["404"].to_i}"
+puts "Test 200/404 Ratio:#{test_result["200"]/test_result["404"].to_f}"
+puts "Tunisia 200/404 Ratio:#{tunisia_result["200"]/tunisia_result["404"].to_f}"
+puts "Egypt 200/404 Ratio:#{egypt_result["200"]/egypt_result["404"].to_f}"
