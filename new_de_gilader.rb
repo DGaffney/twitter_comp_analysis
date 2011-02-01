@@ -1,6 +1,6 @@
 require 'rubygems'
 require 'dm-core'
-require 'dm-validations'
+# require 'dm-validations'
 `ls models`.split("\n").each {|model| require "models/#{model}"}
 require 'utils'
 require 'extensions/array'
@@ -8,7 +8,7 @@ DataMapper.finalize
 
 class NewDeGilader
   
-  HAT_WOBBLE = 20
+  HAT_WOBBLE = 1#0
 
   def initialize(username, password, hostname, database)
     DataMapper.setup(:default, "mysql://#{username}:#{password}@#{hostname}/#{database}")
@@ -29,7 +29,7 @@ class NewDeGilader
   def gilad_clean
     # DataMapper.repository(database) do
       # tweet_ids = DataMapper.repository(database).adapter.select("SELECT id FROM tweets where source is NULL order by rand()")
-      tweet_ids = DataMapper.repository(:default).adapter.select("SELECT id FROM tweets")# where source is NULL order by rand()")
+      tweet_ids = DataMapper.repository(:default).adapter.select("SELECT id FROM tweets where source is NULL order by rand()")
       tweet_id_groupings =  tweet_ids.chunk(HAT_WOBBLE)
       threads = []
       tweet_id_groupings.each do |grouping|
@@ -69,9 +69,12 @@ class NewDeGilader
               end
             end
           end
+          debugger
           if tweet.save
             puts "Tweet: #{tweet.author}"
-          else puts "Tweet: #{tweet.author} [failed]"
+          else
+            puts "Tweet: #{tweet.author} [failed]"
+            tweet.errors.each {|e| puts puts "  => #{e}" }
           end
           if user.new?
             user.screen_name = tweet.author
@@ -85,15 +88,19 @@ class NewDeGilader
                 end
               end
             end
+            debugger
             if user.save
               puts "User: #{user.screen_name||user.username}"
-            else puts "User: #{user.screen_name||user.username} [failed]"
+            else
+              puts "User: #{user.screen_name||user.username} [failed]"
+              user.errors.each {|e| puts puts "  => #{e}" }
             end
             # puts "Saved user #{user.screen_name}"
           else puts "User: #{user.screen_name||user.username} [exists]"
           end
         else
           puts "404: #{tweet.link.gsub('%2F', '/').gsub('%3A', ':')}"
+          puts Utils.rate_limited?
           Utils.wait_until_not_rate_limited if Utils.rate_limited?
         end
       end
