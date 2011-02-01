@@ -6,7 +6,7 @@ require 'utils'
 require 'extensions/array'
 DataMapper.finalize
 
-all_my_bases = {"egypt" => "140kit_scratch_2", "tunisia" => "140kit_scratch_1"}
+all_my_bases = {"e" => "140kit_scratch_2", "t" => "140kit_scratch_1"}
 
 class NewDeGilader
   

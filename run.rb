@@ -7,3 +7,4 @@ require "#{current_path}analysis.rb"
 require "#{current_path}new_de_gilader.rb"
 `ls analyses`.split("\n").each {|analysis| require "#{current_path}analyses/#{analysis}"}
 `ls extensions`.split("\n").each {|analysis| require "#{current_path}extensions/#{analysis}"}
+Analysis::OrgEffect.generate_results
