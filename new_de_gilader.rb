@@ -98,7 +98,6 @@ class NewDeGilader
           end
         else
           puts "404: #{tweet.link.gsub('%2F', '/').gsub('%3A', ':')}"
-          puts Utils.rate_limited?
           Utils.wait_until_not_rate_limited if Utils.rate_limited?
         end
       end
