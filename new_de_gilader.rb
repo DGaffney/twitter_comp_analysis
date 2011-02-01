@@ -46,7 +46,7 @@ class NewDeGilader
       # tweet = DataMapper.repository(database){Tweet.first(:id => tweet_id)}
       tweet = Tweet.first(:id => tweet_id)
       if !tweet.source
-        puts "Tweet: #{tweet.author}."
+        # puts "Tweet: #{tweet.author}"
         tweet.twitter_id = tweet.link.scan(/statuses\%2F(.*)/).compact.flatten.first.to_i
         tweet.screen_name = tweet.author
         tweet.created_at = tweet.pubdate
@@ -69,10 +69,13 @@ class NewDeGilader
               end
             end
           end
-          tweet.save
+          if tweet.save
+            puts "Tweet: #{tweet.author}"
+          else puts "Tweet: #{tweet.author} [failed]"
+          end
           if user.new?
             user.screen_name = tweet.author
-            puts "User: #{user.screen_name||user.username}."
+            # puts "User: #{user.screen_name||user.username}"
             user_data.keys.each do |key|
               if user.methods.include?(key)
                 if key=="id"
@@ -82,9 +85,12 @@ class NewDeGilader
                 end
               end
             end
-            user.save
+            if user.save
+              puts "User: #{user.screen_name||user.username}"
+            else puts "User: #{user.screen_name||user.username} [failed]"
+            end
             # puts "Saved user #{user.screen_name}"
-          else puts "Already have #{user.screen_name||user.username}."
+          else puts "User: #{user.screen_name||user.username} [exists]"
           end
         else
           puts "404: #{tweet.link.gsub('%2F', '/').gsub('%3A', ':')}"
