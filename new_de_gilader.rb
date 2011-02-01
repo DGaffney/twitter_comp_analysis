@@ -10,7 +10,7 @@ all_my_bases = {"egypt" => "140kit_scratch_2", "tunisia" => "140kit_scratch_1"}
 
 class NewDeGilader
   
-  HAT_WOBBLE = 10
+  HAT_WOBBLE = 100
 
   def initialize(username, password, hostname, database)
     DataMapper.setup(:default, "mysql://#{username}:#{password}@#{hostname}/#{database}")
@@ -31,8 +31,17 @@ class NewDeGilader
   def gilad_clean
     # DataMapper.repository(database) do
       # tweet_ids = DataMapper.repository(database).adapter.select("SELECT id FROM tweets where source is NULL order by rand()")
-      tweet_ids = DataMapper.repository(:default).adapter.select("SELECT id FROM tweets where source is NULL order by rand()")
-      tweet_id_groupings =  tweet_ids.chunk(HAT_WOBBLE)
+      # tweet_ids = DataMapper.repository(:default).adapter.select("SELECT id FROM tweets order by rand()")
+      giladed_tweet_ids = DataMapper.repository(:default).adapter.select("SELECT tweets.id FROM tweets WHERE source is NULL")
+      done_tweet_ids = DataMapper.repository(:default).adapter.select("SELECT tweets.id FROM tweets INNER JOIN users ON tweets.screen_name=users.screen_name")
+      all_tweet_ids = DataMapper.repository(:default).adapter.select("SELECT tweets.id FROM tweets")
+      tweet_ids = all_tweet_ids - done_tweet_ids + giladed_tweet_ids
+      puts "#{tweet_ids.length} of #{all_tweet_ids.length} tweets left to update."
+      giladed_tweet_ids.clear
+      done_tweet_ids.clear
+      all_tweet_ids.clear
+      tweet_ids.shuffle!
+      tweet_id_groupings = tweet_ids.chunk(HAT_WOBBLE)
       threads = []
       tweet_id_groupings.each do |grouping|
         threads<<Thread.new{run_tweets(grouping)}
@@ -107,6 +116,12 @@ class NewDeGilader
   end
 end
 
-db = all_my_bases[ARGV[0]]
-gg = NewDeGilader.new('gonkclub', 'cakebread', 'deebee.yourdefaulthomepage.com', db)
-gg.gilad_clean
+if ARGV.empty?
+  puts "## IRB MODE ##"
+  db = all_my_bases["tunisia"]
+  gg = NewDeGilader.new('gonkclub', 'cakebread', 'deebee.yourdefaulthomepage.com', db)
+else
+  db = all_my_bases[ARGV[0]]
+  gg = NewDeGilader.new('gonkclub', 'cakebread', 'deebee.yourdefaulthomepage.com', db)
+  gg.gilad_clean
+end
