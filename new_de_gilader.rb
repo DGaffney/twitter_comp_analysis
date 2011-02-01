@@ -2,7 +2,6 @@ class NewDeGilader
   require 'rubygems'
   require 'dm-core'
   require 'dm-validations'
-  require 'dm-mysql-adapter'
   `ls models`.split("\n").each {|model| require "models/#{model}"}
   require 'utils.rb'
   require 'extensions/array.rb'
@@ -90,3 +89,6 @@ class NewDeGilader
     end
   end
 end
+gg = NewDeGilader.new
+gg.initialize_connect
+gg.gilad_clean(:egypt)
