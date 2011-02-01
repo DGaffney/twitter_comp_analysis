@@ -69,7 +69,6 @@ class NewDeGilader
               end
             end
           end
-          debugger
           if tweet.save
             puts "Tweet: #{tweet.author}"
           else
@@ -88,7 +87,6 @@ class NewDeGilader
                 end
               end
             end
-            debugger
             if user.save
               puts "User: #{user.screen_name||user.username}"
             else
