@@ -43,7 +43,7 @@ class NewDeGilader
       threads = []
       tweet_id_groupings.each do |grouping|
         puts "NEW THREAD"
-        threads<<Thread.new{self.run_tweets(grouping)}
+        self.run_tweets(grouping)
       end
       threads.collect{|x| x.join}
     # end
