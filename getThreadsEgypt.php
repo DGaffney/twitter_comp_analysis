@@ -9,7 +9,7 @@
 	$story = "tweets";
 	
 	// max thread ID - to be calculated
-	$query1 = "select MAX(threadID) from `$story`";
+	$query1 = "select MAX(thread_id) from `$story`";
 	echo "$query1<br>";
 	
 	$r1 = mysql_query($query1,$mysql) or die(mysql_error());
@@ -18,7 +18,7 @@
 	$maxThreadID = $r1[0];
 	
 	// get entries whose thread ID is zero
-	$query = "select * from `$story` where `threadID`=0 order by pubdate asc";	
+	$query = "select * from `$story` where `thread_id`=0 order by pubdate asc";	
 	$result1 = mysql_query($query,$mysql) or die(mysql_error());
 	
 	while ($curTweet = mysql_fetch_array($result1)) {
@@ -51,21 +51,21 @@
 						$iterWords = explode(" ",$iT);
 						$compWords = array_intersect($curWords,$iterWords);		// get intersection of words
 						$arrSize = 	sizeof($compWords);
-						$sharedWords = implode(",", $compWords);
+						$shared_words = implode(",", $compWords);
 					
 						//echo "$iterTweet<br>";
 					
 						// they are part of the same thread
 						if ($arrSize >= $threshold) {
 							
-							$num = (int) $row['threadID'];
+							$num = (int) $row['thread_id'];
 							
-							//echo "<br><br>$row[threadID] (vs.) $maxThreadID -- ";
+							//echo "<br><br>$row[thread_id] (vs.) $maxThreadID -- ";
 							if ( $num <= 0 ) 
 								$num = $maxThreadID+1;	
 							
-							// update current entry's threadID and sharedWords array (link it to a certain thread)
-							$query = "UPDATE `$story` SET threadID='{$num}', sharedWords='{$sharedWords}' WHERE id='{$id}'";
+							// update current entry's thread_id and shared_words array (link it to a certain thread)
+							$query = "UPDATE `$story` SET thread_id='{$num}', shared_words='{$shared_words}' WHERE id='{$id}'";
 						//	echo "($num) ";
 	
 							$result = mysql_query($query,$mysql) or die(mysql_error()); 
@@ -82,7 +82,7 @@
 				if (strcmp("yes",$continue)==0) {
 					// set new thread for this entry
 					$maxThreadID++;
-					$query = "UPDATE `$story` SET threadID='{$maxThreadID}' WHERE id='{$id}'";
+					$query = "UPDATE `$story` SET thread_id='{$maxThreadID}' WHERE id='{$id}'";
 					echo "$query<br>";
 					$result = mysql_query($query,$mysql) or die(mysql_error()); 
 		
@@ -93,7 +93,7 @@
 			
 		else {
 			// empty database
-			$query = "UPDATE `$story` SET threadID='1' WHERE id='{$id}'";
+			$query = "UPDATE `$story` SET thread_id='1' WHERE id='{$id}'";
 			//echo "$query<br>";
 			$result = mysql_query($query,$mysql) or die(mysql_error()); 
 		
