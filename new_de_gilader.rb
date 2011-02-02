@@ -12,12 +12,12 @@ class NewDeGilader
   
   HAT_WOBBLE = 100
 
-  def initialize(username, password, hostname, database)
+  def self.setup(username, password, hostname, database)
     DataMapper.setup(:default, "mysql://#{username}:#{password}@#{hostname}/#{database}")
     self.gilad_clean
   end
 
-  def gilad_clean
+  def self.gilad_clean
     tweet_ids = DataMapper.repository(:default).adapter.select("select id from tweets where (in_reply_to_status_id is null or in_reply_to_status_id=0) and text like 'rt%' order by rand()") # or (tweets.screen_name=users.screen_name and users.followers_count=0)  << This will pull out users with zero follower counts
     tweet_id_groupings = tweet_ids.chunk(HAT_WOBBLE)
     threads = []
@@ -29,7 +29,7 @@ class NewDeGilader
     threads.collect{|x| x.join}
   end
 
-  def run_tweets(tweet_ids)
+  def self.run_tweets(tweet_ids)
     disallowed_user_keys = []
     disallowed_tweet_keys = ["id_str", "retweeted_status", "in_reply_to_user_id", "in_reply_to_status_id", "in_reply_to_screen_name"]
     tweet_ids.each do |tweet_id|
