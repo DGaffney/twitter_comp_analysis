@@ -119,12 +119,12 @@ end
 if ARGV.empty?
   puts "## IRB MODE ##"
   db = all_my_bases["tunisia"]
-  1.upto(100) do |x|
+  1.upto(10000) do |x|
     gg = NewDeGilader.new('gonkclub', 'cakebread', 'deebee.yourdefaulthomepage.com', db)
   end
 else
   db = all_my_bases[ARGV[0]]
-  1.upto(100) do |x|
+  1.upto(10000) do |x|
     gg = NewDeGilader.new('gonkclub', 'cakebread', 'deebee.yourdefaulthomepage.com', db)
     gg.gilad_clean
   end
