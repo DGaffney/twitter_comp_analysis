@@ -52,13 +52,13 @@ class NewDeGilader
               tweet.send("#{key}=", tweet_data[key]) if !disallowed_tweet_keys.include?(key)
             end
           end
-          possible_retweeted_user = User.first(:screen_name => tweet_data["text"].strip.scan(/[rt:|rt|RT|RT:]\s*@(\w*)\W/).flatten.first)
-          tweet.in_reply_to_user_id = tweet_data["in_reply_to_user_id"] || tweet_data["retweeted_status"]&&tweet_data["retweeted_status"]["user"]&&tweet_data["retweeted_status"]["user"]["id"] || possible_retweeted_user&&possible_retweeted_user.id
-          tweet.in_reply_to_status_id = tweet_data["in_reply_to_status_id"] || tweet_data["retweeted_status"]&&tweet_data["retweeted_status"]["id"]
-          tweet.in_reply_to_screen_name = tweet_data["in_reply_to_screen_name"] || tweet_data["retweeted_status"]&&tweet_data["retweeted_status"]["user"]&&tweet_data["retweeted_status"]["user"]["screen_name"] || possible_retweeted_user&&possible_retweeted_user.screen_name
-          puts "author: #{tweet.author} irtui: #{tweet.in_reply_to_user_id} irtsi: #{tweet.in_reply_to_status_id} irtsn: #{tweet.in_reply_to_screen_name}"
         end
-        puts "Tweet Saved for #{tweet.author}: #{tweet.save!.inspect}"
+        possible_retweeted_user = User.first(:screen_name => tweet_data["text"].strip.scan(/[rt:|rt|RT|RT:]\s*@(\w*)\W/).flatten.first)
+        tweet.in_reply_to_user_id = tweet_data["in_reply_to_user_id"] || tweet_data["retweeted_status"]&&tweet_data["retweeted_status"]["user"]&&tweet_data["retweeted_status"]["user"]["id"] || possible_retweeted_user&&possible_retweeted_user.id
+        tweet.in_reply_to_status_id = tweet_data["in_reply_to_status_id"] || tweet_data["retweeted_status"]&&tweet_data["retweeted_status"]["id"]
+        tweet.in_reply_to_screen_name = tweet_data["in_reply_to_screen_name"] || tweet_data["retweeted_status"]&&tweet_data["retweeted_status"]["user"]&&tweet_data["retweeted_status"]["user"]["screen_name"] || possible_retweeted_user&&possible_retweeted_user.screen_name
+        puts "author: #{tweet.author} irtui: #{tweet.in_reply_to_user_id} irtsi: #{tweet.in_reply_to_status_id} irtsn: #{tweet.in_reply_to_screen_name}"
+        puts "Tweet Saved for #{tweet.author}: #{tweet.save!.inspect} (#{tweet.twitter_id})"
         if tweet.save!
           puts "Tweet: #{tweet.author}"
         else
