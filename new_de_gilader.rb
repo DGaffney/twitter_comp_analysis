@@ -32,9 +32,9 @@ class NewDeGilader
     # DataMapper.repository(database) do
       # tweet_ids = DataMapper.repository(database).adapter.select("SELECT id FROM tweets where source is NULL order by rand()")
       # tweet_ids = DataMapper.repository(:default).adapter.select("SELECT id FROM tweets order by rand()")
-      giladed_tweet_ids = DataMapper.repository(:default).adapter.select("SELECT tweets.id FROM tweets WHERE source is NULL")
-      done_tweet_ids = DataMapper.repository(:default).adapter.select("SELECT tweets.id FROM tweets INNER JOIN users ON tweets.screen_name=users.screen_name")
-      all_tweet_ids = DataMapper.repository(:default).adapter.select("SELECT tweets.id FROM tweets")
+      # giladed_tweet_ids = DataMapper.repository(:default).adapter.select("SELECT tweets.id FROM tweets WHERE source is NULL")
+      # done_tweet_ids = DataMapper.repository(:default).adapter.select("SELECT tweets.id FROM tweets INNER JOIN users ON tweets.screen_name=users.screen_name")
+      all_tweet_ids = DataMapper.repository(:default).adapter.select("SELECT tweets.* FROM tweets inner join users where (tweets.in_reply_to_status_id=0 and tweets.text like 'rt:%') or (tweets.screen_name=users.screen_name and users.followers_count=0)")
       tweet_ids = all_tweet_ids - done_tweet_ids + giladed_tweet_ids
       puts "#{tweet_ids.length} of #{all_tweet_ids.length} tweets left to update."
       giladed_tweet_ids.clear
@@ -51,7 +51,7 @@ class NewDeGilader
   end
 
   def run_tweets(tweet_ids)
-    disallowed_user_keys = ["friends_count", "followers_count"]
+    # disallowed_user_keys = ["friends_count", "followers_count"]
     disallowed_tweet_keys = ["id_str"]
     tweet_ids.each do |tweet_id|
       # tweet = DataMapper.repository(database){Tweet.first(:id => tweet_id)}
