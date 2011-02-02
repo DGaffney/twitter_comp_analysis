@@ -11,7 +11,7 @@ all_my_bases = {"e" => "140kit_scratch_2", "t" => "140kit_scratch_1"}
 class NewDeGilader
   
   HAT_WOBBLE = 1
-  GRAPH_ID = Graph.first(:title => "retweets").id
+
 
   def self.setup(username, password, hostname, database)
     DataMapper.setup(:default, "mysql://#{username}:#{password}@#{hostname}/#{database}")
@@ -20,7 +20,7 @@ class NewDeGilader
 
   def self.gilad_clean
     tweet_ids = DataMapper.repository(:default).adapter.select("select id from tweets where (in_reply_to_status_id is null or in_reply_to_status_id=0) and text like 'rt%' order by rand()") # or (tweets.screen_name=users.screen_name and users.followers_count=0)  << This will pull out users with zero follower counts
-
+    $graph_id = Graph.first(:title => "retweets").id
     tweet_id_groupings = tweet_ids.chunk(HAT_WOBBLE)
     threads = []
     tweet_id_groupings.each do |grouping|
@@ -65,7 +65,7 @@ class NewDeGilader
           edge.end_node = tweet.author
           edge.edge_id = tweet.twitter_id
           edge.style = "retweet"
-          edge.graph_id = GRAPH_ID
+          edge.graph_id = $graph_id
         end
         puts "author: #{tweet.author} irtui: #{tweet.in_reply_to_user_id} irtsi: #{tweet.in_reply_to_status_id} irtsn: #{tweet.in_reply_to_screen_name}"
         puts "Tweet Saved for #{tweet.author}: #{tweet.save!.inspect} (#{tweet.twitter_id})"
