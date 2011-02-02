@@ -46,7 +46,7 @@
 					if (strcmp($continue,"yes")==0) {	
 	
 						$threshold = $curSize * 8 / 10;			// set threshold of 0.8 for similarity
-						$iterTweet = $row[text];
+						$iterTweet = $row['text'];
 						$iT = strtolower(loseDots($iterTweet));
 						$iterWords = explode(" ",$iT);
 						$compWords = array_intersect($curWords,$iterWords);		// get intersection of words
@@ -58,7 +58,7 @@
 						// they are part of the same thread
 						if ($arrSize >= $threshold) {
 							
-							$num = (int) $row[threadID];
+							$num = (int) $row['threadID'];
 							
 							//echo "<br><br>$row[threadID] (vs.) $maxThreadID -- ";
 							if ( $num <= 0 ) 
