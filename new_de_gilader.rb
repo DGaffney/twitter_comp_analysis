@@ -70,9 +70,9 @@ class NewDeGilader
               if key=="id"
                 tweet.send("twitter_id=", tweet_data[key])
               elsif key == "retweeted_status"
-                tweet.in_reply_to_user_id = tweet_data[key]["in_reply_to_user_id"]
-                tweet.in_reply_to_status_id = tweet_data[key]["in_reply_to_status_id"]
-                tweet.in_reply_to_screen_name = tweet_data[key]["in_reply_to_screen_name"]
+                tweet.in_reply_to_user_id = tweet_data[key]["in_reply_to_user_id"] || tweet_data[key]["retweeted_status"]&&tweet_data[key]["retweeted_status"]["user"]&&tweet_data[key]["retweeted_status"]["user"]["id"]
+                tweet.in_reply_to_status_id = tweet_data[key]["in_reply_to_status_id"] || tweet_data[key]["retweeted_status"]&&tweet_data[key]["retweeted_status"]["id"]
+                tweet.in_reply_to_screen_name = tweet_data[key]["in_reply_to_screen_name"] || tweet_data[key]["retweeted_status"]&&tweet_data[key]["retweeted_status"]["user"]&&tweet_data[key]["retweeted_status"]["user"]["screen_name"]
               elsif key=="retweet_count"
                 tweet.retweet_count = tweet_data[key].to_i
               else
