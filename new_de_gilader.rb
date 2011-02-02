@@ -36,11 +36,9 @@ class NewDeGilader
       # done_tweet_ids = DataMapper.repository(:default).adapter.select("SELECT tweets.id FROM tweets INNER JOIN users ON tweets.screen_name=users.screen_name")
       all_tweet_ids = DataMapper.repository(:default).adapter.select("SELECT tweets.id FROM tweets inner join users where (tweets.in_reply_to_status_id=0 and tweets.text like 'rt:%') order by rand()") # or (tweets.screen_name=users.screen_name and users.followers_count=0)  << This will pull out users with zero follower counts
       tweet_ids = all_tweet_ids # - done_tweet_ids + giladed_tweet_ids
-      puts "#{tweet_ids.length} of #{all_tweet_ids.length} tweets left to update."
+      # puts "#{tweet_ids.length} of #{all_tweet_ids.length} tweets left to update."
       # giladed_tweet_ids.clear
       # done_tweet_ids.clear
-      all_tweet_ids.clear
-      tweet_ids.shuffle!
       tweet_id_groupings = tweet_ids.chunk(HAT_WOBBLE)
       threads = []
       tweet_id_groupings.each do |grouping|
@@ -51,6 +49,7 @@ class NewDeGilader
   end
 
   def run_tweets(tweet_ids)
+    debugger
     # disallowed_user_keys = ["friends_count", "followers_count"]
     disallowed_tweet_keys = ["id_str"]
     tweet_ids.each do |tweet_id|
@@ -119,13 +118,9 @@ end
 if ARGV.empty?
   puts "## IRB MODE ##"
   db = all_my_bases["tunisia"]
-  1.upto(10000) do |x|
-    gg = NewDeGilader.new('gonkclub', 'cakebread', 'deebee.yourdefaulthomepage.com', db)
-  end
+  gg = NewDeGilader.new('gonkclub', 'cakebread', 'deebee.yourdefaulthomepage.com', db)
 else
   db = all_my_bases[ARGV[0]]
-  1.upto(10000) do |x|
-    gg = NewDeGilader.new('gonkclub', 'cakebread', 'deebee.yourdefaulthomepage.com', db)
-    gg.gilad_clean
-  end
+  gg = NewDeGilader.new('gonkclub', 'cakebread', 'deebee.yourdefaulthomepage.com', db)
+  gg.gilad_clean
 end
