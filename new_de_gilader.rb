@@ -37,8 +37,8 @@ class NewDeGilader
       all_tweet_ids = DataMapper.repository(:default).adapter.select("SELECT tweets.id FROM tweets inner join users where (tweets.in_reply_to_status_id=0 and tweets.text like 'rt:%') order by rand()") # or (tweets.screen_name=users.screen_name and users.followers_count=0)  << This will pull out users with zero follower counts
       tweet_ids = all_tweet_ids # - done_tweet_ids + giladed_tweet_ids
       puts "#{tweet_ids.length} of #{all_tweet_ids.length} tweets left to update."
-      giladed_tweet_ids.clear
-      done_tweet_ids.clear
+      # giladed_tweet_ids.clear
+      # done_tweet_ids.clear
       all_tweet_ids.clear
       tweet_ids.shuffle!
       tweet_id_groupings = tweet_ids.chunk(HAT_WOBBLE)
