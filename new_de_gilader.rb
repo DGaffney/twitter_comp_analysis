@@ -57,7 +57,7 @@ class NewDeGilader
       # tweet = DataMapper.repository(database){Tweet.first(:id => tweet_id)}
       tweet = Tweet.first(:id => tweet_id)
       if !tweet.source
-        # puts "Tweet: #{tweet.author}"
+        puts "Tweet: #{tweet.author}"
         tweet.twitter_id = tweet.link.scan(/statuses\%2F(.*)/).compact.flatten.first.to_i
         tweet.screen_name = tweet.author
         tweet.created_at = tweet.pubdate
