@@ -14,6 +14,7 @@ class NewDeGilader
 
   def initialize(username, password, hostname, database)
     DataMapper.setup(:default, "mysql://#{username}:#{password}@#{hostname}/#{database}")
+    self.gilad_clean
   end
 
   def gilad_clean
@@ -22,7 +23,7 @@ class NewDeGilader
     threads = []
     tweet_id_groupings.each do |grouping|
       threads<<Thread.new{
-        run_tweets(grouping)
+        self.run_tweets(grouping)
       }
     end
     threads.collect{|x| x.join}
@@ -50,9 +51,9 @@ class NewDeGilader
             end
           end
           possible_retweeted_user = User.first(:screen_name => tweet_data["text"].strip.scan(/[rt:|rt|RT|RT:]\s*@(\w*)\W/).flatten.first)
-          tweet.in_reply_to_user_id = tweet_data["retweeted_status"]["in_reply_to_user_id"] || tweet_data["retweeted_status"]&&tweet_data["retweeted_status"]["user"]&&tweet_data["retweeted_status"]["user"]["id"] || possible_retweeted_user&&possible_retweeted_user.id
-          tweet.in_reply_to_status_id = tweet_data["retweeted_status"]["in_reply_to_status_id"] || tweet_data["retweeted_status"]&&tweet_data["retweeted_status"]["id"]
-          tweet.in_reply_to_screen_name = tweet_data["retweeted_status"]["in_reply_to_screen_name"] || tweet_data["retweeted_status"]&&tweet_data["retweeted_status"]["user"]&&tweet_data["retweeted_status"]["user"]["screen_name"] || possible_retweeted_user&&possible_retweeted_user.screen_name
+          tweet.in_reply_to_user_id = tweet_data["in_reply_to_user_id"] || tweet_data["retweeted_status"]&&tweet_data["retweeted_status"]["user"]&&tweet_data["retweeted_status"]["user"]["id"] || possible_retweeted_user&&possible_retweeted_user.id
+          tweet.in_reply_to_status_id = tweet_data["in_reply_to_status_id"] || tweet_data["retweeted_status"]&&tweet_data["retweeted_status"]["id"]
+          tweet.in_reply_to_screen_name = tweet_data["in_reply_to_screen_name"] || tweet_data["retweeted_status"]&&tweet_data["retweeted_status"]["user"]&&tweet_data["retweeted_status"]["user"]["screen_name"] || possible_retweeted_user&&possible_retweeted_user.screen_name
         end
         if tweet.save
           puts "Tweet: #{tweet.author}"
@@ -88,12 +89,11 @@ if ARGV.empty?
   puts "## IRB MODE ##"
   db = all_my_bases["tunisia"]
   1.upto(10000) do |x|
-    gg = NewDeGilader.new('gonkclub', 'cakebread', 'deebee.yourdefaulthomepage.com', db)
+    NewDeGilader.setup('gonkclub', 'cakebread', 'deebee.yourdefaulthomepage.com', db)
   end
 else
   db = all_my_bases[ARGV[0]]
   1.upto(10000) do |x|
-    gg = NewDeGilader.new('gonkclub', 'cakebread', 'deebee.yourdefaulthomepage.com', db)
-    gg.gilad_clean
+    NewDeGilader.setup('gonkclub', 'cakebread', 'deebee.yourdefaulthomepage.com', db)
   end
 end
