@@ -19,13 +19,13 @@ class NewDeGilader
   def gilad_clean
     tweet_ids = DataMapper.repository(:default).adapter.select("select id from tweets where (in_reply_to_status_id is null or in_reply_to_status_id=0) and text like 'rt%' order by rand()") # or (tweets.screen_name=users.screen_name and users.followers_count=0)  << This will pull out users with zero follower counts
     tweet_id_groupings = tweet_ids.chunk(HAT_WOBBLE)
-    # threads = []
+    threads = []
     tweet_id_groupings.each do |grouping|
-      # threads<<Thread.new{
+      threads<<Thread.new{
         run_tweets(grouping)
-      # }
+      }
     end
-    # threads.collect{|x| x.join}
+    threads.collect{|x| x.join}
   end
 
   def run_tweets(tweet_ids)
@@ -60,7 +60,6 @@ class NewDeGilader
           puts "Tweet: #{tweet.author} [failed]"
           tweet.errors.each {|e| puts puts "  => #{e}" }
         end
-        debugger
         user.screen_name = tweet.author
         user_data.keys.each do |key|
           if user.methods.include?(key)
