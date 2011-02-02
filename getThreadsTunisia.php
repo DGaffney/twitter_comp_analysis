@@ -40,13 +40,13 @@
 			if ($total > 0) {
 				
 				$continue = "yes";
-				echo "<br><br>$curTweet['text']<br><br>";				
+				echo "<br><br>$curTweet[text]<br><br>";				
 				while (($row = mysql_fetch_array($result)) && (strcmp($continue,"yes")==0)) {
 				
 					if (strcmp($continue,"yes")==0) {	
 	
 						$threshold = $curSize * 8 / 10;			// set threshold of 0.8 for similarity
-						$iterTweet = $row['text'];
+						$iterTweet = $row[text];
 						$iT = strtolower(loseDots($iterTweet));
 						$iterWords = explode(" ",$iT);
 						$compWords = array_intersect($curWords,$iterWords);		// get intersection of words
@@ -58,7 +58,7 @@
 						// they are part of the same thread
 						if ($arrSize >= $threshold) {
 							
-							$num = (int) $row['thread_id'];
+							$num = (int) $row[thread_id];
 							
 							//echo "<br><br>$row[thread_id] (vs.) $maxThreadID -- ";
 							if ( $num <= 0 ) 
@@ -71,7 +71,7 @@
 							$result = mysql_query($query,$mysql) or die(mysql_error()); 
 							$continue = "no";
 	
-							echo "connecting:<br> <strong>$curTweet['id']::$curTweet['pubdate']</strong> $curTweet['text']<br><strong>$row['id']::$row['pubdate']</strong> $iterTweet<br>";
+							echo "connecting:<br> <strong>$curTweet[id]::$curTweet[pubdate]</strong> $curTweet[text]<br><strong>$row[id]::$row[pubdate]</strong> $iterTweet<br>";
 						}
 							   
 				   }
@@ -86,7 +86,7 @@
 					echo "$query<br>";
 					$result = mysql_query($query,$mysql) or die(mysql_error()); 
 		
-					echo "created new thread ($maxThreadID) for $curTweet['text']<br>";		
+					echo "created new thread ($maxThreadID) for $curTweet[text]<br>";		
 				}
 			}
 			
@@ -128,3 +128,4 @@
 
 
 ?>
+
