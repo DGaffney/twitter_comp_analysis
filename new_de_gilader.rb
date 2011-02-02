@@ -66,6 +66,7 @@ class NewDeGilader
           edge.edge_id = tweet.twitter_id
           edge.style = "retweet"
           edge.graph_id = $graph_id
+          edge.save!
         end
         puts "author: #{tweet.author} irtui: #{tweet.in_reply_to_user_id} irtsi: #{tweet.in_reply_to_status_id} irtsn: #{tweet.in_reply_to_screen_name}"
         puts "Tweet Saved for #{tweet.author}: #{tweet.save!.inspect} (#{tweet.twitter_id})"
