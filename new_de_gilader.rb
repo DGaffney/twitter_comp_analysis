@@ -126,6 +126,6 @@ else
   db = all_my_bases[ARGV[0]]
   1.upto(100) do |x|
     gg = NewDeGilader.new('gonkclub', 'cakebread', 'deebee.yourdefaulthomepage.com', db)
+    gg.gilad_clean
   end
-  gg.gilad_clean
 end
