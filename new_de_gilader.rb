@@ -34,7 +34,7 @@ class NewDeGilader
       # tweet_ids = DataMapper.repository(:default).adapter.select("SELECT id FROM tweets order by rand()")
       # giladed_tweet_ids = DataMapper.repository(:default).adapter.select("SELECT tweets.id FROM tweets WHERE source is NULL")
       # done_tweet_ids = DataMapper.repository(:default).adapter.select("SELECT tweets.id FROM tweets INNER JOIN users ON tweets.screen_name=users.screen_name")
-      all_tweet_ids = DataMapper.repository(:default).adapter.select("SELECT tweets.* FROM tweets inner join users where (tweets.in_reply_to_status_id=0 and tweets.text like 'rt:%') or (tweets.screen_name=users.screen_name and users.followers_count=0)")
+      all_tweet_ids = DataMapper.repository(:default).adapter.select("SELECT tweets.id FROM tweets inner join users where (tweets.in_reply_to_status_id=0 and tweets.text like 'rt:%') or (tweets.screen_name=users.screen_name and users.followers_count=0) order by rand() limit 10000")
       tweet_ids = all_tweet_ids - done_tweet_ids + giladed_tweet_ids
       puts "#{tweet_ids.length} of #{all_tweet_ids.length} tweets left to update."
       giladed_tweet_ids.clear
@@ -119,9 +119,13 @@ end
 if ARGV.empty?
   puts "## IRB MODE ##"
   db = all_my_bases["tunisia"]
-  gg = NewDeGilader.new('gonkclub', 'cakebread', 'deebee.yourdefaulthomepage.com', db)
+  1.upto(100) do |x|
+    gg = NewDeGilader.new('gonkclub', 'cakebread', 'deebee.yourdefaulthomepage.com', db)
+  end
 else
   db = all_my_bases[ARGV[0]]
-  gg = NewDeGilader.new('gonkclub', 'cakebread', 'deebee.yourdefaulthomepage.com', db)
+  1.upto(100) do |x|
+    gg = NewDeGilader.new('gonkclub', 'cakebread', 'deebee.yourdefaulthomepage.com', db)
+  end
   gg.gilad_clean
 end
