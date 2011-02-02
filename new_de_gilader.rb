@@ -42,6 +42,7 @@ class NewDeGilader
       tweet_id_groupings = tweet_ids.chunk(HAT_WOBBLE)
       threads = []
       tweet_id_groupings.each do |grouping|
+        puts "NEW THREAD"
         threads<<Thread.new{run_tweets(grouping)}
       end
       threads.collect{|x| x.join}
@@ -49,12 +50,13 @@ class NewDeGilader
   end
 
   def run_tweets(tweet_ids)
-    debugger
-    # disallowed_user_keys = ["friends_count", "followers_count"]
+    disallowed_user_keys = []
     disallowed_tweet_keys = ["id_str"]
+    puts "In THREAD"
     tweet_ids.each do |tweet_id|
       # tweet = DataMapper.repository(database){Tweet.first(:id => tweet_id)}
       tweet = Tweet.first(:id => tweet_id)
+      puts "Tweet of #{tweet.id}"
       if !tweet.source
         puts "Tweet: #{tweet.author}"
         tweet.twitter_id = tweet.link.scan(/statuses\%2F(.*)/).compact.flatten.first.to_i
