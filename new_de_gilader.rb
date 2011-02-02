@@ -34,7 +34,7 @@ class NewDeGilader
       # tweet_ids = DataMapper.repository(:default).adapter.select("SELECT id FROM tweets order by rand()")
       # giladed_tweet_ids = DataMapper.repository(:default).adapter.select("SELECT tweets.id FROM tweets WHERE source is NULL")
       # done_tweet_ids = DataMapper.repository(:default).adapter.select("SELECT tweets.id FROM tweets INNER JOIN users ON tweets.screen_name=users.screen_name")
-      all_tweet_ids = DataMapper.repository(:default).adapter.select("SELECT tweets.id FROM tweets inner join users where (tweets.in_reply_to_status_id=0 and tweets.text like 'rt:%') or (tweets.screen_name=users.screen_name and users.followers_count=0) order by rand() limit 10000")
+      all_tweet_ids = DataMapper.repository(:default).adapter.select("SELECT tweets.id FROM tweets inner join users where (tweets.in_reply_to_status_id=0 and tweets.text like 'rt:%') or (tweets.screen_name=users.screen_name and users.followers_count=0) order by rand() limit 100")
       tweet_ids = all_tweet_ids - done_tweet_ids + giladed_tweet_ids
       puts "#{tweet_ids.length} of #{all_tweet_ids.length} tweets left to update."
       giladed_tweet_ids.clear
