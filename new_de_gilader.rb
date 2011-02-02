@@ -10,7 +10,7 @@ all_my_bases = {"e" => "140kit_scratch_2", "t" => "140kit_scratch_1"}
 
 class NewDeGilader
   
-  HAT_WOBBLE = 100
+  HAT_WOBBLE = 1
 
   def self.setup(username, password, hostname, database)
     DataMapper.setup(:default, "mysql://#{username}:#{password}@#{hostname}/#{database}")
