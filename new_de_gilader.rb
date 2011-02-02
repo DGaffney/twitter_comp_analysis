@@ -56,6 +56,7 @@ class NewDeGilader
           tweet.in_reply_to_user_id = tweet_data["in_reply_to_user_id"] || tweet_data["retweeted_status"]&&tweet_data["retweeted_status"]["user"]&&tweet_data["retweeted_status"]["user"]["id"] || possible_retweeted_user&&possible_retweeted_user.id
           tweet.in_reply_to_status_id = tweet_data["in_reply_to_status_id"] || tweet_data["retweeted_status"]&&tweet_data["retweeted_status"]["id"]
           tweet.in_reply_to_screen_name = tweet_data["in_reply_to_screen_name"] || tweet_data["retweeted_status"]&&tweet_data["retweeted_status"]["user"]&&tweet_data["retweeted_status"]["user"]["screen_name"] || possible_retweeted_user&&possible_retweeted_user.screen_name
+          puts "irtui: #{tweet.in_reply_to_user_id} irtsi: #{tweet.in_reply_to_status_id} irtsn: #{tweet.in_reply_to_screen_name}"
         end
 
         if tweet.save
