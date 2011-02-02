@@ -38,6 +38,7 @@ class NewDeGilader
       tweet.twitter_id = tweet.link.scan(/statuses\%2F(.*)/).compact.flatten.first.to_i
       tweet.screen_name = tweet.author
       tweet.created_at = tweet.pubdate
+      debugger
       tweet_data,user_data = Utils.tweet_data(tweet.twitter_id) rescue nil
       if tweet_data && user_data
         user = User.first(:twitter_id => user_data["id"]) || User.new
