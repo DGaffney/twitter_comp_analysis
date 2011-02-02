@@ -34,6 +34,7 @@ class NewDeGilader
     disallowed_tweet_keys = ["id_str", "retweeted_status", "in_reply_to_user_id", "in_reply_to_status_id", "in_reply_to_screen_name"]
     tweet_ids.each do |tweet_id|
       tweet = Tweet.first(:id => tweet_id)
+      puts "Pulling data on #{tweet.author}..."
       tweet.twitter_id = tweet.link.scan(/statuses\%2F(.*)/).compact.flatten.first.to_i
       tweet.screen_name = tweet.author
       tweet.created_at = tweet.pubdate
@@ -55,6 +56,7 @@ class NewDeGilader
           tweet.in_reply_to_status_id = tweet_data["in_reply_to_status_id"] || tweet_data["retweeted_status"]&&tweet_data["retweeted_status"]["id"]
           tweet.in_reply_to_screen_name = tweet_data["in_reply_to_screen_name"] || tweet_data["retweeted_status"]&&tweet_data["retweeted_status"]["user"]&&tweet_data["retweeted_status"]["user"]["screen_name"] || possible_retweeted_user&&possible_retweeted_user.screen_name
         end
+
         if tweet.save
           puts "Tweet: #{tweet.author}"
         else
