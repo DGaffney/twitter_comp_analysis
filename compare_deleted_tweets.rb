@@ -14,8 +14,8 @@ DataMapper.setup(:egypt, "mysql://gonkclub:cakebread@deebee.yourdefaulthomepage.
 tunisia_result = {"200" => 0, "404" => 0}
 test_result = {"200" => 0, "404" => 0}
 egypt_result = {"200" => 0, "404" => 0}
-
-DataMapper.repository(:test).adapter.select("select twitter_id from tweets where scrape_id = 1046 order by rand() limit 100").each do |twitter_id|
+limit=2000
+DataMapper.repository(:test).adapter.select("select twitter_id from tweets where scrape_id = 1019 order by rand() limit #{limit}").each do |twitter_id|
   tweet_data,user_data = Utils.tweet_data(twitter_id) rescue nil
   if tweet_data&&user_data
     test_result["200"]+=1
@@ -24,7 +24,7 @@ DataMapper.repository(:test).adapter.select("select twitter_id from tweets where
   end
 end
 
-DataMapper.repository(:tunisia).adapter.select("select twitter_id from tweets order by rand() limit 100").each do |twitter_id|
+DataMapper.repository(:tunisia).adapter.select("select twitter_id from tweets order by rand() limit #{limit}").each do |twitter_id|
   tweet_data,user_data = Utils.tweet_data(twitter_id) rescue nil
   if tweet_data&&user_data
     tunisia_result["200"]+=1
@@ -33,7 +33,7 @@ DataMapper.repository(:tunisia).adapter.select("select twitter_id from tweets or
   end
 end
 
-DataMapper.repository(:egypt).adapter.select("select twitter_id from tweets order by rand() limit 100").each do |twitter_id|
+DataMapper.repository(:egypt).adapter.select("select twitter_id from tweets order by rand() limit #{limit}").each do |twitter_id|
   tweet_data,user_data = Utils.tweet_data(twitter_id) rescue nil
   if tweet_data&&user_data
     egypt_result["200"]+=1
