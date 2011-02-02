@@ -12,7 +12,7 @@ class NewDeGilader
   
   HAT_WOBBLE = 100
 
-  def initialize(username, password, hostname, database)
+  def self.setup(username, password, hostname, database)
     DataMapper.setup(:default, "mysql://#{username}:#{password}@#{hostname}/#{database}")
     # DataMapper.setup(:default, 'mysql://gonkclub:cakebread@deebee.yourdefaulthomepage.com/140kit_scratch_1')
     # DataMapper.setup(:tunisia, 'mysql://gonkclub:cakebread@deebee.yourdefaulthomepage.com/140kit_scratch_1')
@@ -28,7 +28,7 @@ class NewDeGilader
   #   end
   # end
   
-  def gilad_clean
+  def self.gilad_clean
     # DataMapper.repository(database) do
       # tweet_ids = DataMapper.repository(database).adapter.select("SELECT id FROM tweets where source is NULL order by rand()")
       # tweet_ids = DataMapper.repository(:default).adapter.select("SELECT id FROM tweets order by rand()")
@@ -43,13 +43,13 @@ class NewDeGilader
       threads = []
       tweet_id_groupings.each do |grouping|
         puts "NEW THREAD"
-        threads<<Thread.new{run_tweets(grouping)}
+        threads<<Thread.new{self.run_tweets(grouping)}
       end
       threads.collect{|x| x.join}
     # end
   end
 
-  def run_tweets(tweet_ids)
+  def self.run_tweets(tweet_ids)
     disallowed_user_keys = []
     disallowed_tweet_keys = ["id_str"]
     puts "In THREAD"
@@ -120,9 +120,9 @@ end
 if ARGV.empty?
   puts "## IRB MODE ##"
   db = all_my_bases["tunisia"]
-  gg = NewDeGilader.new('gonkclub', 'cakebread', 'deebee.yourdefaulthomepage.com', db)
+  gg = NewDeGilader.setup('gonkclub', 'cakebread', 'deebee.yourdefaulthomepage.com', db)
 else
   db = all_my_bases[ARGV[0]]
-  gg = NewDeGilader.new('gonkclub', 'cakebread', 'deebee.yourdefaulthomepage.com', db)
-  gg.gilad_clean
+  NewDeGilader.setup('gonkclub', 'cakebread', 'deebee.yourdefaulthomepage.com', db)
+  NewDeGilader.gilad_clean
 end
