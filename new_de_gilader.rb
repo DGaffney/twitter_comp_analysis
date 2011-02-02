@@ -10,7 +10,7 @@ all_my_bases = {"e" => "140kit_scratch_2", "t" => "140kit_scratch_1"}
 
 class NewDeGilader
   
-  HAT_WOBBLE = 1
+  HAT_WOBBLE = 100
 
 
   def self.setup(username, password, hostname, database)
