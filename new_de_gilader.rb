@@ -11,6 +11,7 @@ all_my_bases = {"e" => "140kit_scratch_2", "t" => "140kit_scratch_1"}
 class NewDeGilader
   
   HAT_WOBBLE = 1
+  GRAPH_ID = Graph.first(:title => "retweets").id
 
   def self.setup(username, password, hostname, database)
     DataMapper.setup(:default, "mysql://#{username}:#{password}@#{hostname}/#{database}")
@@ -19,6 +20,7 @@ class NewDeGilader
 
   def self.gilad_clean
     tweet_ids = DataMapper.repository(:default).adapter.select("select id from tweets where (in_reply_to_status_id is null or in_reply_to_status_id=0) and text like 'rt%' order by rand()") # or (tweets.screen_name=users.screen_name and users.followers_count=0)  << This will pull out users with zero follower counts
+
     tweet_id_groupings = tweet_ids.chunk(HAT_WOBBLE)
     threads = []
     tweet_id_groupings.each do |grouping|
@@ -57,6 +59,14 @@ class NewDeGilader
         tweet.in_reply_to_user_id = tweet_data["in_reply_to_user_id"] || tweet_data["retweeted_status"]&&tweet_data["retweeted_status"]["user"]&&tweet_data["retweeted_status"]["user"]["id"] || possible_retweeted_user&&possible_retweeted_user.id
         tweet.in_reply_to_status_id = tweet_data["in_reply_to_status_id"] || tweet_data["retweeted_status"]&&tweet_data["retweeted_status"]["id"]
         tweet.in_reply_to_screen_name = tweet_data["in_reply_to_screen_name"] || tweet_data["retweeted_status"]&&tweet_data["retweeted_status"]["user"]&&tweet_data["retweeted_status"]["user"]["screen_name"] || possible_retweeted_user&&possible_retweeted_user.screen_name
+        if tweet.in_reply_to_user_id&&tweet.in_reply_to_status_id&&tweet.in_reply_to_screen_name
+          edge = Edge.new
+          edge.start_node = tweet.in_reply_to_screen_name
+          edge.end_node = tweet.author
+          edge.edge_id = tweet.twitter_id
+          edge.style = "retweet"
+          edge.graph_id = GRAPH_ID
+        end
         puts "author: #{tweet.author} irtui: #{tweet.in_reply_to_user_id} irtsi: #{tweet.in_reply_to_status_id} irtsn: #{tweet.in_reply_to_screen_name}"
         puts "Tweet Saved for #{tweet.author}: #{tweet.save!.inspect} (#{tweet.twitter_id})"
         if tweet.save!
