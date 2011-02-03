@@ -58,7 +58,7 @@ class ProfileCategorization
       user_hashes.each do |user_hash|
         user_hash = self.generate_user_attributes(user_hash, references)
         user_hash = self.generate_native_behavior(user_hash, references)
-        user_hash = self.generate_user_behavior(user_hash, references)
+        user_hash = generate_user_behavior(user_hash, references)
       end
     end
     return categories
