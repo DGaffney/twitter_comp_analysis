@@ -5,8 +5,8 @@ module UserBehavior
   @egypt_keys = %w{ egypt mubarak jan25 tahrir }
   @tunisia_keys = %w{ sidibouzid tunisia jasmine }
   
-  def self.generate(user_hash)
-    terms = @egypt_keys+@tunisia_keys
+  def self.generate_user_behavior(user_hash,references=nil)
+    terms = $db_rightful_name=="egypt" ? @egypt_keys : @tunisia_keys
     count = 200 # max is 200
     tweets = Utils.statuses(user_hash[:screen_name], count, true)
     return user_stats if tweets.nil?

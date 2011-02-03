@@ -15,6 +15,8 @@ DataMapper.finalize
 all_my_bases = {"e" => "140kit_scratch_2", "t" => "140kit_scratch_1"}
 rightful_names = {'e' => 'egypt', 't' => 'tunisia'}
 class ProfileCategorization
+  include UserBehavior
+  
   def self.setup(username, password, hostname, database)
     DataMapper.setup(:default, "mysql://#{username}:#{password}@#{hostname}/#{database}")
   end
@@ -52,6 +54,7 @@ class ProfileCategorization
       user_hashes.each do |user_hash|
         user_hash = self.generate_user_attributes(user_hash, references)
         user_hash = self.generate_native_behavior(user_hash, references)
+        user_hash = self.generate_user_behavior(user_hash, references)
       end
     end
     return categories
@@ -117,7 +120,7 @@ class ProfileCategorization
   end
 end
 
-db = all_my_bases[ARGV[0]]
-db_rightful_name = rightful_names[ARGV[0]]
-ProfileCategorization.setup('gonkclub', 'cakebread', 'deebee.yourdefaulthomepage.com', db)
-ProfileCategorization.pull_csv(db_rightful_name)
+$db = all_my_bases[ARGV[0]]
+$db_rightful_name = rightful_names[ARGV[0]]
+ProfileCategorization.setup('gonkclub', 'cakebread', 'deebee.yourdefaulthomepage.com', $db)
+ProfileCategorization.pull_csv($db_rightful_name)
