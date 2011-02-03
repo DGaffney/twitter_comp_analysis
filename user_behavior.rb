@@ -9,7 +9,8 @@ module UserBehavior
     terms = $db_rightful_name=="egypt" ? @egypt_keys : @tunisia_keys
     count = 200 # max is 200
     tweets = Utils.statuses(user_hash[:screen_name], count, true)
-    return user_stats if tweets.nil?
+    puts "Targuss Targuss"
+    return user_stats if tweets.nil? || tweets.empty?
     puts "User has less than #{count} tweets." if tweets.length < count
     counts = {:specific => {:user_gets_retweeted => 0, :user_retweets => 0, :total => 0},
               :nonspecific => {:user_gets_retweeted => 0, :user_retweets => 0, :total => 0}}
