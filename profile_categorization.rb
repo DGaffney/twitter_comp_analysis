@@ -49,7 +49,7 @@ class ProfileCategorization
     end
     results = self.generate_core_stats(categories)
     puts results.inspect
-    self.store_categorized_csvs(results)
+    self.store_categorized_csvs(results, name)
   end
   
   def self.generate_core_stats(categories)
@@ -102,13 +102,13 @@ class ProfileCategorization
     return 1-placement/total.to_f
   end
   
-  def self.store_categorized_csvs(results)
+  def self.store_categorized_csvs(results, name)
     results.each_pair do |category, user_hashes|
       `mkdir datasets/`
       `mkdir datasets/profile_categorization`
       keys = []
       first=true
-      FasterCSV.open("datasets/profile_categorization/#{category}_users.csv", "w+") do |csv|
+      FasterCSV.open("datasets/profile_categorization/#{name}_#{category}_users.csv", "w+") do |csv|
         user_hashes.each do |user_hash|
           if first
             keys = user_hashes.first.keys
