@@ -7,7 +7,7 @@ class User
   property :location, Text
   property :description, Text
   property :profile_image_url, Text
-  property :url, String
+  property :url, Text
   property :protected, Boolean
   property :followers_count, Integer
   property :profile_background_color, String
