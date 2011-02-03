@@ -39,6 +39,11 @@ class NewDeGilader
   #     threads.collect{|x| x.join}
   #   # end
 
+  def self.setup_users(username, password, hostname, database)
+    DataMapper.setup(:default, "mysql://#{username}:#{password}@#{hostname}/#{database}")
+    self.users_clean
+  end
+
   def self.gilad_clean
     tweet_ids = DataMapper.repository(:default).adapter.select("select id from tweets where (in_reply_to_status_id is null or in_reply_to_status_id=0) and text like 'rt%' order by rand()") # or   << This will pull out users with zero follower counts
     $graph_id = Graph.first(:title => "retweets").id
@@ -167,8 +172,16 @@ if ARGV.empty?
     NewDeGilader.setup('gonkclub', 'cakebread', 'deebee.yourdefaulthomepage.com', db)
   end
 else
-  db = all_my_bases[ARGV[0]]
-  1.upto(10000) do |x|
-    NewDeGilader.setup('gonkclub', 'cakebread', 'deebee.yourdefaulthomepage.com', db)
+  db,func = all_my_bases[ARGV[0]], ARGV[1]
+  if func
+    puts "User Cleaner"
+    1.upto(10000) do |x|
+      NewDeGilader.setup('gonkclub', 'cakebread', 'deebee.yourdefaulthomepage.com', db)
+    end    
+  else
+    puts "Tweet Cleaner"
+    1.upto(10000) do |x|
+      NewDeGilader.setup('gonkclub', 'cakebread', 'deebee.yourdefaulthomepage.com', db)
+    end
   end
 end
