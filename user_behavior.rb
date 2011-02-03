@@ -5,7 +5,7 @@ module UserBehavior
   @egypt_keys = %w{ egypt mubarak jan25 tahrir }
   @tunisia_keys = %w{ sidibouzid tunisia jasmine }
   
-  def self.generate_user_behavior(user_hash,references=nil)
+  def self.generate_user_behavior(user_hash ,references=nil)
     terms = $db_rightful_name=="egypt" ? @egypt_keys : @tunisia_keys
     count = 200 # max is 200
     tweets = Utils.statuses(user_hash[:screen_name], count, true)
@@ -17,7 +17,7 @@ module UserBehavior
     for tweet in tweets
       # tweet is either a retweet or original content
       # original content is either shared or not shared
-      context = tweet["text"].scan(/(#{terms.join('|')})/).empty? ? :nonspecific : :specific\
+      context = tweet["text"].scan(/(#{terms.join('|')})/).empty? ? :nonspecific : :specific
       counts[context][:total] += 1
       if tweet["retweeted_status"].nil?
         if tweet["retweet_count"].to_i > 0
