@@ -33,5 +33,7 @@ class Tweet
   property :tweet_collector_id, Integer
   property :user_name, String
   property :retweet_count,  Integer
+  property :thread_id, Integer
+  property :shared_words, Text
   belongs_to :user
 end

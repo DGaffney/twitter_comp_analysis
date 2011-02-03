@@ -4,9 +4,9 @@ class User
   property :twitter_id, Integer
   property :name, String
   property :screen_name, String
-  property :location, String
-  property :description, String
-  property :profile_image_url, String
+  property :location, Text
+  property :description, Text
+  property :profile_image_url, Text
   property :url, String
   property :protected, Boolean
   property :followers_count, Integer
@@ -19,8 +19,8 @@ class User
   property :created_at, DateTime
   property :favourites_count, Integer
   property :utc_offset, Integer
-  property :time_zone, String
-  property :profile_background_image_url, String
+  property :time_zone, Text
+  property :profile_background_image_url, Text
   property :profile_background_tile, Boolean
   property :notifications, Boolean
   property :geo_enabled, Boolean

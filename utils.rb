@@ -86,6 +86,12 @@ module Utils
     puts "Found #{ids.length} friends for #{user_id}."
     return ids
   end
+  
+  def self.statuses(screen_name, count=100, include_rts=false)
+    api_url = "http://api.twitter.com/1/statuses/user_timeline.json?screen_name=#{screen_name}&count=#{count}&include_rts=#{include_rts}"
+    statuses = JSON.parse(open(api_url).read) rescue nil
+    return statuses
+  end
 
   def self.save_graphml(network)
     graph_name = "#{Time.now.strftime("%Y-%m-%d_%H-%M")}"
