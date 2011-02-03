@@ -20,14 +20,6 @@ class NewDeGilader
     # DataMapper.setup(:egypt, 'mysql://gonkclub:cakebread@deebee.yourdefaulthomepage.com/140kit_scratch_2')
   end
   
-  # def run_clean(database)
-  #   if database==:iran
-  #     devin_clean(database)
-  #   else
-  #     gilad_clean(database)
-  #   end
-  # end
-  
   def gilad_clean
     # DataMapper.repository(database) do
       # tweet_ids = DataMapper.repository(database).adapter.select("SELECT id FROM tweets where source is NULL order by rand()")
