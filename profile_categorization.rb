@@ -27,7 +27,7 @@ class ProfileCategorization
   def self.pull_csv(name)
     f = File.open("datasets/profile_categorization/source/#{name}.csv")
     categories = {}
-    dataset = f.read.split("\r\n").collect{|x| x.split(",")}
+    dataset = f.read.split(/[\n|\r\n]/).collect{|x| x.split(",")}
     dataset.each do |d|
     case d.last
       when "1"
@@ -48,6 +48,7 @@ class ProfileCategorization
       end
     end
     results = self.generate_core_stats(categories)
+    puts results.inspect
     self.store_categorized_csvs(results)
   end
   
