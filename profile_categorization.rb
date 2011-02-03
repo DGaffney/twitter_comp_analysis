@@ -12,13 +12,15 @@ current_path = File.dirname(__FILE__) + "/"
 
 DataMapper.finalize
 
+all_my_bases = {"e" => "140kit_scratch_2", "t" => "140kit_scratch_1"}
+rightful_names = {'e' => 'egypt', 't' => 'tunisia'}
 class ProfileCategorization
   def self.setup(username, password, hostname, database)
     DataMapper.setup(:default, "mysql://#{username}:#{password}@#{hostname}/#{database}")
   end
 
   def self.pull_csv(name)
-    f = File.open("datasets/profile_categorization/#{name}.csv")
+    f = File.open("datasets/profile_categorization/source/#{name}.csv")
     categories = {}
     dataset = f.read.split("\r\n").collect{|x| x.split(",")}
     dataset.each do |d|
@@ -115,5 +117,7 @@ class ProfileCategorization
   end
 end
 
-ProfileCategorization.setup('gonkclub', 'cakebread', 'deebee.yourdefaulthomepage.com', '140kit_scratch_2')
-ProfileCategorization.pull_csv('egypt')
+db = all_my_bases[ARGV[0]]
+db_rightful_name = rightful_names[ARGV[0]]
+ProfileCategorization.setup('gonkclub', 'cakebread', 'deebee.yourdefaulthomepage.com', db)
+ProfileCategorization.pull_csv(db_rightful_name)
