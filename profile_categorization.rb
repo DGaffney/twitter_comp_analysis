@@ -3,6 +3,7 @@ require 'dm-core'
 require 'dm-validations'
 current_path = File.dirname(__FILE__) + "/"
 
+require "user_behavior.rb"
 require "#{current_path}utils.rb"
 require "#{current_path}analysis.rb"
 require 'fastercsv'
