@@ -19,6 +19,15 @@ all_my_bases = {"e" => "140kit_scratch_2", "t" => "140kit_scratch_1"}
 rightful_names = {'e' => 'egypt', 't' => 'tunisia'}
 
 class ProfileCategorization
+  def self.run(shorty)
+    $db = all_my_bases[shorty]
+    $db_rightful_name = rightful_names[shorty]
+    ProfileCategorization.setup('gonkclub', 'cakebread', 'deebee.yourdefaulthomepage.com', $db)
+    categories = ProfileCategorization.pull_csv($db_rightful_name)
+    results = ProfileCategorization.generate_core_stats(categories)
+    puts results.inspect
+    ProfileCategorization.store_categorized_csvs(results, $db_rightful_name)
+  end
   
   def self.setup(username, password, hostname, database)
     DataMapper.setup(:default, "mysql://#{username}:#{password}@#{hostname}/#{database}")
@@ -121,11 +130,3 @@ class ProfileCategorization
     end
   end
 end
-# 
-# $db = all_my_bases[ARGV[0]]
-# $db_rightful_name = rightful_names[ARGV[0]]
-# ProfileCategorization.setup('gonkclub', 'cakebread', 'deebee.yourdefaulthomepage.com', $db)
-# categories = ProfileCategorization.pull_csv($db_rightful_name)
-# results = ProfileCategorization.generate_core_stats(categories)
-# puts results.inspect
-# ProfileCategorization.store_categorized_csvs(results, $db_rightful_name)
