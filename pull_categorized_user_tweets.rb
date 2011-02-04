@@ -50,6 +50,7 @@ module PullCategorizedUserTweets
     puts "Uniquing returned data..."
     uniqued = []
     uniqued_ids = []
+    debugger
     tweets.each do |tweet|
       uniqued_ids << tweet["twitter_id"] if !uniqued_ids.include?(tweet["twitter_id"])
       uniqued << tweet if !uniqued_ids.include?(tweet["twitter_id"])
