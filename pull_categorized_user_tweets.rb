@@ -70,9 +70,10 @@ module PullCategorizedUserTweets
   end
   
   def self.generate_hashes(datasheet, start_date, end_date)
-    last_date = Time.now
+    last_date = Time.parse(datasheet.last["created_at"])
     tweets = []
     datasheet.each do |tweet_data|
+      debugger
       if Time.parse(tweet_data["created_at"]) <= end_date && Time.parse(tweet_data["created_at"]) >= start_date
         puts "\t\t\tTweet in date range..."
         tweet = {}
@@ -103,7 +104,6 @@ module PullCategorizedUserTweets
       else
         puts "\t\t\t\tTweet not in date range..."
       end
-      last_date = Time.parse(tweet_data["created_at"]) if tweet_data == datasheet.last
     end
     return tweets, last_date
   end
