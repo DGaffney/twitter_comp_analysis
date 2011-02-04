@@ -29,9 +29,10 @@ module PullCategorizedUserTweets
           previous_datasheet=datasheet
           page+=1
           datasheet = Utils.statuses(user_hash[:screen_name], 100, true, page)
+          tweet_records = tweet_records+tweet_hashes
+          edge_records = edge_records+edge_hashes
+          puts "\t\t\t#{tweet_records.length} Tweets total, #{edge_records.length} Edges total..."
         end
-        tweet_records = tweet_records+tweet_hashes
-        edge_records = edge_records+edge_hashes
         puts "\tHashed #{user_hash[:screen_name]}. #{tweet_records.length} tweets, #{edge_records.length} edges."
         if tweet_records.length >= MAX_COUNT_PER_BATCH_INSERT
           puts "Reached #{tweet_records.length} tweets, saving now..."
