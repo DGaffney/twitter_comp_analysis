@@ -47,9 +47,7 @@ class ProfileCategorization
         categories["etc"] << {:screen_name => d.first} if !categories["etc"].include?({:screen_name => d.first})
       end
     end
-    results = self.generate_core_stats(categories)
-    puts results.inspect
-    self.store_categorized_csvs(results, name)
+    return categories
   end
   
   def self.generate_core_stats(categories)
@@ -123,8 +121,11 @@ class ProfileCategorization
     end
   end
 end
-
-$db = all_my_bases[ARGV[0]]
-$db_rightful_name = rightful_names[ARGV[0]]
-ProfileCategorization.setup('gonkclub', 'cakebread', 'deebee.yourdefaulthomepage.com', $db)
-ProfileCategorization.pull_csv($db_rightful_name)
+# 
+# $db = all_my_bases[ARGV[0]]
+# $db_rightful_name = rightful_names[ARGV[0]]
+# ProfileCategorization.setup('gonkclub', 'cakebread', 'deebee.yourdefaulthomepage.com', $db)
+# categories = ProfileCategorization.pull_csv($db_rightful_name)
+# results = ProfileCategorization.generate_core_stats(categories)
+# puts results.inspect
+# ProfileCategorization.store_categorized_csvs(results, $db_rightful_name)
