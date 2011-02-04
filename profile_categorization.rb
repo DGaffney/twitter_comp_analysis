@@ -1,10 +1,13 @@
 require 'rubygems'
 require 'dm-core'
 require 'dm-validations'
+current_path = File.dirname(__FILE__) + "/"
+
+require "user_behavior.rb"
 require "#{current_path}utils.rb"
 require "#{current_path}analysis.rb"
 require 'fastercsv'
-current_path = File.dirname(__FILE__) + "/"
+
 
 `ls models`.split("\n").each {|model| require "#{current_path}/models/#{model}"}
 `ls analyses`.split("\n").each {|analysis| require "#{current_path}analyses/#{analysis}"}
@@ -14,7 +17,9 @@ DataMapper.finalize
 
 all_my_bases = {"e" => "140kit_scratch_2", "t" => "140kit_scratch_1"}
 rightful_names = {'e' => 'egypt', 't' => 'tunisia'}
+
 class ProfileCategorization
+  
   def self.setup(username, password, hostname, database)
     DataMapper.setup(:default, "mysql://#{username}:#{password}@#{hostname}/#{database}")
   end
@@ -22,7 +27,7 @@ class ProfileCategorization
   def self.pull_csv(name)
     f = File.open("datasets/profile_categorization/source/#{name}.csv")
     categories = {}
-    dataset = f.read.split("\r\n").collect{|x| x.split(",")}
+    dataset = f.read.split(/[\n|\r\n]/).collect{|x| x.split(",")}
     dataset.each do |d|
     case d.last
       when "1"
@@ -43,7 +48,8 @@ class ProfileCategorization
       end
     end
     results = self.generate_core_stats(categories)
-    self.store_categorized_csvs(results)
+    puts results.inspect
+    self.store_categorized_csvs(results, name)
   end
   
   def self.generate_core_stats(categories)
@@ -52,6 +58,7 @@ class ProfileCategorization
       user_hashes.each do |user_hash|
         user_hash = self.generate_user_attributes(user_hash, references)
         user_hash = self.generate_native_behavior(user_hash, references)
+        user_hash = UserBehavior.generate_user_behavior(user_hash, references)
       end
     end
     return categories
@@ -95,13 +102,13 @@ class ProfileCategorization
     return 1-placement/total.to_f
   end
   
-  def self.store_categorized_csvs(results)
+  def self.store_categorized_csvs(results, name)
     results.each_pair do |category, user_hashes|
       `mkdir datasets/`
       `mkdir datasets/profile_categorization`
       keys = []
       first=true
-      FasterCSV.open("datasets/profile_categorization/#{category}_users.csv", "w+") do |csv|
+      FasterCSV.open("datasets/profile_categorization/#{name}_#{category}_users.csv", "w+") do |csv|
         user_hashes.each do |user_hash|
           if first
             keys = user_hashes.first.keys
@@ -117,7 +124,7 @@ class ProfileCategorization
   end
 end
 
-db = all_my_bases[ARGV[0]]
-db_rightful_name = rightful_names[ARGV[0]]
-ProfileCategorization.setup('gonkclub', 'cakebread', 'deebee.yourdefaulthomepage.com', db)
-ProfileCategorization.pull_csv(db_rightful_name)
+$db = all_my_bases[ARGV[0]]
+$db_rightful_name = rightful_names[ARGV[0]]
+ProfileCategorization.setup('gonkclub', 'cakebread', 'deebee.yourdefaulthomepage.com', $db)
+ProfileCategorization.pull_csv($db_rightful_name)
