@@ -31,6 +31,7 @@ module PullCategorizedUserTweets
   end
   
   def self.pull_tweets(user_hashes, name, given_category)
+    debugger
     start_date, end_date = name=="egypt" ? [Time.parse("2011-1-18 00:00:00"), Time.parse("2011-1-30 00:00:00")] : [Time.parse("2011-1-08 00:00:00"), Time.parse("2011-1-20 00:00:00")]
     username,password,hostname,database = 'gonkclub', 'cakebread', 'deebee.yourdefaulthomepage.com', $db
     DataMapper.setup(:default, "mysql://#{username}:#{password}@#{hostname}/#{database}")
@@ -170,6 +171,6 @@ rightful_names = {'e' => 'egypt', 't' => 'tunisia'}
 
 $db = all_my_bases[ARGV[0]]
 $db_rightful_name = rightful_names[ARGV[0]]
-user_hashes = PullCategorizedUserTweets.pull_user_listing("egypt")
-PullCategorizedUserTweets.pull_tweets(user_hashes, "egypt", ARGV[1])
+user_hashes = PullCategorizedUserTweets.pull_user_listing($db_rightful_name)
+PullCategorizedUserTweets.pull_tweets(user_hashes, $db_rightful_name, ARGV[1])
 #["msm", "journalist", "blogger", "celeb", "etc"] AS ARGV[1]
