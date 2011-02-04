@@ -36,7 +36,7 @@ module PullCategorizedUserTweets
         puts "\tHashed #{user_hash[:screen_name]}. #{tweet_records.length} tweets, #{edge_records.length} edges."
         if tweet_records.length >= MAX_COUNT_PER_BATCH_INSERT
           puts "Reached #{tweet_records.length} tweets, saving now..."
-          self.insert("edges", self.uniq_tweets(tweet_records))
+          self.insert("behavior_tweets", self.uniq_tweets(tweet_records))
         end
         if edge_records.length > MAX_COUNT_PER_BATCH_INSERT
           puts "Reached #{edge_records.length} edges, saving now..."
@@ -48,12 +48,14 @@ module PullCategorizedUserTweets
   
   def self.uniq_tweets(tweets)
     puts "Uniquing returned data..."
+    debugger
     uniqued = []
     uniqued_ids = []
-    debugger
     tweets.each do |tweet|
-      uniqued_ids << tweet["twitter_id"] if !uniqued_ids.include?(tweet["twitter_id"])
-      uniqued << tweet if !uniqued_ids.include?(tweet["twitter_id"])
+      if !uniqued_ids.include?(tweet["twitter_id"])
+        uniqued_ids << tweet["twitter_id"] 
+        uniqued << tweet
+      end
     end
     puts "Uniqued data crunched from #{tweets.length} => #{uniqued.length}..."
     return uniqued
@@ -64,8 +66,10 @@ module PullCategorizedUserTweets
     uniqued = []
     uniqued_ids = []
     edges.each do |edge|
-      uniqued_ids << edge["edge_id"] if !uniqued_ids.include?(edge["edge_id"])
-      uniqued << edge if !uniqued_ids.include?(edge["edge_id"])
+      if !uniqued_ids.include?(edge["edge_id"])
+        uniqued_ids << edge["edge_id"] 
+        uniqued << edge
+      end
     end
     puts "Uniqued data crunched from #{edges.length} => #{uniqued.length}..."
     return uniqued
@@ -120,21 +124,23 @@ module PullCategorizedUserTweets
     end
     return edges
   end
-  
+
+  #someone should write an e-mail and calmly explain to the datamapper guys why this bulk insert process is fucking stupid.
   def self.insert(model, records)
-    sql_query = "insert into #{model} (#{(keys=records.first.keys).join(", ")}) VALUES"
+    sql_query = "insert ignore into #{model} (#{(keys=records.first.keys).join(", ")}) VALUES "
     records.each do |record|
-      row = keys.collect{|key| "\"#{record[key].to_s}\","}
-      sql_query+="(#{row}),"
+      row = keys.collect{|key| "?,"}
+      sql_query+="(#{row.to_s.chop}), "
     end
     sql_query = sql_query.chop.chop
     f = File.open("last_sql_call_#{$db_rightful_name}.sql", "w+")
     f.write(sql_query)
     f.close
     puts sql_query
-    DataMapper.repository(:default).adapter.execute(sql_query)
+    gg = records.collect{|record| keys.collect{|key| record[key]}}.flatten
+    DataMapper.repository(:default).adapter.select(sql_query, *gg)
   end
-end
+
 DataMapper.finalize
 
 all_my_bases = {"e" => "140kit_scratch_2", "t" => "140kit_scratch_1"}
