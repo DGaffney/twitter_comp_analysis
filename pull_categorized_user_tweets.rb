@@ -66,7 +66,7 @@ module PullCategorizedUserTweets
       uniqued_ids << edge["edge_id"] if !uniqued_ids.include?(edge["edge_id"])
       uniqued << edge["edge_id"] if !uniqued_ids.include?(edge)
     end
-    puts "Uniqued data crunched from #{edge.length} => #{uniqed.length}..."
+    puts "Uniqued data crunched from #{edges.length} => #{uniqed.length}..."
     return uniqued
   end
   
