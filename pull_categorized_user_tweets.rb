@@ -51,8 +51,8 @@ module PullCategorizedUserTweets
     uniqed = []
     uniqued_ids = []
     tweets.each do |tweet|
-      uniqued_ids << tweet["twitter_id"] if !uniqed_ids.include?(tweet["twitter_id"])
-      uniqued << tweet["twitter_id"] if !uniqed_ids.include?(tweet)
+      uniqued_ids << tweet["twitter_id"] if !uniqued_ids.include?(tweet["twitter_id"])
+      uniqued << tweet["twitter_id"] if !uniqued_ids.include?(tweet)
     end
     puts "Uniqued data crunched from #{tweets.length} => #{uniqed.length}..."
     return uniqued
@@ -63,8 +63,8 @@ module PullCategorizedUserTweets
     uniqed = []
     uniqued_ids = []
     edges.each do |edge|
-      uniqued_ids << edge["edge_id"] if !uniqed_ids.include?(edge["edge_id"])
-      uniqued << edge["edge_id"] if !uniqed_ids.include?(edge)
+      uniqued_ids << edge["edge_id"] if !uniqued_ids.include?(edge["edge_id"])
+      uniqued << edge["edge_id"] if !uniqued_ids.include?(edge)
     end
     puts "Uniqued data crunched from #{edge.length} => #{uniqed.length}..."
     return uniqued
