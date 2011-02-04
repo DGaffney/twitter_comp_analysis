@@ -3,8 +3,31 @@ require 'lib_files.rb'
 require 'profile_categorization.rb'
 module PullCategorizedUserTweets  
   MAX_COUNT_PER_BATCH_INSERT = 1000
+
   def self.pull_user_listing(name)
-    user_hashes = ProfileCategorization.pull_csv(name)
+    f = File.open("datasets/profile_categorization/source/#{name}.csv")
+    categories = {}
+    dataset = f.read.split(/[\n|\r\n]/).collect{|x| x.split(",")}
+    dataset.each do |d|
+    case d.last
+      when "1"
+        categories["msm"] = [] if categories["msm"].nil?
+        categories["msm"] << {:screen_name => d.first} if !categories["msm"].include?({:screen_name => d.first})
+      when "2"
+        categories["journalist"] = [] if categories["journalist"].nil?
+        categories["journalist"] << {:screen_name => d.first} if !categories["journalist"].include?({:screen_name => d.first})        
+      when "3"
+        categories["blogger"] = [] if categories["blogger"].nil?
+        categories["blogger"] << {:screen_name => d.first} if !categories["blogger"].include?({:screen_name => d.first})
+      when "4"
+        categories["celeb"] = [] if categories["celeb"].nil?
+        categories["celeb"] << {:screen_name => d.first} if !categories["celeb"].include?({:screen_name => d.first})
+      when "5"
+        categories["etc"] = [] if categories["etc"].nil?
+        categories["etc"] << {:screen_name => d.first} if !categories["etc"].include?({:screen_name => d.first})
+      end
+    end
+    return categories
   end
 
   def self.pull_tweets(user_hashes, name)
