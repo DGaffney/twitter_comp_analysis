@@ -87,9 +87,23 @@ module Utils
     return ids
   end
   
-  def self.statuses(screen_name, count=100, include_rts=false)
-    api_url = "http://api.twitter.com/1/statuses/user_timeline.json?screen_name=#{screen_name}&count=#{count}&include_rts=#{include_rts}"
-    statuses = JSON.parse(open(api_url).read) rescue nil
+  def self.statuses(screen_name, count=100, include_rts=true)
+    statuses = []
+    if count == :all
+      retries = 3
+      1.upto(16) do |page|
+        api_url = "http://api.twitter.com/1/statuses/user_timeline.json?screen_name=#{screen_name}&page=#{page}&count=200&include_rts=#{include_rts}&include_entities=1"
+        new_statuses = []
+        1.upto(retries) {|i| new_statuses = JSON.parse(open(api_url).read) rescue nil; break if !new_statuses.nil? }
+        break if new_statuses.nil? || new_statuses.empty?
+        # puts "Found #{new_statuses.length} statuses from page #{page}."
+        statuses += new_statuses
+      end
+      statuses.uniq!
+    else
+      api_url = "http://api.twitter.com/1/statuses/user_timeline.json?screen_name=#{screen_name}&count=#{count}&include_rts=#{include_rts}&include_entities=1"
+      statuses = JSON.parse(open(api_url).read) rescue nil
+    end
     return statuses
   end
 
