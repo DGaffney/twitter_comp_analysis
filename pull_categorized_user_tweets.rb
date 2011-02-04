@@ -21,11 +21,11 @@ module PullCategorizedUserTweets
         page = 1
         previous_datasheet = []
         datasheet = Utils.statuses(user_hash[:screen_name], 100, true, page)
-        while last_date > start_date && datasheet!=previous_datasheet
+        while last_date > start_date && datasheet!=previous_datasheet && !datasheet.empty?
           puts "\t\tPage #{page}..."
           tweet_hashes, last_date = self.generate_hashes(datasheet, start_date, end_date)
           edge_hashes = self.generate_edges(datasheet, start_date, end_date)
-          puts "\t\t\t #{tweet_hashes.length} Tweets, #{edge_hashes.length} Edges..."
+          puts "\t\t\t#{tweet_hashes.length} Tweets, #{edge_hashes.length} Edges..."
           previous_datasheet=datasheet
           page+=1
           datasheet = Utils.statuses(user_hash[:screen_name], 100, true, page)
@@ -72,10 +72,8 @@ module PullCategorizedUserTweets
   def self.generate_hashes(datasheet, start_date, end_date)
     last_date = Time.parse(datasheet.last["created_at"])
     tweets = []
-    debugger
     datasheet.each do |tweet_data|
       if Time.parse(tweet_data["created_at"]) <= end_date && Time.parse(tweet_data["created_at"]) >= start_date
-        puts "\t\t\tTweet in date range..."
         tweet = {}
         tweet["twitter_id"] = tweet_data["id"]
         tweet["twitter_id"] = tweet_data["id"]
@@ -101,8 +99,6 @@ module PullCategorizedUserTweets
         tweet["realname"] = tweet_data["user"]&&tweet_data["user"]["name"]||nil
         tweet["retweet_count"] = tweet_data["retweet_count"]
         tweets << tweet
-      else
-        puts "\t\t\t\tTweet not in date range..."
       end
     end
     return tweets, last_date
