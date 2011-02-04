@@ -92,7 +92,7 @@ module Utils
     api_url = "http://api.twitter.com/1/statuses/user_timeline.json?screen_name=#{screen_name}&count=#{count}&include_rts=#{include_rts}&page=#{page}"
     status_hash = []
     1.upto(4) {|i| status_hash = JSON.parse(open(api_url).read) rescue nil; break if !status_hash.nil? }
-    return status_hash
+    return status_hash || []
   end
 
   # def self.statuses(screen_name, count=100, include_rts=true)
