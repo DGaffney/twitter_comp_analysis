@@ -48,7 +48,7 @@ module PullCategorizedUserTweets
   
   def self.uniq_tweets(tweets)
     puts "Uniquing returned data..."
-    uniqed = []
+    uniqued = []
     uniqued_ids = []
     tweets.each do |tweet|
       uniqued_ids << tweet["twitter_id"] if !uniqued_ids.include?(tweet["twitter_id"])
@@ -60,7 +60,7 @@ module PullCategorizedUserTweets
   
   def self.uniq_tweets(edges)
     puts "Uniquing returned data..."
-    uniqed = []
+    uniqued = []
     uniqued_ids = []
     edges.each do |edge|
       uniqued_ids << edge["edge_id"] if !uniqued_ids.include?(edge["edge_id"])
