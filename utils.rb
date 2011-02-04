@@ -90,8 +90,8 @@ module Utils
 
   def self.statuses(screen_name, count=100, include_rts=false, page=1)
     api_url = "http://api.twitter.com/1/statuses/user_timeline.json?screen_name=#{screen_name}&count=#{count}&include_rts=#{include_rts}&page=#{page}"
-    1.upto(4) {|i| statuses = JSON.parse(open(api_url).read) rescue "404'ed on data pull, #{i} tries in..."; break if !statuses.nil? }
-    return statuses
+    1.upto(4) {|i| status_hash = JSON.parse(open(api_url).read) rescue "404'ed on data pull, #{i} tries in..."; break if !status_hash.nil? }
+    return status_hash
   end
 
   # def self.statuses(screen_name, count=100, include_rts=true)
