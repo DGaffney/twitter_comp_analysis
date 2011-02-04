@@ -8,13 +8,13 @@ module PullCategorizedUserTweets
   end
   
   def self.pull_tweets(user_hashes, name)
-    start_date, end_date = name=="egypt" ? [Time.parse("2011-1-18 00:00:00"), Time.parse("2011-1-30 00:00:00")] : [Time.parse("2011-1-08 00:00:00"), Time.parse("2011-1-20 00:00:00")]
-    username,password,hostname,database = 'gonkclub', 'cakebread', 'deebee.yourdefaulthomepage.com', $db
-    DataMapper.setup(:default, "mysql://#{username}:#{password}@#{hostname}/#{database}")
-    tweet_records = []
-    edge_records = []
     user_hashes.each_pair do |category, users_hash|
-      Thread.new{
+      threads << Thread.new{
+        start_date, end_date = name=="egypt" ? [Time.parse("2011-1-18 00:00:00"), Time.parse("2011-1-30 00:00:00")] : [Time.parse("2011-1-08 00:00:00"), Time.parse("2011-1-20 00:00:00")]
+        username,password,hostname,database = 'gonkclub', 'cakebread', 'deebee.yourdefaulthomepage.com', $db
+        DataMapper.setup(:default, "mysql://#{username}:#{password}@#{hostname}/#{database}")
+        tweet_records = []
+        edge_records = []
         puts "Evaluating #{category} users..."
         users_hash.each do |user_hash|
           puts "\tHashing #{user_hash[:screen_name]}... (#{users_hash.index(user_hash)}/#{users_hash.length})"
