@@ -29,43 +29,45 @@ module PullCategorizedUserTweets
     end
     return categories
   end
-
-  def self.pull_tweets(user_hashes, name)
+  
+  def self.pull_tweets(user_hashes, name, given_category)
     start_date, end_date = name=="egypt" ? [Time.parse("2011-1-18 00:00:00"), Time.parse("2011-1-30 00:00:00")] : [Time.parse("2011-1-08 00:00:00"), Time.parse("2011-1-20 00:00:00")]
     username,password,hostname,database = 'gonkclub', 'cakebread', 'deebee.yourdefaulthomepage.com', $db
     DataMapper.setup(:default, "mysql://#{username}:#{password}@#{hostname}/#{database}")
     tweet_records = []
     edge_records = []
     user_hashes.each_pair do |category, users_hash|
-      puts "Evaluating #{category} users..."
-      users_hash.each do |user_hash|
-        puts "\tHashing #{user_hash[:screen_name]}... (#{users_hash.index(user_hash)}/#{users_hash.length})"
-        last_date = Time.now
-        page = 1
-        previous_datasheet = []
-        datasheet = Utils.statuses(user_hash[:screen_name], 100, true, page)
-        while last_date > start_date && datasheet!=previous_datasheet && !datasheet.empty?
-          puts "\t\tPage #{page}..."
-          tweet_hashes, last_date = self.generate_hashes(datasheet, start_date, end_date)
-          edge_hashes = self.generate_edges(datasheet, start_date, end_date)
-          puts "\t\t\t#{tweet_hashes.length} Tweets, #{edge_hashes.length} Edges..."
-          previous_datasheet=datasheet
-          page+=1
+      if category == given_category
+        puts "Evaluating #{category} users..."
+        users_hash.each do |user_hash|
+          puts "\tHashing #{user_hash[:screen_name]}... (#{users_hash.index(user_hash)}/#{users_hash.length})"
+          last_date = Time.now
+          page = 1
+          previous_datasheet = []
           datasheet = Utils.statuses(user_hash[:screen_name], 100, true, page)
-          tweet_records = tweet_records+tweet_hashes
-          edge_records = edge_records+edge_hashes
-          puts "\t\t\t#{tweet_records.length} Tweets total, #{edge_records.length} Edges total..."
-        end
-        puts "\tHashed #{user_hash[:screen_name]}. #{tweet_records.length} tweets, #{edge_records.length} edges."
-        if tweet_records.length >= MAX_COUNT_PER_BATCH_INSERT
-          puts "Reached #{tweet_records.length} tweets, saving now..."
-          self.insert("behavior_tweets", self.uniq_tweets(tweet_records))
-          tweet_records = []
-        end
-        if edge_records.length > MAX_COUNT_PER_BATCH_INSERT
-          puts "Reached #{edge_records.length} edges, saving now..."
-          self.insert("edges", self.uniq_edges(edge_records))
-          edge_records = []
+          while last_date > start_date && datasheet!=previous_datasheet && !datasheet.empty?
+            puts "\t\tPage #{page}..."
+            tweet_hashes, last_date = self.generate_hashes(datasheet, start_date, end_date)
+            edge_hashes = self.generate_edges(datasheet, start_date, end_date)
+            puts "\t\t\t#{tweet_hashes.length} Tweets, #{edge_hashes.length} Edges..."
+            previous_datasheet=datasheet
+            page+=1
+            datasheet = Utils.statuses(user_hash[:screen_name], 100, true, page)
+            tweet_records = tweet_records+tweet_hashes
+            edge_records = edge_records+edge_hashes
+            puts "\t\t\t#{tweet_records.length} Tweets total, #{edge_records.length} Edges total..."
+          end
+          puts "\tHashed #{user_hash[:screen_name]}. #{tweet_records.length} tweets, #{edge_records.length} edges."
+          if tweet_records.length >= MAX_COUNT_PER_BATCH_INSERT
+            puts "Reached #{tweet_records.length} tweets, saving now..."
+            self.insert("behavior_tweets", self.uniq_tweets(tweet_records))
+            tweet_records = []
+          end
+          if edge_records.length > MAX_COUNT_PER_BATCH_INSERT
+            puts "Reached #{edge_records.length} edges, saving now..."
+            self.insert("edges", self.uniq_edges(edge_records))
+            edge_records = []
+          end
         end
       end
     end
@@ -169,4 +171,5 @@ rightful_names = {'e' => 'egypt', 't' => 'tunisia'}
 $db = all_my_bases[ARGV[0]]
 $db_rightful_name = rightful_names[ARGV[0]]
 user_hashes = PullCategorizedUserTweets.pull_user_listing("egypt")
-PullCategorizedUserTweets.pull_tweets(user_hashes, "egypt")
+PullCategorizedUserTweets.pull_tweets(user_hashes, "egypt", ARGV[1])
+#["msm", "journalist", "blogger", "celeb", "etc"] AS ARGV[1]
