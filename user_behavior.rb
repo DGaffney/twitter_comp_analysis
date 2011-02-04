@@ -7,11 +7,11 @@ module UserBehavior
   
   def self.generate_user_behavior(user_hash ,references=nil)
     terms = $db_rightful_name=="egypt" ? @egypt_keys : @tunisia_keys
-    count = 200 # max is 200
-    tweets = Utils.statuses(user_hash[:screen_name], count, true)
+    # count = 200 # max is 200
+    tweets = Utils.statuses(user_hash[:screen_name], :all, true)
     puts "Targuss Targuss"
     return user_hash if tweets.nil? || tweets.empty?
-    puts "User has less than #{count} tweets." if tweets.length < count
+    # puts "User has less than #{count} tweets." if tweets.length < count
     counts = {:relevant_user_gets_retweeted => 0, :relevant_user_retweets => 0, :relevant_total => 0, :irrelevant_user_gets_retweeted => 0, :irrelevant_user_retweets => 0, :irrelevant_total => 0}
     for tweet in tweets
       # tweet is either a retweet or original content
