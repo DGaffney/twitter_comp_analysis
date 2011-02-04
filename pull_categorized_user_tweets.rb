@@ -14,35 +14,39 @@ module PullCategorizedUserTweets
     tweet_records = []
     edge_records = []
     user_hashes.each_pair do |category, users_hash|
-      puts "Evaluating #{category} users..."
-      users_hash.each do |user_hash|
-        puts "\tHashing #{user_hash[:screen_name]}..."
-        last_date = Time.now
-        page = 1
-        previous_datasheet = []
-        datasheet = Utils.statuses(user_hash[:screen_name], 100, true, page)
-        while last_date > start_date && datasheet!=previous_datasheet && !datasheet.empty?
-          puts "\t\tPage #{page}..."
-          tweet_hashes, last_date = self.generate_hashes(datasheet, start_date, end_date)
-          edge_hashes = self.generate_edges(datasheet, start_date, end_date)
-          puts "\t\t\t#{tweet_hashes.length} Tweets, #{edge_hashes.length} Edges..."
-          previous_datasheet=datasheet
-          page+=1
+      Thread.new{
+        puts "Evaluating #{category} users..."
+        users_hash.each do |user_hash|
+          puts "\tHashing #{user_hash[:screen_name]}... (#{users_hash.index(user_hash)}/#{users_hash.length})"
+          last_date = Time.now
+          page = 1
+          previous_datasheet = []
           datasheet = Utils.statuses(user_hash[:screen_name], 100, true, page)
-          tweet_records = tweet_records+tweet_hashes
-          edge_records = edge_records+edge_hashes
-          puts "\t\t\t#{tweet_records.length} Tweets total, #{edge_records.length} Edges total..."
+          while last_date > start_date && datasheet!=previous_datasheet && !datasheet.empty?
+            puts "\t\tPage #{page}..."
+            tweet_hashes, last_date = self.generate_hashes(datasheet, start_date, end_date)
+            edge_hashes = self.generate_edges(datasheet, start_date, end_date)
+            puts "\t\t\t#{tweet_hashes.length} Tweets, #{edge_hashes.length} Edges..."
+            previous_datasheet=datasheet
+            page+=1
+            datasheet = Utils.statuses(user_hash[:screen_name], 100, true, page)
+            tweet_records = tweet_records+tweet_hashes
+            edge_records = edge_records+edge_hashes
+            puts "\t\t\t#{tweet_records.length} Tweets total, #{edge_records.length} Edges total..."
+          end
+          puts "\tHashed #{user_hash[:screen_name]}. #{tweet_records.length} tweets, #{edge_records.length} edges."
+          if tweet_records.length >= MAX_COUNT_PER_BATCH_INSERT
+            puts "Reached #{tweet_records.length} tweets, saving now..."
+            self.insert("behavior_tweets", self.uniq_tweets(tweet_records))
+            tweet_records = []
+          end
+          if edge_records.length > MAX_COUNT_PER_BATCH_INSERT
+            puts "Reached #{edge_records.length} edges, saving now..."
+            self.insert("edges", self.uniq_edges(edge_records))
+            edge_records = []
+          end
         end
-        puts "\tHashed #{user_hash[:screen_name]}. #{tweet_records.length} tweets, #{edge_records.length} edges."
-        if tweet_records.length >= MAX_COUNT_PER_BATCH_INSERT
-          puts "Reached #{tweet_records.length} tweets, saving now..."
-          self.insert("behavior_tweets", self.uniq_tweets(tweet_records))
-        end
-        if edge_records.length > MAX_COUNT_PER_BATCH_INSERT
-          puts "Reached #{edge_records.length} edges, saving now..."
-          self.insert("edges", self.uniq_edges(edge_records))
-        end
-      end
+      }
     end
   end
   
@@ -65,8 +69,8 @@ module PullCategorizedUserTweets
     uniqued = []
     uniqued_ids = []
     edges.each do |edge|
-      if !uniqued_ids.include?(edge["edge_id"])
-        uniqued_ids << edge["edge_id"] 
+      if !uniqued_ids.include?("#{edge["end_node"]}_#{edge["start_node"]}_#{edge["edge_id"]}")
+        uniqued_ids << "#{edge["end_node"]}_#{edge["start_node"]}_#{edge["edge_id"]}"
         uniqued << edge
       end
     end
@@ -116,7 +120,7 @@ module PullCategorizedUserTweets
         edge = {}
         edge["start_node"] = edge_data["in_reply_to_screen_name"]
         edge["end_node"] = edge_data["user"]["screen_name"]
-        edge["edge_id"] = edge_data["in_reply_to_status_id"]
+        edge["edge_id"] = edge_data["id"]
         edge["style"] = "behavioral_retweet"
         edges << edge
       end
