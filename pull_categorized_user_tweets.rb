@@ -48,7 +48,6 @@ module PullCategorizedUserTweets
   
   def self.uniq_tweets(tweets)
     puts "Uniquing returned data..."
-    debugger
     uniqued = []
     uniqued_ids = []
     tweets.each do |tweet|
@@ -133,12 +132,8 @@ module PullCategorizedUserTweets
       sql_query+="(#{row.to_s.chop}), "
     end
     sql_query = sql_query.chop.chop
-    f = File.open("last_sql_call_#{$db_rightful_name}.sql", "w+")
-    f.write(sql_query)
-    f.close
-    puts sql_query
     gg = records.collect{|record| keys.collect{|key| record[key]}}.flatten
-    DataMapper.repository(:default).adapter.select(sql_query, *gg)
+    DataMapper.repository(:default).adapter.execute(sql_query, *gg)
   end
 end
 DataMapper.finalize
