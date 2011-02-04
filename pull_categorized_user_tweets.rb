@@ -54,11 +54,11 @@ module PullCategorizedUserTweets
       uniqued_ids << tweet["twitter_id"] if !uniqued_ids.include?(tweet["twitter_id"])
       uniqued << tweet["twitter_id"] if !uniqued_ids.include?(tweet)
     end
-    puts "Uniqued data crunched from #{tweets.length} => #{uniqed.length}..."
+    puts "Uniqued data crunched from #{tweets.length} => #{uniqued.length}..."
     return uniqued
   end
   
-  def self.uniq_tweets(edges)
+  def self.uniq_edges(edges)
     puts "Uniquing returned data..."
     uniqued = []
     uniqued_ids = []
@@ -66,7 +66,7 @@ module PullCategorizedUserTweets
       uniqued_ids << edge["edge_id"] if !uniqued_ids.include?(edge["edge_id"])
       uniqued << edge["edge_id"] if !uniqued_ids.include?(edge)
     end
-    puts "Uniqued data crunched from #{edges.length} => #{uniqed.length}..."
+    puts "Uniqued data crunched from #{edges.length} => #{uniqued.length}..."
     return uniqued
   end
   
