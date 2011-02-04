@@ -140,7 +140,7 @@ module PullCategorizedUserTweets
     gg = records.collect{|record| keys.collect{|key| record[key]}}.flatten
     DataMapper.repository(:default).adapter.select(sql_query, *gg)
   end
-
+end
 DataMapper.finalize
 
 all_my_bases = {"e" => "140kit_scratch_2", "t" => "140kit_scratch_1"}
