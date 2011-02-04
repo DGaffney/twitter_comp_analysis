@@ -9,7 +9,7 @@ module PullCategorizedUserTweets
   
   def self.pull_tweets(user_hashes, name)
     user_hashes.each_pair do |category, users_hash|
-      threads << Thread.new{
+      Thread.new{
         start_date, end_date = name=="egypt" ? [Time.parse("2011-1-18 00:00:00"), Time.parse("2011-1-30 00:00:00")] : [Time.parse("2011-1-08 00:00:00"), Time.parse("2011-1-20 00:00:00")]
         username,password,hostname,database = 'gonkclub', 'cakebread', 'deebee.yourdefaulthomepage.com', $db
         DataMapper.setup(:default, "mysql://#{username}:#{password}@#{hostname}/#{database}")
