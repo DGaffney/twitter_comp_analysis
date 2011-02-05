@@ -18,30 +18,8 @@ class NewDeGilader
     self.gilad_clean
   end
   
-  # def gilad_clean
-  #   # DataMapper.repository(database) do
-  #     # tweet_ids = DataMapper.repository(database).adapter.select("SELECT id FROM tweets where source is NULL order by rand()")
-  #     # tweet_ids = DataMapper.repository(:default).adapter.select("SELECT id FROM tweets order by rand()")
-  #     giladed_tweet_ids = DataMapper.repository(:default).adapter.select("SELECT tweets.id FROM tweets WHERE source is NULL")
-  #     done_tweet_ids = DataMapper.repository(:default).adapter.select("SELECT tweets.id FROM tweets INNER JOIN users ON tweets.screen_name=users.screen_name")
-  #     all_tweet_ids = DataMapper.repository(:default).adapter.select("SELECT tweets.id FROM tweets")
-  #     tweet_ids = all_tweet_ids - done_tweet_ids + giladed_tweet_ids
-  #     puts "#{tweet_ids.length} of #{all_tweet_ids.length} tweets left to update."
-  #     giladed_tweet_ids.clear
-  #     done_tweet_ids.clear
-  #     all_tweet_ids.clear
-  #     tweet_ids.shuffle!
-  #     tweet_id_groupings = tweet_ids.chunk(HAT_WOBBLE)
-  #     threads = []
-  #     tweet_id_groupings.each do |grouping|
-  #       threads<<Thread.new{run_tweets(grouping)}
-  #     end
-  #     threads.collect{|x| x.join}
-  #   # end
-
-  def self.setup_users(username, password, hostname, database)
+  def self.setup(username, password, hostname, database)
     DataMapper.setup(:default, "mysql://#{username}:#{password}@#{hostname}/#{database}")
-    self.users_clean
   end
 
   def self.gilad_clean
@@ -138,9 +116,9 @@ class NewDeGilader
   end
   
   def self.run_users(screen_names)
-    disallowed_keys = []
+    disallowed_user_keys = []
     screen_names.each do |screen_name|
-      user_data = Utils.user rescue nil
+      user_data = Utils.user(screen_name) rescue nil
       if user_data
         user = User.first(:screen_name => screen_name) || User.new
         user_data.keys.each do |key|
@@ -165,23 +143,23 @@ class NewDeGilader
   end
 end
 
-if ARGV.empty?
-  puts "## IRB MODE ##"
-  db = all_my_bases["tunisia"]
-  1.upto(10000) do |x|
-    NewDeGilader.setup('gonkclub', 'cakebread', 'deebee.yourdefaulthomepage.com', db)
-  end
-else
-  db,func = all_my_bases[ARGV[0]], ARGV[1]
-  if func
-    puts "User Cleaner"
-    1.upto(10000) do |x|
-      NewDeGilader.setup('gonkclub', 'cakebread', 'deebee.yourdefaulthomepage.com', db)
-    end    
-  else
-    puts "Tweet Cleaner"
-    1.upto(10000) do |x|
-      NewDeGilader.setup('gonkclub', 'cakebread', 'deebee.yourdefaulthomepage.com', db)
-    end
-  end
-end
+# if ARGV.empty?
+#   puts "## IRB MODE ##"
+#   db = all_my_bases["tunisia"]
+#   1.upto(10000) do |x|
+#     NewDeGilader.setup('gonkclub', 'cakebread', 'deebee.yourdefaulthomepage.com', db)
+#   end
+# else
+#   db,func = all_my_bases[ARGV[0]], ARGV[1]
+#   if func
+#     puts "User Cleaner"
+#     1.upto(10000) do |x|
+#       NewDeGilader.setup('gonkclub', 'cakebread', 'deebee.yourdefaulthomepage.com', db)
+#     end    
+#   else
+#     puts "Tweet Cleaner"
+#     1.upto(10000) do |x|
+#       NewDeGilader.setup('gonkclub', 'cakebread', 'deebee.yourdefaulthomepage.com', db)
+#     end
+#   end
+# end
