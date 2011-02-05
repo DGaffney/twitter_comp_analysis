@@ -8,15 +8,15 @@
 		// egypt
 		echo "egypt<br/><br/>";
 		
-		mysql_select_db("---db---",$mysql) or die(mysql_error());
-		$table="140kit_scratch_2";
+		mysql_select_db("140kit_scratch_2",$mysql) or die(mysql_error());
+		$table="tweets";
 		$maxID=185000;
 	} else {
 		// sidibouzid
 		echo "tunisia<br/><br/>";
 		
-		mysql_select_db("---db---",$mysql) or die(mysql_error());
-		$table="140kit_scratch_1";
+		mysql_select_db("140kit_scratch_1",$mysql) or die(mysql_error());
+		$table="tweets";
 		$maxID=167000;
 	}
 	
