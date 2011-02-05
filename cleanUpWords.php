@@ -1,22 +1,15 @@
 <?php
 
     $mysql = mysql_connect("deebee.yourdefaulthomepage.com","gonkclub","cakebread") or die(mysql_error());
-	  $story = 'tweets';
+    $story = 'tweets';
 	
-		mysql_select_db("140kit_scratch_2",$mysql) or die(mysql_error());
-		$table="tweets";
-		$maxID=185000;
-  // } else {
-  //  // sidibouzid
-  //  echo "tunisia<br/><br/>";
-  //  
-  //  mysql_select_db("140kit_scratch_1",$mysql) or die(mysql_error());
-  //  $table="tweets";
-  //  $maxID=167000;
-  // }
+    mysql_select_db("140kit_scratch_2",$mysql) or die(mysql_error());
+    $table="tweets";
+    $maxID=185000;
 	
 	// get all entries
 	$query = "select * from `$story` order by pubdate asc";	
+	echo "$query<br/>";
 	$result = mysql_query($query,$mysql) or die(mysql_error());
 	
 	while ($curTweet = mysql_fetch_array($result)) {
@@ -40,7 +33,7 @@
 		if ($words!=''){
 			
 			$query1 = "UPDATE `$story` SET words='{$words}' WHERE id='{$id}'";
-			//echo $query1."</br>";
+			echo $query1."</br>";
 			$result1 = mysql_query($query1,$mysql) or die(mysql_error()); 
 			
 		}
