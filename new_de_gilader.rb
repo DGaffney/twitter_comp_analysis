@@ -116,9 +116,9 @@ class NewDeGilader
   end
   
   def self.run_users(screen_names)
-    disallowed_keys = []
+    disallowed_user_keys = []
     screen_names.each do |screen_name|
-      user_data = Utils.user rescue nil
+      user_data = Utils.user(screen_name) rescue nil
       if user_data
         user = User.first(:screen_name => screen_name) || User.new
         user_data.keys.each do |key|

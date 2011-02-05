@@ -24,9 +24,9 @@ class ProfileCategorization
     $db = all_my_bases[shorty]
     $db_rightful_name = rightful_names[shorty]
     ProfileCategorization.setup('gonkclub', 'cakebread', 'deebee.yourdefaulthomepage.com', $db)
-    categories = ProfileCategorization.pull_csv($db_rightful_name)
     start_date, end_date = $db_rightful_name=="egypt" ? [Time.parse("2011-1-18 00:00:00"), Time.parse("2011-1-30 00:00:00")] : [Time.parse("2011-1-08 00:00:00"), Time.parse("2011-1-20 00:00:00")]
     start_date.day.upto(end_date.day) do |day|
+      categories = ProfileCategorization.pull_csv($db_rightful_name)
       results = ProfileCategorization.generate_core_stats(categories, Time.parse("2011-1-#{day} 00:00:00"))
       puts results.inspect
       ProfileCategorization.store_categorized_csvs(results, $db_rightful_name, Time.parse("2011-1-#{day} 00:00:00"))
@@ -142,13 +142,13 @@ class ProfileCategorization
     results.each_pair do |category, user_hashes|
       `mkdir datasets/`
       `mkdir datasets/profile_categorization`
-      keys = []
+      keys = ["screen_name", "relevant_total", "irrelevant_total", "friends_count", "friends_percentile", "followers_count", "followers_percentile", "statuses_count", "statuses_percentile", "created_at", "relevant_user_gets_retweeted", "relevant_user_retweets", "relevant_percent_user_gets_retweeted", "relevant_percent_user_retweets", "irrelevant_user_gets_retweeted", "irrelevant_user_retweets", "irrelevant_percent_user_gets_retweeted", "irrelevant_percent_user_retweets"]
       first=true
       date_stamp = date.nil? ? "_total" : date.strftime("_%m-%d")
       FasterCSV.open("datasets/profile_categorization/#{name}_#{category}_users#{date_stamp}.csv", "w+") do |csv|
         user_hashes.each do |user_hash|
           if first
-            keys = user_hashes.first.keys
+            keys = ["screen_name", "relevant_total", "irrelevant_total", "friends_count", "friends_percentile", "followers_count", "followers_percentile", "statuses_count", "statuses_percentile", "created_at", "relevant_user_gets_retweeted", "relevant_user_retweets", "relevant_percent_user_gets_retweeted", "relevant_percent_user_retweets", "irrelevant_user_gets_retweeted", "irrelevant_user_retweets", "irrelevant_percent_user_gets_retweeted", "irrelevant_percent_user_retweets"]
             values = user_hashes.first.values
             csv << keys
             csv << values
@@ -161,4 +161,4 @@ class ProfileCategorization
   end
 end
 
-ProfileCategorization.run("e")
+ProfileCategorization.run("t")
