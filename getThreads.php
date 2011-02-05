@@ -2,7 +2,7 @@
 
     $mysql = mysql_connect("deebee.yourdefaulthomepage.com","gonkclub","cakebread") or die(mysql_error());
 	
-	$story = $_GET['story'];
+	$story = 1;
 	
 	if ($story==1){
 		// egypt
