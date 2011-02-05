@@ -33,13 +33,13 @@ module FollowerNetwork
             edges << Edge.new({:graph_id => g.id, :start_node => index[follower], :end_node => index[user_id], :style => 'follow'})
             if edges.length >= MAX_BATCH_SIZE
               # f.write(self.bulk_insert_edges(edges))
-              bulk_insert_edges_file(folder, edges)
+              self.bulk_insert_edges_file(folder, edges)
               edges.clear
             end
           end
         end
         # f.write(self.bulk_insert_edges(edges))
-        bulk_insert_edges_file(folder, edges)
+        self.bulk_insert_edges_file(folder, edges)
       }
     end
     threads.each { |t| t.join }
