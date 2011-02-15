@@ -22,7 +22,8 @@ module FollowerNetwork
     threads = []
     index = self.user_id_screenname_index
     user_ids = index.keys.sort
-    for chunk in user_ids.chunk(THREAD_COUNT)
+    users_to_do = user_ids - DataMapper.repository(:default).adapter.select("SELECT DISTINCT start_node FROM edges WHERE style='follow'")
+    for chunk in users_to_do.chunk(THREAD_COUNT)
       threads << Thread.new(chunk) { |chunk|
         
         edges = []
@@ -74,9 +75,17 @@ module FollowerNetwork
     f.close
   end
   
+  def self.bulk_insert_folder(folder)
+    files = `ls #{folder}`.split("\n")
+    puts "Found #{files.length} raw sql files to execute."
+    files.each {|f| print "#{f} "; DataMapper.repository(:default).adapter.execute(File.read("#{folder}/#{f}")) }
+    puts "Bulk inserted."
+  end
+  
 end
 
-FollowerNetwork.create("ball")
+FollowerNetwork.create("followers")
+puts "Remember to run FollowerNetwork.bulk_insert_folder(graph_id) !!!"
 
 # threads = []
 # 1.upto(1) { |i|
