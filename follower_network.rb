@@ -23,6 +23,8 @@ module FollowerNetwork
     index = self.user_id_screenname_index
     user_ids = index.keys.sort
     users_to_do = user_ids - DataMapper.repository(:default).adapter.select("SELECT DISTINCT start_node FROM edges WHERE style='follow'")
+    puts "Found #{user_ids.length} users."
+    puts "There are #{users_to_do.length} users left to do."
     for chunk in users_to_do.chunk(THREAD_COUNT)
       threads << Thread.new(chunk) { |chunk|
         
