@@ -18,7 +18,6 @@ DataMapper.finalize
 class ProfileCategorization
   
   def self.run(shorty)
-    debugger
     all_my_bases = {"e" => "140kit_scratch_2", "t" => "140kit_scratch_1"}
     rightful_names = {'e' => 'egypt', 't' => 'tunisia'}
     $db = all_my_bases[shorty]
@@ -31,6 +30,10 @@ class ProfileCategorization
       puts results.inspect
       ProfileCategorization.store_categorized_csvs(results, $db_rightful_name, Time.parse("2011-1-#{day} 00:00:00"))
     end
+    categories = ProfileCategorization.pull_csv($db_rightful_name)
+    results = ProfileCategorization.generate_core_stats(categories)
+    puts results.inspect
+    ProfileCategorization.store_categorized_csvs(results, $db_rightful_name)
   end
   
   def self.setup(username, password, hostname, database)
@@ -138,7 +141,6 @@ class ProfileCategorization
   end
   
   def self.store_categorized_csvs(results, name, date=nil)
-    debugger
     results.each_pair do |category, user_hashes|
       `mkdir datasets/`
       `mkdir datasets/profile_categorization`
@@ -146,19 +148,13 @@ class ProfileCategorization
       first=true
       date_stamp = date.nil? ? "_total" : date.strftime("_%m-%d")
       FasterCSV.open("datasets/profile_categorization/#{name}_#{category}_users#{date_stamp}.csv", "w+") do |csv|
+        csv << keys
         user_hashes.each do |user_hash|
-          if first
-            keys = ["screen_name", "relevant_total", "irrelevant_total", "friends_count", "friends_percentile", "followers_count", "followers_percentile", "statuses_count", "statuses_percentile", "created_at", "relevant_user_gets_retweeted", "relevant_user_retweets", "relevant_percent_user_gets_retweeted", "relevant_percent_user_retweets", "irrelevant_user_gets_retweeted", "irrelevant_user_retweets", "irrelevant_percent_user_gets_retweeted", "irrelevant_percent_user_retweets"]
-            values = user_hashes.first.values
-            csv << keys
-            csv << values
-            first=false
-          end
-          csv << keys.collect{|key| user_hash[key].to_s}
+          csv << keys.collect{|key| user_hash[key.to_sym].to_s}
         end
       end
     end
   end
 end
 
-ProfileCategorization.run("t")
+ProfileCategorization.run("e")
