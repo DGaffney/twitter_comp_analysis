@@ -74,6 +74,19 @@ module Utils
     return ids
   end
   
+  def self.get_followers_from_screen_name(screen_name)
+    api_url = "http://api.twitter.com/1/followers/ids.json?screen_name=#{screen_name}"
+    ids = JSON.parse(open(api_url).read) rescue nil
+    ids = JSON.parse(open(api_url).read) if ids.nil? rescue nil
+    if ids.nil?
+      puts "Couldn't get followers for #{screen_name}."
+      return []
+    end
+    ids.collect! {|id| id.to_i}
+    puts "Found #{ids.length} followers for #{screen_name}."
+    return ids
+  end
+  
   def self.get_friends_from_id(user_id)
     api_url = "http://api.twitter.com/1/friends/ids.json?user_id=#{user_id}"
     ids = JSON.parse(open(api_url).read) rescue nil

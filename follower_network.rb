@@ -22,7 +22,7 @@ module FollowerNetwork
     threads = []
     index = self.user_id_screenname_index
     user_ids = index.keys.sort
-    users_to_do = user_ids - DataMapper.repository(:default).adapter.select("SELECT DISTINCT start_node FROM edges WHERE style='follow'")
+    users_to_do = index.values - DataMapper.repository(:default).adapter.select("SELECT DISTINCT end_node FROM edges WHERE style='follow'")
     puts "Found #{user_ids.length} users."
     puts "There are #{users_to_do.length} users left to do."
     for chunk in users_to_do.chunk(THREAD_COUNT)
@@ -30,10 +30,10 @@ module FollowerNetwork
         
         edges = []
         puts "Got a chunk of #{chunk.length}."
-        for user_id in chunk
-          followers = Utils.get_followers_from_id(user_id) & user_ids
+        for user in chunk
+          followers = Utils.get_followers_from_screen_name(user) & user_ids
           for follower in followers
-            edges << Edge.new({:graph_id => g.id, :start_node => index[follower], :end_node => index[user_id], :style => 'follow'})
+            edges << Edge.new({:graph_id => g.id, :start_node => index[follower], :end_node => user, :style => 'follow'})
             if edges.length >= MAX_BATCH_SIZE
               # f.write(self.bulk_insert_edges(edges))
               self.bulk_insert_edges_file(folder, edges)
