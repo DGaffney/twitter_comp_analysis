@@ -6,13 +6,14 @@ require 'models/edge'
 require 'models/tweet'
 require 'models/user'
 DataMapper.finalize
-require 'db'
+#require 'db'
+DataMapper.setup(:default, 'mysql://gonkclub:cakebread@deebee.yourdefaulthomepage.com/140kit_scratch_2')
 require 'utils'
 
 module FollowerNetwork
   
-  MAX_BATCH_SIZE = 10
-  THREAD_COUNT = 2#0
+  MAX_BATCH_SIZE = 1000
+  THREAD_COUNT = 100
   
   def self.create(title='My Great Graph')
     threads = []
