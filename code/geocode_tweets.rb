@@ -33,7 +33,6 @@ module GeocodeTweets
       conditions[:order] = :id.desc
       grouped_objects = model.classify.constantize.all(conditions).chunk(threads)
       grouped_objects.each do |objects|
-        debugger
         thread_list<<Thread.new do
           orig_objects = Digest::SHA1.hexdigest(objects.collect{|o| o.attributes}.to_s)
           puts orig_objects
@@ -62,6 +61,7 @@ module GeocodeTweets
   def self.geocode_tweets
     GeocodeTweets.bulk_worker("tweets", {:lat => nil, :lon => nil}, "where lat is null and lon is null", 100)  do |tweets|
       tweets.each do |tweet|
+        debugger
         puts tweet.twitter_id
         tweet_data = Utils.tweet_data(tweet.twitter_id)
         if tweet.lat.nil?
