@@ -34,6 +34,7 @@ module GeocodeTweets
       grouped_objects = model.classify.constantize.all(conditions).chunk(threads)
       grouped_objects.each do |objects|
         thread_list<<Thread.new do
+          debugger
           orig_objects = Digest::SHA1.hexdigest(objects.collect{|o| o.attributes}.to_s)
           puts orig_objects
           puts objects.collect{|x| [x.lat, x.lon]}.inspect
