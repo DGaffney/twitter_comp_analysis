@@ -31,7 +31,6 @@ module GeocodeTweets
       conditions[:limit] = limit
       conditions[:offset] = offset
       conditions[:order] = :id.desc
-      conditions[:lazy] = false
       grouped_objects = model.classify.constantize.all(conditions).chunk(threads)
       grouped_objects.each do |objects|
         thread_list<<Thread.new do

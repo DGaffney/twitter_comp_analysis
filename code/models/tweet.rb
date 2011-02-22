@@ -3,9 +3,9 @@ class Tweet
   property :id,           Serial
   property :twitter_id,   Integer
   property :tweet_id,   Integer
-  property :text,         Text
+  property :text,         Text, :lazy => false
   property :language,     String
-  property :source,     Text
+  property :source,     Text, :lazy => false
   property :user_id,      Integer
   property :screen_name,  String
   property :username,  String
@@ -23,7 +23,7 @@ class Tweet
   property :lon,          String
   property :dataset_id,   Integer
   property :pubdate,   DateTime
-  property :link,   Text
+  property :link,   Text, :lazy => false
   property :author,   String
   property :realname,   String
   property :storyquery,   String
@@ -34,7 +34,7 @@ class Tweet
   property :user_name, String
   property :retweet_count,  Integer
   property :thread_id, Integer
-  property :shared_words, Text
-  property :words, Text
+  property :shared_words, Text, :lazy => false
+  property :words, Text, :lazy => false
   belongs_to :user
 end
