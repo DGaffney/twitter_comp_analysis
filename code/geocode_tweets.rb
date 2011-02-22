@@ -1,5 +1,6 @@
 require 'digest/sha1'
-
+require 'extensions/array'
+require 'extensions/string'
 load "new_de_gilader.rb"
 NewDeGilader.setup('gonkclub', 'cakebread', 'deebee.yourdefaulthomepage.com', '140kit_scratch_1')
 DataMapper.finalize

@@ -33,8 +33,8 @@ module Utils
     api_url = "http://api.twitter.com/1/account/rate_limit_status.json"
     json = JSON.parse(open(api_url).read) rescue nil
     if json
-      puts "#{json["remaining_hits"]} hits left, next reset in #{Time.parse(json["reset_time"])-Time.now} seconds. Sleeping for #{json["remaining_hits"].to_i/(Time.parse(json["reset_time"])-Time.now).abs} seconds."
-      sleep(json["remaining_hits"].to_i/(Time.parse(json["reset_time"])-Time.now).abs)
+      puts "#{json["remaining_hits"]} hits left, next reset in #{Time.parse(json["reset_time"])-Time.now} seconds. Sleeping for #{(Time.parse(json["reset_time"])-Time.now).abs} seconds."
+      sleep((Time.parse(json["reset_time"])-Time.now).abs/json["remaining_hits"].to_i)
     end
     1.upto(retries) {|i| data = JSON.parse(open(url).read) rescue nil; break if !data.nil? }
     return data
