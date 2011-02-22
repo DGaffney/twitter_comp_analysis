@@ -19,7 +19,7 @@ module GeocodeTweets
       sql_query+="(#{row.to_s.chop}), "
     end
     sql_query = sql_query.chop.chop
-    gg = records.collect{|record| keys.collect{|key| record[key]}}.flatten
+    gg = records.collect{|record| keys.collect{|key| record[key.to_sym]}}.flatten
     DataMapper.repository(database).adapter.execute(sql_query, *gg)
   end
 
