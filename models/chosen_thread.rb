@@ -2,7 +2,6 @@ class ChosenThread
   include DataMapper::Resource
   property :id, Serial
   property :count, Serial
-  property :source_author, String
   property :source_type, Serial
   property :first_text, Text
   property :identified, String
