@@ -1,1 +1,0 @@
-INSERT INTO edges (graph_id, start_node, end_node, style) VALUES (354, 'tweetminster', 'HouseofTwitsLib', 'follow'), (354, 'JonBall', 'HouseofTwitsLib', 'follow'), (354, 'jonathanfryer', 'HouseofTwitsLib', 'follow');

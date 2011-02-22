@@ -1,1 +1,0 @@
-INSERT INTO edges (graph_id, start_node, end_node, style) VALUES (353, 'CodeOConduct', 'drunken_bee', 'follow');
