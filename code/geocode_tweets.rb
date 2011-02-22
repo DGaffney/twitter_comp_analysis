@@ -38,6 +38,7 @@ module GeocodeTweets
           puts orig_objects
           puts objects.collect{|x| [x.lat, x.lon]}.inspect
           objects = yield objects
+          debugger
           puts objects.collect{|x| [x.lat, x.lon]}.inspect
           new_objects = Digest::SHA1.hexdigest(objects.collect{|o| o.attributes}.to_s)
           puts new_objects
