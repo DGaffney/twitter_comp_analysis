@@ -13,7 +13,7 @@ offset = 0
 module GeocodeTweets
   def self.insert(model, records, database=:default)
     keys = nil
-    sql_query = "insert ignore into #{model} (#{(keys=records.first.keys.collect{|x| x.to_s}).join(", ")}) VALUES "
+    sql_query = "replace into #{model} (#{(keys=records.first.keys.collect{|x| x.to_s}).join(", ")}) VALUES "
     records.each do |record|
       row = keys.collect{|key| "?,"}
       sql_query+="(#{row.to_s.chop}), "
@@ -34,7 +34,6 @@ module GeocodeTweets
       grouped_objects = model.classify.constantize.all(conditions).chunk(threads)
       grouped_objects.each do |objects|
         thread_list<<Thread.new do
-          debugger
           orig_objects = Digest::SHA1.hexdigest(objects.collect{|o| o.attributes}.to_s)
           puts orig_objects
           puts objects.collect{|x| [x.lat, x.lon]}.inspect
@@ -62,7 +61,6 @@ module GeocodeTweets
   def self.geocode_tweets
     GeocodeTweets.bulk_worker("tweets", {:lat => nil, :lon => nil}, "where lat is null and lon is null", 100)  do |tweets|
       tweets.each do |tweet|
-        debugger
         puts tweet.twitter_id
         tweet_data = Utils.tweet_data(tweet.twitter_id)
         if tweet.lat.nil?
