@@ -1,4 +1,4 @@
-class TweetChosenThread
+class TweetsChosenThread
   include DataMapper::Resource
   property :id, Serial
   property :text, Text
