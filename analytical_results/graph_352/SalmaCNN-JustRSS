@@ -1,0 +1,1 @@
+INSERT INTO edges (graph_id, start_node, end_node, style) VALUES (352, 'SalmaCNN', 'JustRSS', 'follow'), (352, 'bigbrother_ma', 'JustRSS', 'follow'), (352, 'sunshinesudan', 'JustRSS', 'follow'), (352, 'Rachid2009', 'JustRSS', 'follow'), (352, 'TweetSmarter', 'JustRSS', 'follow');
