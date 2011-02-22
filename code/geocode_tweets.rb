@@ -57,7 +57,7 @@ module GeocodeTweets
       end
     end
   end
-end
+  
   def self.geocode_tweets
     GeocodeTweets.bulk_worker("tweets", {:lat => nil, :lon => nil}, "where lat is null and lon is null", 100)  do |tweets|
       tweets.each do |tweet|
@@ -105,4 +105,4 @@ end
   end
 
 end
-GeocodeTweets.collect_profile_data
+GeocodeTweets.geocode_tweets
