@@ -7,7 +7,7 @@ require 'models/tweet'
 require 'models/user'
 DataMapper.finalize
 #require 'db'
-DataMapper.setup(:default, 'mysql://gonkclub:cakebread@deebee.yourdefaulthomepage.com/140kit_scratch_2')
+DataMapper.setup(:default, 'mysql://gonkclub:cakebread@deebee.yourdefaulthomepage.com/140kit_scratch_1')
 require 'utils'
 
 module FollowerNetwork
@@ -19,6 +19,7 @@ module FollowerNetwork
     threads = []
     g = Graph.create(:title => title, :style => 'follow')
     folder = "graph_#{g.id}"
+    puts "\n\nGraph id: #{g.id}\n\n"
     Dir.mkdir(folder)
     threads = []
     index = self.user_id_screenname_index
@@ -47,6 +48,8 @@ module FollowerNetwork
       }
     end
     threads.each { |t| t.join }
+    puts "\n\nGraph id: #{g.id}\n\n"
+    return g.id
   end
 
   def self.user_id_screenname_index
