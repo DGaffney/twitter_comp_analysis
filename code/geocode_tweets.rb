@@ -60,7 +60,7 @@ module GeocodeTweets
   end
   
   def self.geocode_tweets
-    GeocodeTweets.bulk_worker("tweets", {:lat => nil, :lon => nil}, "where lat is null and lon is null", 1000)  do |tweets|
+    GeocodeTweets.bulk_worker("tweets", {:lat => nil, :lon => nil}, "where lat is null and lon is null")  do |tweets|
       tweets.each do |tweet|
         puts tweet.twitter_id
         tweet_data = Utils.tweet_data(tweet.twitter_id)
