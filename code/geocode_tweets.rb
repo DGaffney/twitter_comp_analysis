@@ -23,7 +23,7 @@ module GeocodeTweets
     DataMapper.repository(database).adapter.execute(sql_query, *gg)
   end
 
-  def self.bulk_worker(model, conditions, query="", limit=1000, threads=1)
+  def self.bulk_worker(model, conditions, query="", limit=1000, threads=10)
     offset = 0
     last_id = DataMapper.repository(:default).adapter.select("select id from #{model} #{query} order by id desc limit 1").first
     thread_list = []
@@ -60,7 +60,7 @@ module GeocodeTweets
   end
   
   def self.geocode_tweets
-    GeocodeTweets.bulk_worker("tweets", {:lat => nil, :lon => nil}, "where lat is null and lon is null", 100)  do |tweets|
+    GeocodeTweets.bulk_worker("tweets", {:lat => nil, :lon => nil}, "where lat is null and lon is null", 1000)  do |tweets|
       tweets.each do |tweet|
         puts tweet.twitter_id
         tweet_data = Utils.tweet_data(tweet.twitter_id)
