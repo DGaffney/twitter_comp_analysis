@@ -23,7 +23,7 @@ module GeocodeTweets
     DataMapper.repository(database).adapter.execute(sql_query, *gg)
   end
 
-  def self.bulk_worker(model, conditions, query="", limit=1000, threads=10)
+  def self.bulk_worker(model, conditions, query="", limit=10000, threads=100)
     offset = 0
     last_id = DataMapper.repository(:default).adapter.select("select id from #{model} #{query} order by id desc limit 1").first
     thread_list = []
