@@ -80,7 +80,7 @@ module GeocodeTweets
           tweet_data.last["location"] &&
           !tweet_data.last["location"].scan("ÜT: ").empty? &&
           tweet_data.last["location"].gsub("ÜT: ").split(",").first ||
-          tweet.lat
+          "0"
         end
         if tweet.lon.nil?
           tweet.lon = tweet_data.first["coordinates"] &&
@@ -98,7 +98,7 @@ module GeocodeTweets
           tweet_data.last["location"] &&
           !tweet_data.last["location"].scan("ÜT: ").empty? &&
           tweet_data.last["location"].gsub("ÜT: ").split(",").last ||
-          tweet.lon
+          "0"
         end
       end
       tweets
