@@ -1,0 +1,32 @@
+<h1>Editing edge</h1>
+
+<% form_for(@edge) do |f| %>
+  <%= f.error_messages %>
+
+  <p>
+    <%= f.label :graph_id %><br />
+    <%= f.text_field :graph_id %>
+  </p>
+  <p>
+    <%= f.label :start_node %><br />
+    <%= f.text_field :start_node %>
+  </p>
+  <p>
+    <%= f.label :end_node %><br />
+    <%= f.text_field :end_node %>
+  </p>
+  <p>
+    <%= f.label :edge_id %><br />
+    <%= f.text_field :edge_id %>
+  </p>
+  <p>
+    <%= f.label :style %><br />
+    <%= f.text_field :style %>
+  </p>
+  <p>
+    <%= f.submit 'Update' %>
+  </p>
+<% end %>
+
+<%= link_to 'Show', @edge %> |
+<%= link_to 'Back', edges_path %>

@@ -1,0 +1,43 @@
+<p>
+  <b>Scrape type:</b>
+  <%=h @dataset.scrape_type %>
+</p>
+
+<p>
+  <b>Start time:</b>
+  <%=h @dataset.start_time %>
+</p>
+
+<p>
+  <b>Length:</b>
+  <%=h @dataset.length %>
+</p>
+
+<p>
+  <b>Created at:</b>
+  <%=h @dataset.created_at %>
+</p>
+
+<p>
+  <b>Updated at:</b>
+  <%=h @dataset.updated_at %>
+</p>
+
+<p>
+  <b>Scrape finished:</b>
+  <%=h @dataset.scrape_finished %>
+</p>
+
+<p>
+  <b>Instance:</b>
+  <%=h @dataset.instance_id %>
+</p>
+
+<p>
+  <b>Params:</b>
+  <%=h @dataset.params %>
+</p>
+
+
+<%= link_to 'Edit', edit_dataset_path(@dataset) %> |
+<%= link_to 'Back', datasets_path %>

@@ -1,0 +1,15 @@
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+
+one:
+  graph_id: 1
+  start_node: MyString
+  end_node: MyString
+  edge_id: 1
+  style: MyString
+
+two:
+  graph_id: 1
+  start_node: MyString
+  end_node: MyString
+  edge_id: 1
+  style: MyString

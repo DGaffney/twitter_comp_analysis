@@ -1,0 +1,28 @@
+<h1>Listing edges</h1>
+
+<table>
+  <tr>
+    <th>Graph</th>
+    <th>Start node</th>
+    <th>End node</th>
+    <th>Edge</th>
+    <th>Style</th>
+  </tr>
+
+<% @edges.each do |edge| %>
+  <tr>
+    <td><%=h edge.graph_id %></td>
+    <td><%=h edge.start_node %></td>
+    <td><%=h edge.end_node %></td>
+    <td><%=h edge.edge_id %></td>
+    <td><%=h edge.style %></td>
+    <td><%= link_to 'Show', edge %></td>
+    <td><%= link_to 'Edit', edit_edge_path(edge) %></td>
+    <td><%= link_to 'Destroy', edge, :confirm => 'Are you sure?', :method => :delete %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New edge', new_edge_path %>

@@ -1,0 +1,79 @@
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+
+one:
+  p_cc: 1
+  p_degree: 1
+  p_twitter_id: 1
+  p_screen_name: MyString
+  p_realname: MyString
+  p_type: 1
+  p_location: MyText
+  p_description: MyText
+  p_url: MyText
+  p_language: MyString
+  p_website_type: MyString
+  p_notes: MyText
+  p_followers: MyText
+  p_following: MyText
+  p_following_count: 1
+  p_follower_count: 1
+  p_in: MyText
+  p_out: MyText
+  p_statuses_count: 1
+  p_picture: MyText
+  p_created_at: 2011-02-22 19:10:01
+  p_time_zone: MyString
+  p_utc_offset: MyString
+  p_verified: MyString
+  p_geo_enabled: 1
+  p_lang: MyString
+  p_first_pubdate: 2011-02-22 19:10:01
+  p_first_text: MyText
+  p_participation: 1
+  p_protected: 1
+  last_update: 2011-02-22 19:10:01
+  times: 1
+  erhardt: 1
+  gilad: 1
+  danah: 1
+  mike: 1
+  p_edited_by: MyText
+
+two:
+  p_cc: 1
+  p_degree: 1
+  p_twitter_id: 1
+  p_screen_name: MyString
+  p_realname: MyString
+  p_type: 1
+  p_location: MyText
+  p_description: MyText
+  p_url: MyText
+  p_language: MyString
+  p_website_type: MyString
+  p_notes: MyText
+  p_followers: MyText
+  p_following: MyText
+  p_following_count: 1
+  p_follower_count: 1
+  p_in: MyText
+  p_out: MyText
+  p_statuses_count: 1
+  p_picture: MyText
+  p_created_at: 2011-02-22 19:10:01
+  p_time_zone: MyString
+  p_utc_offset: MyString
+  p_verified: MyString
+  p_geo_enabled: 1
+  p_lang: MyString
+  p_first_pubdate: 2011-02-22 19:10:01
+  p_first_text: MyText
+  p_participation: 1
+  p_protected: 1
+  last_update: 2011-02-22 19:10:01
+  times: 1
+  erhardt: 1
+  gilad: 1
+  danah: 1
+  mike: 1
+  p_edited_by: MyText

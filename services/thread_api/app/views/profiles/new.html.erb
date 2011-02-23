@@ -1,0 +1,159 @@
+<h1>New profile</h1>
+
+<% form_for(@profile) do |f| %>
+  <%= f.error_messages %>
+
+  <p>
+    <%= f.label :p_cc %><br />
+    <%= f.text_field :p_cc %>
+  </p>
+  <p>
+    <%= f.label :p_degree %><br />
+    <%= f.text_field :p_degree %>
+  </p>
+  <p>
+    <%= f.label :p_twitter_id %><br />
+    <%= f.text_field :p_twitter_id %>
+  </p>
+  <p>
+    <%= f.label :p_screen_name %><br />
+    <%= f.text_field :p_screen_name %>
+  </p>
+  <p>
+    <%= f.label :p_realname %><br />
+    <%= f.text_field :p_realname %>
+  </p>
+  <p>
+    <%= f.label :p_type %><br />
+    <%= f.text_field :p_type %>
+  </p>
+  <p>
+    <%= f.label :p_location %><br />
+    <%= f.text_area :p_location %>
+  </p>
+  <p>
+    <%= f.label :p_description %><br />
+    <%= f.text_area :p_description %>
+  </p>
+  <p>
+    <%= f.label :p_url %><br />
+    <%= f.text_area :p_url %>
+  </p>
+  <p>
+    <%= f.label :p_language %><br />
+    <%= f.text_field :p_language %>
+  </p>
+  <p>
+    <%= f.label :p_website_type %><br />
+    <%= f.text_field :p_website_type %>
+  </p>
+  <p>
+    <%= f.label :p_notes %><br />
+    <%= f.text_area :p_notes %>
+  </p>
+  <p>
+    <%= f.label :p_followers %><br />
+    <%= f.text_area :p_followers %>
+  </p>
+  <p>
+    <%= f.label :p_following %><br />
+    <%= f.text_area :p_following %>
+  </p>
+  <p>
+    <%= f.label :p_following_count %><br />
+    <%= f.text_field :p_following_count %>
+  </p>
+  <p>
+    <%= f.label :p_follower_count %><br />
+    <%= f.text_field :p_follower_count %>
+  </p>
+  <p>
+    <%= f.label :p_in %><br />
+    <%= f.text_area :p_in %>
+  </p>
+  <p>
+    <%= f.label :p_out %><br />
+    <%= f.text_area :p_out %>
+  </p>
+  <p>
+    <%= f.label :p_statuses_count %><br />
+    <%= f.text_field :p_statuses_count %>
+  </p>
+  <p>
+    <%= f.label :p_picture %><br />
+    <%= f.text_area :p_picture %>
+  </p>
+  <p>
+    <%= f.label :p_created_at %><br />
+    <%= f.datetime_select :p_created_at %>
+  </p>
+  <p>
+    <%= f.label :p_time_zone %><br />
+    <%= f.text_field :p_time_zone %>
+  </p>
+  <p>
+    <%= f.label :p_utc_offset %><br />
+    <%= f.text_field :p_utc_offset %>
+  </p>
+  <p>
+    <%= f.label :p_verified %><br />
+    <%= f.text_field :p_verified %>
+  </p>
+  <p>
+    <%= f.label :p_geo_enabled %><br />
+    <%= f.text_field :p_geo_enabled %>
+  </p>
+  <p>
+    <%= f.label :p_lang %><br />
+    <%= f.text_field :p_lang %>
+  </p>
+  <p>
+    <%= f.label :p_first_pubdate %><br />
+    <%= f.datetime_select :p_first_pubdate %>
+  </p>
+  <p>
+    <%= f.label :p_first_text %><br />
+    <%= f.text_area :p_first_text %>
+  </p>
+  <p>
+    <%= f.label :p_participation %><br />
+    <%= f.text_field :p_participation %>
+  </p>
+  <p>
+    <%= f.label :p_protected %><br />
+    <%= f.text_field :p_protected %>
+  </p>
+  <p>
+    <%= f.label :last_update %><br />
+    <%= f.datetime_select :last_update %>
+  </p>
+  <p>
+    <%= f.label :times %><br />
+    <%= f.text_field :times %>
+  </p>
+  <p>
+    <%= f.label :erhardt %><br />
+    <%= f.text_field :erhardt %>
+  </p>
+  <p>
+    <%= f.label :gilad %><br />
+    <%= f.text_field :gilad %>
+  </p>
+  <p>
+    <%= f.label :danah %><br />
+    <%= f.text_field :danah %>
+  </p>
+  <p>
+    <%= f.label :mike %><br />
+    <%= f.text_field :mike %>
+  </p>
+  <p>
+    <%= f.label :p_edited_by %><br />
+    <%= f.text_area :p_edited_by %>
+  </p>
+  <p>
+    <%= f.submit 'Create' %>
+  </p>
+<% end %>
+
+<%= link_to 'Back', profiles_path %>

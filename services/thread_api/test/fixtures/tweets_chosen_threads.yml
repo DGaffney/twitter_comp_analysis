@@ -1,0 +1,31 @@
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+
+one:
+  text: MyText
+  pubdate: 2011-02-22 18:47:06
+  link: MyString
+  author: MyString
+  realname: MyString
+  storyquery: MyString
+  thread_id: 1
+  words: MyText
+  shared_words: MyText
+  hashtags: MyText
+  mentions: MyText
+  datetime: 2011-02-22 18:47:06
+  twitter_id: 1
+
+two:
+  text: MyText
+  pubdate: 2011-02-22 18:47:06
+  link: MyString
+  author: MyString
+  realname: MyString
+  storyquery: MyString
+  thread_id: 1
+  words: MyText
+  shared_words: MyText
+  hashtags: MyText
+  mentions: MyText
+  datetime: 2011-02-22 18:47:06
+  twitter_id: 1
