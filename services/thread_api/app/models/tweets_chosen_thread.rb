@@ -9,7 +9,7 @@ class TweetsChosenThread < ActiveRecord::Base
     text = tct.class==Array ? tct.first["text"] : tct.text
     text = "" if text.nil?
     pubdate = tct.class==Array ? Time.parse(tct.first["created_at"]).strftime("%Y-%m-%d %H:%M:%S") : tct.pubdate.strftime("%Y-%m-%d %H:%M:%S") rescue (Time.now-1.year).strftime("%Y-%m-%d %H:%M:%S")
-    ambiguous_children = ActiveRecord::Base.connection.execute("SELECT tweets_chosen_threads.* FROM tweets_chosen_threads INNER JOIN tweets ON tweets.twitter_id = tweets_chosen_threads.twitter_id WHERE tweets_chosen_threads.thread_id=#{thread_id} and tweets_chosen_threads.text = '#{TweetsChosenThread.all_parents(tct)}#{text.gsub("'", "\\'")}' and tweets_chosen_threads.pubdate > '#{pubdate}'").all_hashes.collect{|x| TweetsChosenThread.new(x)}
+    ambiguous_children = ActiveRecord::Base.connection.execute("SELECT tweets_chosen_threads.* FROM tweets_chosen_threads INNER JOIN tweets ON tweets.twitter_id = tweets_chosen_threads.twitter_id WHERE tweets_chosen_threads.thread_id=#{thread_id} and tweets_chosen_threads.text = '#{TweetsChosenThread.all_parents(tct)}#{text.gsub("'", "''")}' and tweets_chosen_threads.pubdate > '#{pubdate}'").all_hashes.collect{|x| TweetsChosenThread.new(x)}
     return {"ambiguous" => ambiguous_children}
   end
 
