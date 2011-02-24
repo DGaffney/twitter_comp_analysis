@@ -47,7 +47,7 @@ class TweetsChosenThread < ActiveRecord::Base
         condition = tweet.in_reply_to_status_id != 0 && !tweet.in_reply_to_status_id.nil?
       end
       if condition
-        parent_id = tct.class == Array ? (root.first["in_reply_to_status_id"] || root.first["retweeted_status"]&&root.first["retweeted_status"]["id"] || nil) : tweet.in_reply_to_status_id
+        parent_id = tweet.class == Array ? (tweet.first["in_reply_to_status_id"] || tweet.first["retweeted_status"]&&tweet.first["retweeted_status"]["id"] || nil) : tweet.in_reply_to_status_id
         parent_statement << TweetsChosenThread.all_parents(Tweet.find_by_twitter_id(parent_id)||TweetsChosenThread.tweet_data(parent_id))
       end
       return parent_statement.reverse.to_s
