@@ -56,10 +56,10 @@ class TweetsChosenThread < ActiveRecord::Base
   
   def self.tweet_data(twitter_id)
     data = TweetsChosenThread.safe_pull("http://api.twitter.com/1/statuses/show/#{twitter_id}.json")
-    if data
+    if data && data!=1
       user = data.delete("user")
-    return data, user
-      else return {},{}
+      return data, user
+    else return {},{}
     end
   end
   
