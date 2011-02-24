@@ -1,0 +1,64 @@
+<h1>Editing tweets_chosen_thread</h1>
+
+<% form_for(@tweets_chosen_thread) do |f| %>
+  <%= f.error_messages %>
+
+  <p>
+    <%= f.label :text %><br />
+    <%= f.text_area :text %>
+  </p>
+  <p>
+    <%= f.label :pubdate %><br />
+    <%= f.datetime_select :pubdate %>
+  </p>
+  <p>
+    <%= f.label :link %><br />
+    <%= f.text_field :link %>
+  </p>
+  <p>
+    <%= f.label :author %><br />
+    <%= f.text_field :author %>
+  </p>
+  <p>
+    <%= f.label :realname %><br />
+    <%= f.text_field :realname %>
+  </p>
+  <p>
+    <%= f.label :storyquery %><br />
+    <%= f.text_field :storyquery %>
+  </p>
+  <p>
+    <%= f.label :thread_id %><br />
+    <%= f.text_field :thread_id %>
+  </p>
+  <p>
+    <%= f.label :words %><br />
+    <%= f.text_area :words %>
+  </p>
+  <p>
+    <%= f.label :shared_words %><br />
+    <%= f.text_area :shared_words %>
+  </p>
+  <p>
+    <%= f.label :hashtags %><br />
+    <%= f.text_area :hashtags %>
+  </p>
+  <p>
+    <%= f.label :mentions %><br />
+    <%= f.text_area :mentions %>
+  </p>
+  <p>
+    <%= f.label :datetime %><br />
+    <%= f.datetime_select :datetime %>
+  </p>
+  <p>
+    <%= f.label :twitter_id %><br />
+    <%= f.text_field :twitter_id %>
+  </p>
+  <p>
+    <%= f.submit 'Update' %>
+  </p>
+<% end %>
+
+<%= link_to 'Show', @tweets_chosen_thread %> |
+<%= link_to 'Back', tweets_chosen_threads_path %>

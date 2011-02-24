@@ -1,0 +1,53 @@
+<p>
+  <b>Count:</b>
+  <%=h @chosen_thread.count %>
+</p>
+
+<p>
+  <b>Source type:</b>
+  <%=h @chosen_thread.source_type %>
+</p>
+
+<p>
+  <b>First text:</b>
+  <%=h @chosen_thread.first_text %>
+</p>
+
+<p>
+  <b>Identified:</b>
+  <%=h @chosen_thread.identified %>
+</p>
+
+<p>
+  <b>Mentioned:</b>
+  <%=h @chosen_thread.mentioned %>
+</p>
+
+<p>
+  <b>Start:</b>
+  <%=h @chosen_thread.start %>
+</p>
+
+<p>
+  <b>End:</b>
+  <%=h @chosen_thread.end %>
+</p>
+
+<p>
+  <b>Notes:</b>
+  <%=h @chosen_thread.notes %>
+</p>
+
+<p>
+  <b>Duration:</b>
+  <%=h @chosen_thread.duration %>
+</p>
+
+<p>
+  <b>Duration str:</b>
+  <%=h @chosen_thread.duration_str %>
+</p>
+
+
+<%= link_to 'Edit', edit_chosen_thread_path(@chosen_thread) %> |
+<%= link_to 'Back', chosen_threads_path %>

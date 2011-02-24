@@ -1,0 +1,28 @@
+<p>
+  <b>Graph:</b>
+  <%=h @edge.graph_id %>
+</p>
+
+<p>
+  <b>Start node:</b>
+  <%=h @edge.start_node %>
+</p>
+
+<p>
+  <b>End node:</b>
+  <%=h @edge.end_node %>
+</p>
+
+<p>
+  <b>Edge:</b>
+  <%=h @edge.edge_id %>
+</p>
+
+<p>
+  <b>Style:</b>
+  <%=h @edge.style %>
+</p>
+
+
+<%= link_to 'Edit', edit_edge_path(@edge) %> |
+<%= link_to 'Back', edges_path %>

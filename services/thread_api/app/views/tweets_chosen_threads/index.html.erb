@@ -1,0 +1,44 @@
+<h1>Listing tweets_chosen_threads</h1>
+
+<table>
+  <tr>
+    <th>Text</th>
+    <th>Pubdate</th>
+    <th>Link</th>
+    <th>Author</th>
+    <th>Realname</th>
+    <th>Storyquery</th>
+    <th>Thread</th>
+    <th>Words</th>
+    <th>Shared words</th>
+    <th>Hashtags</th>
+    <th>Mentions</th>
+    <th>Datetime</th>
+    <th>Twitter</th>
+  </tr>
+
+<% @tweets_chosen_threads.each do |tweets_chosen_thread| %>
+  <tr>
+    <td><%=h tweets_chosen_thread.text %></td>
+    <td><%=h tweets_chosen_thread.pubdate %></td>
+    <td><%=h tweets_chosen_thread.link %></td>
+    <td><%=h tweets_chosen_thread.author %></td>
+    <td><%=h tweets_chosen_thread.realname %></td>
+    <td><%=h tweets_chosen_thread.storyquery %></td>
+    <td><%=h tweets_chosen_thread.thread_id %></td>
+    <td><%=h tweets_chosen_thread.words %></td>
+    <td><%=h tweets_chosen_thread.shared_words %></td>
+    <td><%=h tweets_chosen_thread.hashtags %></td>
+    <td><%=h tweets_chosen_thread.mentions %></td>
+    <td><%=h tweets_chosen_thread.datetime %></td>
+    <td><%=h tweets_chosen_thread.twitter_id %></td>
+    <td><%= link_to 'Show', tweets_chosen_thread %></td>
+    <td><%= link_to 'Edit', edit_tweets_chosen_thread_path(tweets_chosen_thread) %></td>
+    <td><%= link_to 'Destroy', tweets_chosen_thread, :confirm => 'Are you sure?', :method => :delete %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New tweets_chosen_thread', new_tweets_chosen_thread_path %>

@@ -1,0 +1,21 @@
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+
+one:
+  scrape_type: MyString
+  start_time: 2011-02-22 19:07:46
+  length: 1
+  created_at: 2011-02-22 19:07:46
+  updated_at: 2011-02-22 19:07:46
+  scrape_finished: false
+  instance_id: MyString
+  params: MyString
+
+two:
+  scrape_type: MyString
+  start_time: 2011-02-22 19:07:46
+  length: 1
+  created_at: 2011-02-22 19:07:46
+  updated_at: 2011-02-22 19:07:46
+  scrape_finished: false
+  instance_id: MyString
+  params: MyString

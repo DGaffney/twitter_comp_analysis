@@ -1,0 +1,1 @@
+INSERT INTO edges (graph_id, start_node, end_node, style) VALUES (315, 'NewsInChina', 'newns1900', 'follow');

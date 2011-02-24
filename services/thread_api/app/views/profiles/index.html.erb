@@ -1,0 +1,92 @@
+<h1>Listing profiles</h1>
+
+<table>
+  <tr>
+    <th>P cc</th>
+    <th>P degree</th>
+    <th>P twitter</th>
+    <th>P screen name</th>
+    <th>P realname</th>
+    <th>P type</th>
+    <th>P location</th>
+    <th>P description</th>
+    <th>P url</th>
+    <th>P language</th>
+    <th>P website type</th>
+    <th>P notes</th>
+    <th>P followers</th>
+    <th>P following</th>
+    <th>P following count</th>
+    <th>P follower count</th>
+    <th>P in</th>
+    <th>P out</th>
+    <th>P statuses count</th>
+    <th>P picture</th>
+    <th>P created at</th>
+    <th>P time zone</th>
+    <th>P utc offset</th>
+    <th>P verified</th>
+    <th>P geo enabled</th>
+    <th>P lang</th>
+    <th>P first pubdate</th>
+    <th>P first text</th>
+    <th>P participation</th>
+    <th>P protected</th>
+    <th>Last update</th>
+    <th>Times</th>
+    <th>Erhardt</th>
+    <th>Gilad</th>
+    <th>Danah</th>
+    <th>Mike</th>
+    <th>P edited by</th>
+  </tr>
+
+<% @profiles.each do |profile| %>
+  <tr>
+    <td><%=h profile.p_cc %></td>
+    <td><%=h profile.p_degree %></td>
+    <td><%=h profile.p_twitter_id %></td>
+    <td><%=h profile.p_screen_name %></td>
+    <td><%=h profile.p_realname %></td>
+    <td><%=h profile.p_type %></td>
+    <td><%=h profile.p_location %></td>
+    <td><%=h profile.p_description %></td>
+    <td><%=h profile.p_url %></td>
+    <td><%=h profile.p_language %></td>
+    <td><%=h profile.p_website_type %></td>
+    <td><%=h profile.p_notes %></td>
+    <td><%=h profile.p_followers %></td>
+    <td><%=h profile.p_following %></td>
+    <td><%=h profile.p_following_count %></td>
+    <td><%=h profile.p_follower_count %></td>
+    <td><%=h profile.p_in %></td>
+    <td><%=h profile.p_out %></td>
+    <td><%=h profile.p_statuses_count %></td>
+    <td><%=h profile.p_picture %></td>
+    <td><%=h profile.p_created_at %></td>
+    <td><%=h profile.p_time_zone %></td>
+    <td><%=h profile.p_utc_offset %></td>
+    <td><%=h profile.p_verified %></td>
+    <td><%=h profile.p_geo_enabled %></td>
+    <td><%=h profile.p_lang %></td>
+    <td><%=h profile.p_first_pubdate %></td>
+    <td><%=h profile.p_first_text %></td>
+    <td><%=h profile.p_participation %></td>
+    <td><%=h profile.p_protected %></td>
+    <td><%=h profile.last_update %></td>
+    <td><%=h profile.times %></td>
+    <td><%=h profile.erhardt %></td>
+    <td><%=h profile.gilad %></td>
+    <td><%=h profile.danah %></td>
+    <td><%=h profile.mike %></td>
+    <td><%=h profile.p_edited_by %></td>
+    <td><%= link_to 'Show', profile %></td>
+    <td><%= link_to 'Edit', edit_profile_path(profile) %></td>
+    <td><%= link_to 'Destroy', profile, :confirm => 'Are you sure?', :method => :delete %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New profile', new_profile_path %>
