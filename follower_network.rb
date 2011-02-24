@@ -46,6 +46,8 @@ module FollowerNetwork
       }
     end
     threads.each { |t| t.join }
+    
+    return g.id
   end
 
   def self.user_id_screenname_index
