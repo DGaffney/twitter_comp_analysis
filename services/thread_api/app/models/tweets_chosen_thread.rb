@@ -39,9 +39,14 @@ class TweetsChosenThread < ActiveRecord::Base
       parent_statement << statement
       tweet_id = tct.class == Array ? tct.first["id"] : tct.twitter_id
       tweet = Tweet.find_by_twitter_id(tweet_id) || TweetsChosenThread.tweet_data(tweet_id)
-      condition = tct.class == Array ? (tweet.first["in_reply_to_status_id"] != 0 && !tweet.first["in_reply_to_status_id"].nil?) : (tweet.in_reply_to_status_id != 0 && !tweet.in_reply_to_status_id.nil?)
+      condition = nil
+      if tct.class == Array
+        condition = tweet.first["in_reply_to_status_id"] != 0 && !tweet.first["in_reply_to_status_id"].nil? && (tweet.first["retweeted_status"]&&tweet.first["retweeted_status"]["id"].nil?) 
+      else
+        condition = tweet.in_reply_to_status_id != 0 && !tweet.in_reply_to_status_id.nil?
+      end
       if condition
-        parent_id = tct.class == Array ? tweet.first["in_reply_to_status_id"] : tweet.in_reply_to_status_id
+        parent_id = tct.class == Array ? (root.first["in_reply_to_status_id"] || root.first["retweeted_status"]&&root.first["retweeted_status"]["id"] || nil) : tweet.in_reply_to_status_id
         parent_statement << TweetsChosenThread.all_parents(Tweet.find_by_twitter_id(parent_id)||TweetsChosenThread.tweet_data(parent_id))
       end
       return parent_statement.reverse.to_s
