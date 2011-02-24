@@ -1,22 +1,24 @@
 ActionController::Routing::Routes.draw do |map|
-  map.thread_api "/threads/:id.js", :tweets_chosen_threads, :thread_response
-  map.resources :users
-
-  map.resources :tweets
-
-  map.resources :profiles
-
-  map.resources :chosen_threads
-
-  map.resources :graphs
-
-  map.resources :edges
-
-  map.resources :datasets
-
-  map.resources :behavior_tweets
-
-  map.resources :tweets_chosen_threads
+  map.thread_api "/threads/:id.js", :controller => "tweets_chosen_threads", :action => "thread_response"
+  map.friends "/friends/:id.json", :controller => "edges", :action => "friends"
+  map.followers "/followers/:id.json", :controller => "edges", :action => "followers"
+  # map.resources :users
+  # 
+  # map.resources :tweets
+  # 
+  # map.resources :profiles
+  # 
+  # map.resources :chosen_threads
+  # 
+  # map.resources :graphs
+  # 
+  # map.resources :edges
+  # 
+  # map.resources :datasets
+  # 
+  # map.resources :behavior_tweets
+  # 
+  # map.resources :tweets_chosen_threads
 
   # The priority is based upon order of creation: first created -> highest priority.
 

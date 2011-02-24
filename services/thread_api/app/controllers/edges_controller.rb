@@ -80,4 +80,18 @@ class EdgesController < ApplicationController
       format.xml  { head :ok }
     end
   end
+  
+  def friends
+    user = User.find_by_twitter_id(params[:id])
+    thread_id_condition = params[:thread_id].nil? ? "" :  " and tweets_chosen_threads.thread_id = #{params[:thread_id]} "
+    friends = ActiveRecord::Base.connection.execute("select users.twitter_id from users inner join edges on users.screen_name = edges.start_node join tweets_chosen_threads on tweets_chosen_threads.author = edges.start_node where edges.style = 'follow' and edges.end_node = '#{user.screen_name}' #{thread_id_condition}").all_hashes.collect{|r| r["twitter_id"].to_i}
+    render :json => friends.to_json
+  end
+  
+  def followers
+    user = User.find_by_twitter_id(params[:id])
+    thread_id_condition = params[:thread_id].nil? ? "" :  " and tweets_chosen_threads.thread_id = #{params[:thread_id]} "
+    friends = ActiveRecord::Base.connection.execute("select users.twitter_id from users inner join edges on users.screen_name = edges.end_node join tweets_chosen_threads on tweets_chosen_threads.author = edges.end_node where edges.style = 'follow' and edges.start_node = '#{user.screen_name}' #{thread_id_condition}").all_hashes.collect{|r| r["twitter_id"].to_i}    
+    render :json => friends.to_json
+  end
 end

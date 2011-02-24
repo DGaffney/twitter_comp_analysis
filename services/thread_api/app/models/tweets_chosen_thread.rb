@@ -1,27 +1,30 @@
 class TweetsChosenThread < ActiveRecord::Base
   require 'open-uri'
-  def children
-    unambiguous_children = ActiveRecord::Base.connection.execute("SELECT tweets_chosen_threads.* FROM tweets_chosen_threads INNER JOIN edges ON edges.start_node = tweets_chosen_threads.author WHERE edges.style = 'retweet' AND edges.end_node = '#{self.author}' AND tweets_chosen_threads.thread_id=#{self.thread_id} and tweets_chosen_threads.pubdate > '#{self.pubdate.strftime("%Y-%m-%d %H:%M:%S")}'").all_hashes.collect{|x| TweetsChosenThread.new(x)}
-    ambiguous_children = ActiveRecord::Base.connection.execute("SELECT tweets_chosen_threads.* FROM tweets_chosen_threads INNER JOIN tweets ON tweets.twitter_id = tweets_chosen_threads.twitter_id WHERE tweets_chosen_threads.thread_id=#{self.thread_id} and tweets_chosen_threads.text = '#{TweetsChosenThread.all_parents(self)}#{self.text}' and tweets_chosen_threads.pubdate > '#{self.pubdate.strftime("%Y-%m-%d %H:%M:%S")}'").all_hashes.collect{|x| TweetsChosenThread.new(x)}
-    return {"unambiguous" => unambiguous_children, "ambiguous" => ambiguous_children}
-  end
-  
+    
   def in_reply_to_status_id
     Tweet.find_by_twitter_id(self.twitter_id).in_reply_to_status_id
   end
   
-  def self.return_child_js(tct, ambiguity)
+  def self.children(tct, thread_id)
+    text = tct.class==Array ? tct.first["text"] : tct.text
+    pubdate = tct.class==Array ? Time.parse(tct.first["created_at"]).strftime("%Y-%m-%d %H:%M:%S") : tct.pubdate.strftime("%Y-%m-%d %H:%M:%S") rescue (Time.now-1.year).strftime("%Y-%m-%d %H:%M:%S")
+    ambiguous_children = ActiveRecord::Base.connection.execute("SELECT tweets_chosen_threads.* FROM tweets_chosen_threads INNER JOIN tweets ON tweets.twitter_id = tweets_chosen_threads.twitter_id WHERE tweets_chosen_threads.thread_id=#{thread_id} and tweets_chosen_threads.text = '#{TweetsChosenThread.all_parents(tct)}#{text}' and tweets_chosen_threads.pubdate > '#{pubdate}'").all_hashes.collect{|x| TweetsChosenThread.new(x)}
+    return {"ambiguous" => ambiguous_children}
+  end
+
+  def self.return_child_js(tct, ambiguity, thread_id)
+    #HERE, TCT is used loosely, could be anything, really, twitter data, a TCT, or a Tweet...
     result = {}
-    result["id"] = tct.twitter_id.to_s
-    result["name"] = tct.author
+    result["id"] = tct.class==Array ? tct.first["id"] : tct.twitter_id.to_s
+    result["name"] = tct.class==Array ? tct.last["screen_name"] : tct.author
     result["data"] = {}
     if !ambiguity.nil?
       result["data"]["ambiguity"] = ambiguity == "ambiguous"
     end
     children_data = []
-    tct.children.each_pair do |ambiguity, children_objs|
+    TweetsChosenThread.children(tct, thread_id).each_pair do |ambiguity, children_objs|
       children_objs.each do |child|
-        children_data << TweetsChosenThread.return_child_js(child, ambiguity)
+        children_data << TweetsChosenThread.return_child_js(child, ambiguity, thread_id)
       end
     end
     result["children"] = children_data
@@ -47,7 +50,7 @@ class TweetsChosenThread < ActiveRecord::Base
   end
   
   def self.tweet_data(twitter_id)
-    data = self.safe_pull("http://api.twitter.com/1/statuses/show/#{twitter_id}.json")
+    data = TweetsChosenThread.safe_pull("http://api.twitter.com/1/statuses/show/#{twitter_id}.json")
     if data
       user = data.delete("user")
     return data, user
@@ -55,20 +58,31 @@ class TweetsChosenThread < ActiveRecord::Base
     end
   end
   
-  def self.safe_pull(url, retries=3)
+  
+  def self.safe_pull(url, retries=3, caching=true)
+    data = nil
     begin
-      data = nil
-      api_url = "http://api.twitter.com/1/account/rate_limit_status.json"
-      json = JSON.parse(open(api_url).read) rescue nil
-      if json
-        puts "#{json["remaining_hits"]} hits left, next reset in #{Time.parse(json["reset_time"])-Time.now} seconds. Sleeping for #{(Time.parse(json["reset_time"])-Time.now).abs} seconds."
-      #   sleep((Time.parse(json["reset_time"])-Time.now).abs/json["remaining_hits"].to_i)
+      if caching
+        data = Rails.cache.fetch(url.gsub("/", "%2F").gsub(":", "%3A")){TweetsChosenThread.url_pull(url, retries)}
+      else
+        data = TweetsChosenThread(url, retries)
       end
-      1.upto(retries) {|i| data = JSON.parse(open(url).read) rescue nil; break if !data.nil? }
       return data
-    rescue
-      return nil
+    rescue 
+      return data
     end
+  end
+  
+  def self.url_pull(url, retries)
+    data = nil
+    api_url = "http://api.twitter.com/1/account/rate_limit_status.json"
+    json = JSON.parse(open(api_url).read) rescue nil
+    if json
+      puts "#{json["remaining_hits"]} hits left, next reset in #{Time.parse(json["reset_time"])-Time.now} seconds. Sleeping for #{(Time.parse(json["reset_time"])-Time.now).abs} seconds."
+      sleep((Time.parse(json["reset_time"])-Time.now).abs/json["remaining_hits"].to_i)
+    end
+    1.upto(retries) {|i| data = JSON.parse(open(url).read) rescue nil; break if !data.nil? }
+    return data
   end
   
 end
