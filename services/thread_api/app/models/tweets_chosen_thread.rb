@@ -41,6 +41,7 @@ class TweetsChosenThread < ActiveRecord::Base
       tweet = Tweet.find_by_twitter_id(tweet_id) || TweetsChosenThread.tweet_data(tweet_id)
       condition = nil
       if tct.class == Array
+        debugger
         condition = tweet.first["in_reply_to_status_id"] != 0 && !tweet.first["in_reply_to_status_id"].nil? && (tweet.first["retweeted_status"]&&tweet.first["retweeted_status"]["id"].nil?) 
       else
         condition = tweet.in_reply_to_status_id != 0 && !tweet.in_reply_to_status_id.nil?
