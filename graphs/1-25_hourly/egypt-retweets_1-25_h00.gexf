@@ -1,0 +1,2466 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<gexf xmlns="http://www.gexf.net/1.1draft" version="1.1" xmlns:viz="http://www.gexf.net/1.1draft/viz" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.gexf.net/1.1draft http://www.gexf.net/1.1draft/gexf.xsd">
+  <meta lastmodifieddate="2010-12-30">
+    <creator>Gephi 0.7</creator>
+    <description></description>
+  </meta>
+  <graph defaultedgetype="directed" timeformat="double" mode="dynamic">
+  <attributes class="node" mode="static">
+    <attribute id="category" title="Category" type="string" />
+  </attributes>
+  <attributes class="edge" mode="dynamic">
+    <attribute id="weight" title="Weight" type="float" />
+  </attributes>
+  <nodes>
+    <node id="AaronKleinShow" label="AaronKleinShow">
+      <attvalues>
+        <attvalue for="category" value="Not Categorized"></attvalue>
+      </attvalues>
+      <viz:position x="-319.15698" y="-1319.4623"></viz:position>
+      <viz:color r="219" g="211" b="23"></viz:color>
+    </node>
+    <node id="AERA_EGYPT" label="AERA_EGYPT">
+      <attvalues>
+        <attvalue for="category" value="Not Categorized"></attvalue>
+      </attvalues>
+      <viz:position x="-34.586823" y="1738.3441"></viz:position>
+      <viz:color r="219" g="211" b="23"></viz:color>
+    </node>
+    <node id="AhmadWasiem" label="AhmadWasiem">
+      <attvalues>
+        <attvalue for="category" value="Not Categorized"></attvalue>
+      </attvalues>
+      <viz:position x="-2.9019728" y="-250.75961"></viz:position>
+      <viz:color r="219" g="211" b="23"></viz:color>
+    </node>
+    <node id="AhmedAbdalrhmen" label="AhmedAbdalrhmen">
+      <attvalues>
+        <attvalue for="category" value="Not Categorized"></attvalue>
+      </attvalues>
+      <viz:position x="-683.3125" y="-890.3193"></viz:position>
+      <viz:color r="219" g="211" b="23"></viz:color>
+    </node>
+    <node id="AJEnglish" label="AJEnglish">
+      <attvalues>
+        <attvalue for="category" value="White"></attvalue>
+      </attvalues>
+      <viz:position x="-818.4682" y="-1851.619"></viz:position>
+      <viz:color r="190" g="37" b="137"></viz:color>
+    </node>
+    <node id="AkherElAkhbar" label="AkherElAkhbar">
+      <attvalues>
+        <attvalue for="category" value="Not Categorized"></attvalue>
+      </attvalues>
+      <viz:position x="858.1614" y="969.0704"></viz:position>
+      <viz:color r="219" g="211" b="23"></viz:color>
+    </node>
+    <node id="Amira_Nosseir" label="Amira_Nosseir">
+      <attvalues>
+        <attvalue for="category" value="Not Categorized"></attvalue>
+      </attvalues>
+      <viz:position x="1752.3177" y="698.0452"></viz:position>
+      <viz:color r="219" g="211" b="23"></viz:color>
+    </node>
+    <node id="amnesty" label="amnesty">
+      <attvalues>
+        <attvalue for="category" value="Other"></attvalue>
+      </attvalues>
+      <viz:position x="-684.8535" y="1446.8364"></viz:position>
+      <viz:color r="57" g="65" b="3"></viz:color>
+    </node>
+    <node id="animallover1607" label="animallover1607">
+      <attvalues>
+        <attvalue for="category" value="Not Categorized"></attvalue>
+      </attvalues>
+      <viz:position x="320.0678" y="-1769.0559"></viz:position>
+      <viz:color r="219" g="211" b="23"></viz:color>
+    </node>
+    <node id="arabist" label="arabist">
+      <attvalues>
+        <attvalue for="category" value="White"></attvalue>
+      </attvalues>
+      <viz:position x="-956.869" y="-1289.9763"></viz:position>
+      <viz:color r="190" g="37" b="137"></viz:color>
+    </node>
+    <node id="bandidoofoz" label="bandidoofoz">
+      <attvalues>
+        <attvalue for="category" value="Not Categorized"></attvalue>
+      </attvalues>
+      <viz:position x="-66.70859" y="-638.3722"></viz:position>
+      <viz:color r="219" g="211" b="23"></viz:color>
+    </node>
+    <node id="BarrettBrownLOL" label="BarrettBrownLOL">
+      <attvalues>
+        <attvalue for="category" value="Not Categorized"></attvalue>
+      </attvalues>
+      <viz:position x="696.93097" y="1070.2681"></viz:position>
+      <viz:color r="219" g="211" b="23"></viz:color>
+    </node>
+    <node id="bloggingegypt" label="bloggingegypt">
+      <attvalues>
+        <attvalue for="category" value="Not Categorized"></attvalue>
+      </attvalues>
+      <viz:position x="-645.333" y="1228.8407"></viz:position>
+      <viz:color r="219" g="211" b="23"></viz:color>
+    </node>
+    <node id="botshi007" label="botshi007">
+      <attvalues>
+        <attvalue for="category" value="Not Categorized"></attvalue>
+      </attvalues>
+      <viz:position x="-1274.1875" y="774.8235"></viz:position>
+      <viz:color r="219" g="211" b="23"></viz:color>
+    </node>
+    <node id="Calcoo" label="Calcoo">
+      <attvalues>
+        <attvalue for="category" value="Not Categorized"></attvalue>
+      </attvalues>
+      <viz:position x="261.05472" y="1029.8619"></viz:position>
+      <viz:color r="219" g="211" b="23"></viz:color>
+    </node>
+    <node id="ccav77" label="ccav77">
+      <attvalues>
+        <attvalue for="category" value="Not Categorized"></attvalue>
+      </attvalues>
+      <viz:position x="-138.24644" y="-1734.531"></viz:position>
+      <viz:color r="219" g="211" b="23"></viz:color>
+    </node>
+    <node id="DiAyDi" label="DiAyDi">
+      <attvalues>
+        <attvalue for="category" value="Not Categorized"></attvalue>
+      </attvalues>
+      <viz:position x="648.1563" y="257.72214"></viz:position>
+      <viz:color r="219" g="211" b="23"></viz:color>
+    </node>
+    <node id="Dima_Khatib" label="Dima_Khatib">
+      <attvalues>
+        <attvalue for="category" value="Black"></attvalue>
+      </attvalues>
+      <viz:position x="1655.4417" y="-1406.0822"></viz:position>
+      <viz:color r="60" g="187" b="55"></viz:color>
+    </node>
+    <node id="DollyAlashker" label="DollyAlashker">
+      <attvalues>
+        <attvalue for="category" value="Not Categorized"></attvalue>
+      </attvalues>
+      <viz:position x="826.39813" y="333.11984"></viz:position>
+      <viz:color r="219" g="211" b="23"></viz:color>
+    </node>
+    <node id="downwithtyranny" label="downwithtyranny">
+      <attvalues>
+        <attvalue for="category" value="Not Categorized"></attvalue>
+      </attvalues>
+      <viz:position x="679.5021" y="-1100.107"></viz:position>
+      <viz:color r="219" g="211" b="23"></viz:color>
+    </node>
+    <node id="EngSeif" label="EngSeif">
+      <attvalues>
+        <attvalue for="category" value="Not Categorized"></attvalue>
+      </attvalues>
+      <viz:position x="1435.6028" y="-417.17355"></viz:position>
+      <viz:color r="219" g="211" b="23"></viz:color>
+    </node>
+    <node id="fakroona" label="fakroona">
+      <attvalues>
+        <attvalue for="category" value="Not Categorized"></attvalue>
+      </attvalues>
+      <viz:position x="406.93317" y="-368.7997"></viz:position>
+      <viz:color r="219" g="211" b="23"></viz:color>
+    </node>
+    <node id="gjmorley" label="gjmorley">
+      <attvalues>
+        <attvalue for="category" value="Not Categorized"></attvalue>
+      </attvalues>
+      <viz:position x="-173.71927" y="-826.43195"></viz:position>
+      <viz:color r="219" g="211" b="23"></viz:color>
+    </node>
+    <node id="Global_Arab_Net" label="Global_Arab_Net">
+      <attvalues>
+        <attvalue for="category" value="Not Categorized"></attvalue>
+      </attvalues>
+      <viz:position x="-483.37122" y="-1378.5052"></viz:position>
+      <viz:color r="219" g="211" b="23"></viz:color>
+    </node>
+    <node id="gordon_reynolds" label="gordon_reynolds">
+      <attvalues>
+        <attvalue for="category" value="Not Categorized"></attvalue>
+      </attvalues>
+      <viz:position x="137.55835" y="1480.2206"></viz:position>
+      <viz:color r="219" g="211" b="23"></viz:color>
+    </node>
+    <node id="HopefulMona" label="HopefulMona">
+      <attvalues>
+        <attvalue for="category" value="Not Categorized"></attvalue>
+      </attvalues>
+      <viz:position x="642.62103" y="50.37431"></viz:position>
+      <viz:color r="219" g="211" b="23"></viz:color>
+    </node>
+    <node id="iafify" label="iafify">
+      <attvalues>
+        <attvalue for="category" value="Not Categorized"></attvalue>
+      </attvalues>
+      <viz:position x="-839.67523" y="1092.3722"></viz:position>
+      <viz:color r="219" g="211" b="23"></viz:color>
+    </node>
+    <node id="iRevolt" label="iRevolt">
+      <attvalues>
+        <attvalue for="category" value="Not Categorized"></attvalue>
+      </attvalues>
+      <viz:position x="1346.4658" y="1160.6393"></viz:position>
+      <viz:color r="219" g="211" b="23"></viz:color>
+    </node>
+    <node id="JawedOT" label="JawedOT">
+      <attvalues>
+        <attvalue for="category" value="Not Categorized"></attvalue>
+      </attvalues>
+      <viz:position x="230.70523" y="-1495.2959"></viz:position>
+      <viz:color r="219" g="211" b="23"></viz:color>
+    </node>
+    <node id="justicentric" label="justicentric">
+      <attvalues>
+        <attvalue for="category" value="Not Categorized"></attvalue>
+      </attvalues>
+      <viz:position x="39.4722" y="-743.6373"></viz:position>
+      <viz:color r="219" g="211" b="23"></viz:color>
+    </node>
+    <node id="Kareemelansary" label="Kareemelansary">
+      <attvalues>
+        <attvalue for="category" value="Not Categorized"></attvalue>
+      </attvalues>
+      <viz:position x="438.13303" y="-1058.75"></viz:position>
+      <viz:color r="219" g="211" b="23"></viz:color>
+    </node>
+    <node id="keb_m" label="keb_m">
+      <attvalues>
+        <attvalue for="category" value="Not Categorized"></attvalue>
+      </attvalues>
+      <viz:position x="621.51514" y="458.8409"></viz:position>
+      <viz:color r="219" g="211" b="23"></viz:color>
+    </node>
+    <node id="kelseymuseum" label="kelseymuseum">
+      <attvalues>
+        <attvalue for="category" value="Not Categorized"></attvalue>
+      </attvalues>
+      <viz:position x="311.84036" y="957.352"></viz:position>
+      <viz:color r="219" g="211" b="23"></viz:color>
+    </node>
+    <node id="kichimaruH" label="kichimaruH">
+      <attvalues>
+        <attvalue for="category" value="Not Categorized"></attvalue>
+      </attvalues>
+      <viz:position x="-9.626802" y="1779.3448"></viz:position>
+      <viz:color r="219" g="211" b="23"></viz:color>
+    </node>
+    <node id="kwanousa" label="kwanousa">
+      <attvalues>
+        <attvalue for="category" value="Not Categorized"></attvalue>
+      </attvalues>
+      <viz:position x="1281.7102" y="-660.8995"></viz:position>
+      <viz:color r="219" g="211" b="23"></viz:color>
+    </node>
+    <node id="libyanmaddog" label="libyanmaddog">
+      <attvalues>
+        <attvalue for="category" value="Not Categorized"></attvalue>
+      </attvalues>
+      <viz:position x="-1011.7428" y="-1369.7202"></viz:position>
+      <viz:color r="219" g="211" b="23"></viz:color>
+    </node>
+    <node id="lioromio" label="lioromio">
+      <attvalues>
+        <attvalue for="category" value="Not Categorized"></attvalue>
+      </attvalues>
+      <viz:position x="742.68" y="-384.74075"></viz:position>
+      <viz:color r="219" g="211" b="23"></viz:color>
+    </node>
+    <node id="ManarMohsen" label="ManarMohsen">
+      <attvalues>
+        <attvalue for="category" value="Not Categorized"></attvalue>
+      </attvalues>
+      <viz:position x="1144.7723" y="990.3679"></viz:position>
+      <viz:color r="219" g="211" b="23"></viz:color>
+    </node>
+    <node id="marmite_news" label="marmite_news">
+      <attvalues>
+        <attvalue for="category" value="Not Categorized"></attvalue>
+      </attvalues>
+      <viz:position x="-891.59766" y="-1177.6368"></viz:position>
+      <viz:color r="219" g="211" b="23"></viz:color>
+    </node>
+    <node id="memam8" label="memam8">
+      <attvalues>
+        <attvalue for="category" value="Not Categorized"></attvalue>
+      </attvalues>
+      <viz:position x="1145.6243" y="677.672"></viz:position>
+      <viz:color r="219" g="211" b="23"></viz:color>
+    </node>
+    <node id="mohamed_shazly" label="mohamed_shazly">
+      <attvalues>
+        <attvalue for="category" value="Not Categorized"></attvalue>
+      </attvalues>
+      <viz:position x="1062.2378" y="235.9698"></viz:position>
+      <viz:color r="219" g="211" b="23"></viz:color>
+    </node>
+    <node id="monaeltahawy" label="monaeltahawy">
+      <attvalues>
+        <attvalue for="category" value="Asian"></attvalue>
+      </attvalues>
+      <viz:position x="-1728.8458" y="-1592.641"></viz:position>
+      <viz:color r="225" g="2" b="29"></viz:color>
+    </node>
+    <node id="moonsgirl" label="moonsgirl">
+      <attvalues>
+        <attvalue for="category" value="Not Categorized"></attvalue>
+      </attvalues>
+      <viz:position x="-599.26465" y="-1132.7328"></viz:position>
+      <viz:color r="219" g="211" b="23"></viz:color>
+    </node>
+    <node id="Original_Dubes" label="Original_Dubes">
+      <attvalues>
+        <attvalue for="category" value="Not Categorized"></attvalue>
+      </attvalues>
+      <viz:position x="-981.1163" y="1022.9657"></viz:position>
+      <viz:color r="219" g="211" b="23"></viz:color>
+    </node>
+    <node id="o_salem" label="o_salem">
+      <attvalues>
+        <attvalue for="category" value="Not Categorized"></attvalue>
+      </attvalues>
+      <viz:position x="1378.9504" y="-825.5669"></viz:position>
+      <viz:color r="219" g="211" b="23"></viz:color>
+    </node>
+    <node id="RamyRaoof" label="RamyRaoof">
+      <attvalues>
+        <attvalue for="category" value="Hispanic"></attvalue>
+      </attvalues>
+      <viz:position x="698.3967" y="-705.72833"></viz:position>
+      <viz:color r="65" g="119" b="193"></viz:color>
+    </node>
+    <node id="ReemAbdellatif" label="ReemAbdellatif">
+      <attvalues>
+        <attvalue for="category" value="Not Categorized"></attvalue>
+      </attvalues>
+      <viz:position x="977.65497" y="-291.58957"></viz:position>
+      <viz:color r="219" g="211" b="23"></viz:color>
+    </node>
+    <node id="RelUnrelated" label="RelUnrelated">
+      <attvalues>
+        <attvalue for="category" value="Not Categorized"></attvalue>
+      </attvalues>
+      <viz:position x="-613.17377" y="-1349.5262"></viz:position>
+      <viz:color r="219" g="211" b="23"></viz:color>
+    </node>
+    <node id="RenadAmjad" label="RenadAmjad">
+      <attvalues>
+        <attvalue for="category" value="Not Categorized"></attvalue>
+      </attvalues>
+      <viz:position x="-1434.3345" y="791.9203"></viz:position>
+      <viz:color r="219" g="211" b="23"></viz:color>
+    </node>
+    <node id="SayCyd" label="SayCyd">
+      <attvalues>
+        <attvalue for="category" value="Not Categorized"></attvalue>
+      </attvalues>
+      <viz:position x="-37.953022" y="949.4755"></viz:position>
+      <viz:color r="219" g="211" b="23"></viz:color>
+    </node>
+    <node id="SGardinier" label="SGardinier">
+      <attvalues>
+        <attvalue for="category" value="Not Categorized"></attvalue>
+      </attvalues>
+      <viz:position x="626.74304" y="-17.658535"></viz:position>
+      <viz:color r="219" g="211" b="23"></viz:color>
+    </node>
+    <node id="SkyNewsBlogs" label="SkyNewsBlogs">
+      <attvalues>
+        <attvalue for="category" value="Not Categorized"></attvalue>
+      </attvalues>
+      <viz:position x="-385.40738" y="-1330.1589"></viz:position>
+      <viz:color r="219" g="211" b="23"></viz:color>
+    </node>
+    <node id="sonaliranade" label="sonaliranade">
+      <attvalues>
+        <attvalue for="category" value="Not Categorized"></attvalue>
+      </attvalues>
+      <viz:position x="189.90697" y="-961.1145"></viz:position>
+      <viz:color r="219" g="211" b="23"></viz:color>
+    </node>
+    <node id="TareqSamy" label="TareqSamy">
+      <attvalues>
+        <attvalue for="category" value="Not Categorized"></attvalue>
+      </attvalues>
+      <viz:position x="794.25793" y="-316.45154"></viz:position>
+      <viz:color r="219" g="211" b="23"></viz:color>
+    </node>
+    <node id="TeaCupThrills" label="TeaCupThrills">
+      <attvalues>
+        <attvalue for="category" value="Not Categorized"></attvalue>
+      </attvalues>
+      <viz:position x="-640.01764" y="266.91235"></viz:position>
+      <viz:color r="219" g="211" b="23"></viz:color>
+    </node>
+    <node id="Tharwacolamus" label="Tharwacolamus">
+      <attvalues>
+        <attvalue for="category" value="Not Categorized"></attvalue>
+      </attvalues>
+      <viz:position x="946.0725" y="-772.106"></viz:position>
+      <viz:color r="219" g="211" b="23"></viz:color>
+    </node>
+    <node id="thesultrysimone" label="thesultrysimone">
+      <attvalues>
+        <attvalue for="category" value="Not Categorized"></attvalue>
+      </attvalues>
+      <viz:position x="-1235.4104" y="-496.03497"></viz:position>
+      <viz:color r="219" g="211" b="23"></viz:color>
+    </node>
+    <node id="TIME" label="TIME">
+      <attvalues>
+        <attvalue for="category" value="Not Categorized"></attvalue>
+      </attvalues>
+      <viz:position x="2402.2153" y="468.66272"></viz:position>
+      <viz:color r="219" g="211" b="23"></viz:color>
+    </node>
+    <node id="tounsiwaftakhir" label="tounsiwaftakhir">
+      <attvalues>
+        <attvalue for="category" value="Not Categorized"></attvalue>
+      </attvalues>
+      <viz:position x="950.6211" y="258.66208"></viz:position>
+      <viz:color r="219" g="211" b="23"></viz:color>
+    </node>
+    <node id="wael" label="wael">
+      <attvalues>
+        <attvalue for="category" value="Hispanic"></attvalue>
+      </attvalues>
+      <viz:position x="831.22455" y="157.84897"></viz:position>
+      <viz:color r="65" g="119" b="193"></viz:color>
+    </node>
+    <node id="weddady" label="weddady">
+      <attvalues>
+        <attvalue for="category" value="Hispanic"></attvalue>
+      </attvalues>
+      <viz:position x="-413.43472" y="-1747.6171"></viz:position>
+      <viz:color r="65" g="119" b="193"></viz:color>
+    </node>
+    <node id="WNofal" label="WNofal">
+      <attvalues>
+        <attvalue for="category" value="Not Categorized"></attvalue>
+      </attvalues>
+      <viz:position x="1184.0526" y="49.6106"></viz:position>
+      <viz:color r="219" g="211" b="23"></viz:color>
+    </node>
+    <node id="youm7" label="youm7">
+      <attvalues>
+        <attvalue for="category" value="Not Categorized"></attvalue>
+      </attvalues>
+      <viz:position x="1650.6423" y="-306.15887"></viz:position>
+      <viz:color r="219" g="211" b="23"></viz:color>
+    </node>
+    <node id="RBOBlog" label="RBOBlog">
+      <attvalues>
+        <attvalue for="category" value="Not Categorized"></attvalue>
+      </attvalues>
+      <viz:position x="-309.55438" y="-1299.2377"></viz:position>
+      <viz:color r="219" g="211" b="23"></viz:color>
+    </node>
+    <node id="Snntitn" label="Snntitn">
+      <attvalues>
+        <attvalue for="category" value="Not Categorized"></attvalue>
+      </attvalues>
+      <viz:position x="-30.469944" y="1770.7367"></viz:position>
+      <viz:color r="219" g="211" b="23"></viz:color>
+    </node>
+    <node id="Dr_Milad" label="Dr_Milad">
+      <attvalues>
+        <attvalue for="category" value="Not Categorized"></attvalue>
+      </attvalues>
+      <viz:position x="-74.26839" y="-594.068"></viz:position>
+      <viz:color r="219" g="211" b="23"></viz:color>
+    </node>
+    <node id="Youngredrabbit" label="Youngredrabbit">
+      <attvalues>
+        <attvalue for="category" value="Not Categorized"></attvalue>
+      </attvalues>
+      <viz:position x="-652.4906" y="-904.5763"></viz:position>
+      <viz:color r="219" g="211" b="23"></viz:color>
+    </node>
+    <node id="s_a_cosgrove" label="s_a_cosgrove">
+      <attvalues>
+        <attvalue for="category" value="Not Categorized"></attvalue>
+      </attvalues>
+      <viz:position x="-139.1977" y="-1533.0073"></viz:position>
+      <viz:color r="219" g="211" b="23"></viz:color>
+    </node>
+    <node id="Adel_Salib" label="Adel_Salib">
+      <attvalues>
+        <attvalue for="category" value="Not Categorized"></attvalue>
+      </attvalues>
+      <viz:position x="1112.4893" y="197.43103"></viz:position>
+      <viz:color r="219" g="211" b="23"></viz:color>
+    </node>
+    <node id="esraa_ali" label="esraa_ali">
+      <attvalues>
+        <attvalue for="category" value="Not Categorized"></attvalue>
+      </attvalues>
+      <viz:position x="798.64667" y="179.50461"></viz:position>
+      <viz:color r="219" g="211" b="23"></viz:color>
+    </node>
+    <node id="mrwalid3moon" label="mrwalid3moon">
+      <attvalues>
+        <attvalue for="category" value="Not Categorized"></attvalue>
+      </attvalues>
+      <viz:position x="595.13544" y="917.1778"></viz:position>
+      <viz:color r="219" g="211" b="23"></viz:color>
+    </node>
+    <node id="Anon_VV" label="Anon_VV">
+      <attvalues>
+        <attvalue for="category" value="Not Categorized"></attvalue>
+      </attvalues>
+      <viz:position x="-512.93365" y="1241.182"></viz:position>
+      <viz:color r="219" g="211" b="23"></viz:color>
+    </node>
+    <node id="katalystprods" label="katalystprods">
+      <attvalues>
+        <attvalue for="category" value="Not Categorized"></attvalue>
+      </attvalues>
+      <viz:position x="-927.9125" y="-745.8755"></viz:position>
+      <viz:color r="219" g="211" b="23"></viz:color>
+    </node>
+    <node id="TheSherio" label="TheSherio">
+      <attvalues>
+        <attvalue for="category" value="Not Categorized"></attvalue>
+      </attvalues>
+      <viz:position x="228.17567" y="53.163868"></viz:position>
+      <viz:color r="219" g="211" b="23"></viz:color>
+    </node>
+    <node id="lostpets" label="lostpets">
+      <attvalues>
+        <attvalue for="category" value="Not Categorized"></attvalue>
+      </attvalues>
+      <viz:position x="296.77573" y="-1737.8179"></viz:position>
+      <viz:color r="219" g="211" b="23"></viz:color>
+    </node>
+    <node id="wickedglitter1" label="wickedglitter1">
+      <attvalues>
+        <attvalue for="category" value="Not Categorized"></attvalue>
+      </attvalues>
+      <viz:position x="309.64075" y="-1746.8595"></viz:position>
+      <viz:color r="219" g="211" b="23"></viz:color>
+    </node>
+    <node id="dianapop" label="dianapop">
+      <attvalues>
+        <attvalue for="category" value="Not Categorized"></attvalue>
+      </attvalues>
+      <viz:position x="-959.50146" y="-1449.005"></viz:position>
+      <viz:color r="219" g="211" b="23"></viz:color>
+    </node>
+    <node id="Numendil" label="Numendil">
+      <attvalues>
+        <attvalue for="category" value="Not Categorized"></attvalue>
+      </attvalues>
+      <viz:position x="129.1643" y="-691.63934"></viz:position>
+      <viz:color r="219" g="211" b="23"></viz:color>
+    </node>
+    <node id="anontana" label="anontana">
+      <attvalues>
+        <attvalue for="category" value="Not Categorized"></attvalue>
+      </attvalues>
+      <viz:position x="581.1402" y="856.45874"></viz:position>
+      <viz:color r="219" g="211" b="23"></viz:color>
+    </node>
+    <node id="ishta_dreams" label="ishta_dreams">
+      <attvalues>
+        <attvalue for="category" value="Not Categorized"></attvalue>
+      </attvalues>
+      <viz:position x="-659.34485" y="1219.9143"></viz:position>
+      <viz:color r="219" g="211" b="23"></viz:color>
+    </node>
+    <node id="_aHussein" label="_aHussein">
+      <attvalues>
+        <attvalue for="category" value="Not Categorized"></attvalue>
+      </attvalues>
+      <viz:position x="-1293.0326" y="732.0001"></viz:position>
+      <viz:color r="219" g="211" b="23"></viz:color>
+    </node>
+    <node id="cousine" label="cousine">
+      <attvalues>
+        <attvalue for="category" value="Not Categorized"></attvalue>
+      </attvalues>
+      <viz:position x="302.21707" y="1039.905"></viz:position>
+      <viz:color r="219" g="211" b="23"></viz:color>
+    </node>
+    <node id="direct3d" label="direct3d">
+      <attvalues>
+        <attvalue for="category" value="Not Categorized"></attvalue>
+      </attvalues>
+      <viz:position x="-155.90492" y="-1706.8994"></viz:position>
+      <viz:color r="219" g="211" b="23"></viz:color>
+    </node>
+    <node id="free_all_POC" label="free_all_POC">
+      <attvalues>
+        <attvalue for="category" value="Not Categorized"></attvalue>
+      </attvalues>
+      <viz:position x="-140.3672" y="-1677.6782"></viz:position>
+      <viz:color r="219" g="211" b="23"></viz:color>
+    </node>
+    <node id="sushi2037" label="sushi2037">
+      <attvalues>
+        <attvalue for="category" value="Not Categorized"></attvalue>
+      </attvalues>
+      <viz:position x="-121.742" y="-1682.9451"></viz:position>
+      <viz:color r="219" g="211" b="23"></viz:color>
+    </node>
+    <node id="Fahrass" label="Fahrass">
+      <attvalues>
+        <attvalue for="category" value="Not Categorized"></attvalue>
+      </attvalues>
+      <viz:position x="586.83453" y="208.80048"></viz:position>
+      <viz:color r="219" g="211" b="23"></viz:color>
+    </node>
+    <node id="AnonymousIRC" label="AnonymousIRC">
+      <attvalues>
+        <attvalue for="category" value="Not Categorized"></attvalue>
+      </attvalues>
+      <viz:position x="-819.04614" y="-1551.9712"></viz:position>
+      <viz:color r="219" g="211" b="23"></viz:color>
+    </node>
+    <node id="bea_dtj" label="bea_dtj">
+      <attvalues>
+        <attvalue for="category" value="Not Categorized"></attvalue>
+      </attvalues>
+      <viz:position x="511.90146" y="-878.3508"></viz:position>
+      <viz:color r="219" g="211" b="23"></viz:color>
+    </node>
+    <node id="fatemaqaed" label="fatemaqaed">
+      <attvalues>
+        <attvalue for="category" value="Not Categorized"></attvalue>
+      </attvalues>
+      <viz:position x="808.1758" y="-1277.1664"></viz:position>
+      <viz:color r="219" g="211" b="23"></viz:color>
+    </node>
+    <node id="realrissa" label="realrissa">
+      <attvalues>
+        <attvalue for="category" value="Not Categorized"></attvalue>
+      </attvalues>
+      <viz:position x="1264.9174" y="819.6191"></viz:position>
+      <viz:color r="219" g="211" b="23"></viz:color>
+    </node>
+    <node id="WNOFAL" label="WNOFAL">
+      <attvalues>
+        <attvalue for="category" value="Not Categorized"></attvalue>
+      </attvalues>
+      <viz:position x="1404.2175" y="116.93421"></viz:position>
+      <viz:color r="219" g="211" b="23"></viz:color>
+    </node>
+    <node id="Radwan_Adam" label="Radwan_Adam">
+      <attvalues>
+        <attvalue for="category" value="Not Categorized"></attvalue>
+      </attvalues>
+      <viz:position x="636.20654" y="313.08163"></viz:position>
+      <viz:color r="219" g="211" b="23"></viz:color>
+    </node>
+    <node id="farrellhamann" label="farrellhamann">
+      <attvalues>
+        <attvalue for="category" value="Not Categorized"></attvalue>
+      </attvalues>
+      <viz:position x="677.31714" y="-1113.5192"></viz:position>
+      <viz:color r="219" g="211" b="23"></viz:color>
+    </node>
+    <node id="jerseyblueboy" label="jerseyblueboy">
+      <attvalues>
+        <attvalue for="category" value="Not Categorized"></attvalue>
+      </attvalues>
+      <viz:position x="679.41614" y="-1082.412"></viz:position>
+      <viz:color r="219" g="211" b="23"></viz:color>
+    </node>
+    <node id="khduck" label="khduck">
+      <attvalues>
+        <attvalue for="category" value="Not Categorized"></attvalue>
+      </attvalues>
+      <viz:position x="-950.6509" y="-169.4108"></viz:position>
+      <viz:color r="219" g="211" b="23"></viz:color>
+    </node>
+    <node id="SHaKaRiA" label="SHaKaRiA">
+      <attvalues>
+        <attvalue for="category" value="Not Categorized"></attvalue>
+      </attvalues>
+      <viz:position x="1595.0474" y="246.54237"></viz:position>
+      <viz:color r="219" g="211" b="23"></viz:color>
+    </node>
+    <node id="mand0z" label="mand0z">
+      <attvalues>
+        <attvalue for="category" value="Not Categorized"></attvalue>
+      </attvalues>
+      <viz:position x="484.39316" y="-177.5002"></viz:position>
+      <viz:color r="219" g="211" b="23"></viz:color>
+    </node>
+    <node id="youssefbouayed" label="youssefbouayed">
+      <attvalues>
+        <attvalue for="category" value="Not Categorized"></attvalue>
+      </attvalues>
+      <viz:position x="412.3781" y="-403.0072"></viz:position>
+      <viz:color r="219" g="211" b="23"></viz:color>
+    </node>
+    <node id="eve_mikun" label="eve_mikun">
+      <attvalues>
+        <attvalue for="category" value="Not Categorized"></attvalue>
+      </attvalues>
+      <viz:position x="-253.9976" y="-835.2408"></viz:position>
+      <viz:color r="219" g="211" b="23"></viz:color>
+    </node>
+    <node id="Loupo85" label="Loupo85">
+      <attvalues>
+        <attvalue for="category" value="Not Categorized"></attvalue>
+      </attvalues>
+      <viz:position x="-451.82596" y="-1228.4003"></viz:position>
+      <viz:color r="219" g="211" b="23"></viz:color>
+    </node>
+    <node id="redbakersen" label="redbakersen">
+      <attvalues>
+        <attvalue for="category" value="Not Categorized"></attvalue>
+      </attvalues>
+      <viz:position x="32.62328" y="1290.77"></viz:position>
+      <viz:color r="219" g="211" b="23"></viz:color>
+    </node>
+    <node id="ALADWANI76" label="ALADWANI76">
+      <attvalues>
+        <attvalue for="category" value="Not Categorized"></attvalue>
+      </attvalues>
+      <viz:position x="-866.5926" y="1082.2102"></viz:position>
+      <viz:color r="219" g="211" b="23"></viz:color>
+    </node>
+    <node id="axion1123" label="axion1123">
+      <attvalues>
+        <attvalue for="category" value="Not Categorized"></attvalue>
+      </attvalues>
+      <viz:position x="1355.5634" y="1276.6272"></viz:position>
+      <viz:color r="219" g="211" b="23"></viz:color>
+    </node>
+    <node id="theblackrabbit" label="theblackrabbit">
+      <attvalues>
+        <attvalue for="category" value="Not Categorized"></attvalue>
+      </attvalues>
+      <viz:position x="1026.7144" y="1098.695"></viz:position>
+      <viz:color r="219" g="211" b="23"></viz:color>
+    </node>
+    <node id="Zapa_out" label="Zapa_out">
+      <attvalues>
+        <attvalue for="category" value="Not Categorized"></attvalue>
+      </attvalues>
+      <viz:position x="224.87236" y="-1466.6925"></viz:position>
+      <viz:color r="219" g="211" b="23"></viz:color>
+    </node>
+    <node id="ma2rofa" label="ma2rofa">
+      <attvalues>
+        <attvalue for="category" value="Not Categorized"></attvalue>
+      </attvalues>
+      <viz:position x="691.9139" y="-372.7056"></viz:position>
+      <viz:color r="219" g="211" b="23"></viz:color>
+    </node>
+    <node id="amalFree" label="amalFree">
+      <attvalues>
+        <attvalue for="category" value="Not Categorized"></attvalue>
+      </attvalues>
+      <viz:position x="320.78046" y="-1148.7814"></viz:position>
+      <viz:color r="219" g="211" b="23"></viz:color>
+    </node>
+    <node id="DFMorrison" label="DFMorrison">
+      <attvalues>
+        <attvalue for="category" value="Not Categorized"></attvalue>
+      </attvalues>
+      <viz:position x="406.49756" y="-1065.4802"></viz:position>
+      <viz:color r="219" g="211" b="23"></viz:color>
+    </node>
+    <node id="alihabibi1" label="alihabibi1">
+      <attvalues>
+        <attvalue for="category" value="Not Categorized"></attvalue>
+      </attvalues>
+      <viz:position x="609.83734" y="518.2821"></viz:position>
+      <viz:color r="219" g="211" b="23"></viz:color>
+    </node>
+    <node id="NesrineBR1" label="NesrineBR1">
+      <attvalues>
+        <attvalue for="category" value="Not Categorized"></attvalue>
+      </attvalues>
+      <viz:position x="589.01636" y="452.80658"></viz:position>
+      <viz:color r="219" g="211" b="23"></viz:color>
+    </node>
+    <node id="sheeemi" label="sheeemi">
+      <attvalues>
+        <attvalue for="category" value="Not Categorized"></attvalue>
+      </attvalues>
+      <viz:position x="530.651" y="573.7182"></viz:position>
+      <viz:color r="219" g="211" b="23"></viz:color>
+    </node>
+    <node id="janellepeters" label="janellepeters">
+      <attvalues>
+        <attvalue for="category" value="Not Categorized"></attvalue>
+      </attvalues>
+      <viz:position x="302.14142" y="937.5222"></viz:position>
+      <viz:color r="219" g="211" b="23"></viz:color>
+    </node>
+    <node id="m_h_m_d25" label="m_h_m_d25">
+      <attvalues>
+        <attvalue for="category" value="Not Categorized"></attvalue>
+      </attvalues>
+      <viz:position x="1282.4418" y="-680.99365"></viz:position>
+      <viz:color r="219" g="211" b="23"></viz:color>
+    </node>
+    <node id="Ra5ama" label="Ra5ama">
+      <attvalues>
+        <attvalue for="category" value="Not Categorized"></attvalue>
+      </attvalues>
+      <viz:position x="907.76587" y="-125.17106"></viz:position>
+      <viz:color r="219" g="211" b="23"></viz:color>
+    </node>
+    <node id="gerrydir" label="gerrydir">
+      <attvalues>
+        <attvalue for="category" value="Not Categorized"></attvalue>
+      </attvalues>
+      <viz:position x="1051.6504" y="1022.86426"></viz:position>
+      <viz:color r="219" g="211" b="23"></viz:color>
+    </node>
+    <node id="Caer23" label="Caer23">
+      <attvalues>
+        <attvalue for="category" value="Not Categorized"></attvalue>
+      </attvalues>
+      <viz:position x="-810.6498" y="-1146.2483"></viz:position>
+      <viz:color r="219" g="211" b="23"></viz:color>
+    </node>
+    <node id="rk70534" label="rk70534">
+      <attvalues>
+        <attvalue for="category" value="Not Categorized"></attvalue>
+      </attvalues>
+      <viz:position x="-927.21796" y="-1220.0398"></viz:position>
+      <viz:color r="219" g="211" b="23"></viz:color>
+    </node>
+    <node id="masrygdan" label="masrygdan">
+      <attvalues>
+        <attvalue for="category" value="Not Categorized"></attvalue>
+      </attvalues>
+      <viz:position x="907.35223" y="801.6152"></viz:position>
+      <viz:color r="219" g="211" b="23"></viz:color>
+    </node>
+    <node id="hothotsa" label="hothotsa">
+      <attvalues>
+        <attvalue for="category" value="Not Categorized"></attvalue>
+      </attvalues>
+      <viz:position x="459.40936" y="-1051.9637"></viz:position>
+      <viz:color r="219" g="211" b="23"></viz:color>
+    </node>
+    <node id="nelaontherun" label="nelaontherun">
+      <attvalues>
+        <attvalue for="category" value="Not Categorized"></attvalue>
+      </attvalues>
+      <viz:position x="-957.469" y="-492.23315"></viz:position>
+      <viz:color r="219" g="211" b="23"></viz:color>
+    </node>
+    <node id="VerdantSage" label="VerdantSage">
+      <attvalues>
+        <attvalue for="category" value="Not Categorized"></attvalue>
+      </attvalues>
+      <viz:position x="64.84906" y="484.8584"></viz:position>
+      <viz:color r="219" g="211" b="23"></viz:color>
+    </node>
+    <node id="vincubusdante" label="vincubusdante">
+      <attvalues>
+        <attvalue for="category" value="Not Categorized"></attvalue>
+      </attvalues>
+      <viz:position x="360.90204" y="-1488.8472"></viz:position>
+      <viz:color r="219" g="211" b="23"></viz:color>
+    </node>
+    <node id="AidanDouda" label="AidanDouda">
+      <attvalues>
+        <attvalue for="category" value="Not Categorized"></attvalue>
+      </attvalues>
+      <viz:position x="-635.2707" y="-1144.4377"></viz:position>
+      <viz:color r="219" g="211" b="23"></viz:color>
+    </node>
+    <node id="fish_eat_fish" label="fish_eat_fish">
+      <attvalues>
+        <attvalue for="category" value="Not Categorized"></attvalue>
+      </attvalues>
+      <viz:position x="-702.79315" y="-1021.959"></viz:position>
+      <viz:color r="219" g="211" b="23"></viz:color>
+    </node>
+    <node id="berksgal" label="berksgal">
+      <attvalues>
+        <attvalue for="category" value="Not Categorized"></attvalue>
+      </attvalues>
+      <viz:position x="-991.186" y="1040.4976"></viz:position>
+      <viz:color r="219" g="211" b="23"></viz:color>
+    </node>
+    <node id="meltuhamy" label="meltuhamy">
+      <attvalues>
+        <attvalue for="category" value="Not Categorized"></attvalue>
+      </attvalues>
+      <viz:position x="1215.909" y="-918.2922"></viz:position>
+      <viz:color r="219" g="211" b="23"></viz:color>
+    </node>
+    <node id="ahmedzakiosman" label="ahmedzakiosman">
+      <attvalues>
+        <attvalue for="category" value="Not Categorized"></attvalue>
+      </attvalues>
+      <viz:position x="512.6515" y="-37.947163"></viz:position>
+      <viz:color r="219" g="211" b="23"></viz:color>
+    </node>
+    <node id="egyreality_isis" label="egyreality_isis">
+      <attvalues>
+        <attvalue for="category" value="Not Categorized"></attvalue>
+      </attvalues>
+      <viz:position x="-301.20352" y="-1194.1187"></viz:position>
+      <viz:color r="219" g="211" b="23"></viz:color>
+    </node>
+    <node id="JoliePagaille" label="JoliePagaille">
+      <attvalues>
+        <attvalue for="category" value="Not Categorized"></attvalue>
+      </attvalues>
+      <viz:position x="207.53633" y="-434.57678"></viz:position>
+      <viz:color r="219" g="211" b="23"></viz:color>
+    </node>
+    <node id="ahmed_ossama" label="ahmed_ossama">
+      <attvalues>
+        <attvalue for="category" value="Not Categorized"></attvalue>
+      </attvalues>
+      <viz:position x="1338.9944" y="347.33084"></viz:position>
+      <viz:color r="219" g="211" b="23"></viz:color>
+    </node>
+    <node id="Gsquare86" label="Gsquare86">
+      <attvalues>
+        <attvalue for="category" value="Hispanic"></attvalue>
+      </attvalues>
+      <viz:position x="877.45294" y="-395.46655"></viz:position>
+      <viz:color r="65" g="119" b="193"></viz:color>
+    </node>
+    <node id="Wordydiva" label="Wordydiva">
+      <attvalues>
+        <attvalue for="category" value="Not Categorized"></attvalue>
+      </attvalues>
+      <viz:position x="-619.8583" y="-1366.2955"></viz:position>
+      <viz:color r="219" g="211" b="23"></viz:color>
+    </node>
+    <node id="AsmaAbd" label="AsmaAbd">
+      <attvalues>
+        <attvalue for="category" value="Not Categorized"></attvalue>
+      </attvalues>
+      <viz:position x="-1444.7037" y="774.09314"></viz:position>
+      <viz:color r="219" g="211" b="23"></viz:color>
+    </node>
+    <node id="I_Am_SantaBaby" label="I_Am_SantaBaby">
+      <attvalues>
+        <attvalue for="category" value="Not Categorized"></attvalue>
+      </attvalues>
+      <viz:position x="-34.955235" y="934.4555"></viz:position>
+      <viz:color r="219" g="211" b="23"></viz:color>
+    </node>
+    <node id="NewsNumpty" label="NewsNumpty">
+      <attvalues>
+        <attvalue for="category" value="Not Categorized"></attvalue>
+      </attvalues>
+      <viz:position x="-385.3702" y="-1287.3418"></viz:position>
+      <viz:color r="219" g="211" b="23"></viz:color>
+    </node>
+    <node id="calliopeconsult" label="calliopeconsult">
+      <attvalues>
+        <attvalue for="category" value="Not Categorized"></attvalue>
+      </attvalues>
+      <viz:position x="195.8797" y="-875.5727"></viz:position>
+      <viz:color r="219" g="211" b="23"></viz:color>
+    </node>
+    <node id="7usfahmy" label="7usfahmy">
+      <attvalues>
+        <attvalue for="category" value="Not Categorized"></attvalue>
+      </attvalues>
+      <viz:position x="802.64343" y="-295.19458"></viz:position>
+      <viz:color r="219" g="211" b="23"></viz:color>
+    </node>
+    <node id="Hazzabizzy" label="Hazzabizzy">
+      <attvalues>
+        <attvalue for="category" value="Not Categorized"></attvalue>
+      </attvalues>
+      <viz:position x="-632.3273" y="200.00812"></viz:position>
+      <viz:color r="219" g="211" b="23"></viz:color>
+    </node>
+    <node id="arabellemllc" label="arabellemllc">
+      <attvalues>
+        <attvalue for="category" value="Not Categorized"></attvalue>
+      </attvalues>
+      <viz:position x="-1252.439" y="-491.5188"></viz:position>
+      <viz:color r="219" g="211" b="23"></viz:color>
+    </node>
+    <node id="100Dtour" label="100Dtour">
+      <attvalues>
+        <attvalue for="category" value="Not Categorized"></attvalue>
+      </attvalues>
+      <viz:position x="1781.1499" y="213.57787"></viz:position>
+      <viz:color r="219" g="211" b="23"></viz:color>
+    </node>
+    <node id="alyelattal" label="alyelattal">
+      <attvalues>
+        <attvalue for="category" value="Not Categorized"></attvalue>
+      </attvalues>
+      <viz:position x="1724.3088" y="54.352623"></viz:position>
+      <viz:color r="219" g="211" b="23"></viz:color>
+    </node>
+    <node id="bjmlho" label="bjmlho">
+      <attvalues>
+        <attvalue for="category" value="Not Categorized"></attvalue>
+      </attvalues>
+      <viz:position x="1764.4836" y="282.6871"></viz:position>
+      <viz:color r="219" g="211" b="23"></viz:color>
+    </node>
+    <node id="CannibalRobot" label="CannibalRobot">
+      <attvalues>
+        <attvalue for="category" value="Not Categorized"></attvalue>
+      </attvalues>
+      <viz:position x="1207.8184" y="980.3358"></viz:position>
+      <viz:color r="219" g="211" b="23"></viz:color>
+    </node>
+    <node id="Chap_AZ" label="Chap_AZ">
+      <attvalues>
+        <attvalue for="category" value="Not Categorized"></attvalue>
+      </attvalues>
+      <viz:position x="1817.154" y="288.40894"></viz:position>
+      <viz:color r="219" g="211" b="23"></viz:color>
+    </node>
+    <node id="CLosMedia" label="CLosMedia">
+      <attvalues>
+        <attvalue for="category" value="Not Categorized"></attvalue>
+      </attvalues>
+      <viz:position x="1985.0989" y="338.5101"></viz:position>
+      <viz:color r="219" g="211" b="23"></viz:color>
+    </node>
+    <node id="danijelacuk" label="danijelacuk">
+      <attvalues>
+        <attvalue for="category" value="Not Categorized"></attvalue>
+      </attvalues>
+      <viz:position x="1802.9165" y="126.87742"></viz:position>
+      <viz:color r="219" g="211" b="23"></viz:color>
+    </node>
+    <node id="excitingleon" label="excitingleon">
+      <attvalues>
+        <attvalue for="category" value="Not Categorized"></attvalue>
+      </attvalues>
+      <viz:position x="1500.0636" y="-73.18957"></viz:position>
+      <viz:color r="219" g="211" b="23"></viz:color>
+    </node>
+    <node id="infinite_looper" label="infinite_looper">
+      <attvalues>
+        <attvalue for="category" value="Not Categorized"></attvalue>
+      </attvalues>
+      <viz:position x="1767.013" y="238.99191"></viz:position>
+      <viz:color r="219" g="211" b="23"></viz:color>
+    </node>
+    <node id="jiggee" label="jiggee">
+      <attvalues>
+        <attvalue for="category" value="Not Categorized"></attvalue>
+      </attvalues>
+      <viz:position x="1012.6647" y="940.5327"></viz:position>
+      <viz:color r="219" g="211" b="23"></viz:color>
+    </node>
+    <node id="jornalistavitor" label="jornalistavitor">
+      <attvalues>
+        <attvalue for="category" value="Not Categorized"></attvalue>
+      </attvalues>
+      <viz:position x="1835.9371" y="310.4389"></viz:position>
+      <viz:color r="219" g="211" b="23"></viz:color>
+    </node>
+    <node id="majl01" label="majl01">
+      <attvalues>
+        <attvalue for="category" value="Not Categorized"></attvalue>
+      </attvalues>
+      <viz:position x="1037.8055" y="1050.474"></viz:position>
+      <viz:color r="219" g="211" b="23"></viz:color>
+    </node>
+    <node id="MetroLatinoUSA" label="MetroLatinoUSA">
+      <attvalues>
+        <attvalue for="category" value="Not Categorized"></attvalue>
+      </attvalues>
+      <viz:position x="1092.6149" y="701.8803"></viz:position>
+      <viz:color r="219" g="211" b="23"></viz:color>
+    </node>
+    <node id="Oh_Bella" label="Oh_Bella">
+      <attvalues>
+        <attvalue for="category" value="Not Categorized"></attvalue>
+      </attvalues>
+      <viz:position x="801.5668" y="845.0476"></viz:position>
+      <viz:color r="219" g="211" b="23"></viz:color>
+    </node>
+    <node id="ptotheolly" label="ptotheolly">
+      <attvalues>
+        <attvalue for="category" value="Not Categorized"></attvalue>
+      </attvalues>
+      <viz:position x="1867.4222" y="237.20111"></viz:position>
+      <viz:color r="219" g="211" b="23"></viz:color>
+    </node>
+    <node id="RDC1987" label="RDC1987">
+      <attvalues>
+        <attvalue for="category" value="Not Categorized"></attvalue>
+      </attvalues>
+      <viz:position x="1794.5013" y="295.61456"></viz:position>
+      <viz:color r="219" g="211" b="23"></viz:color>
+    </node>
+    <node id="TamelaJaeger" label="TamelaJaeger">
+      <attvalues>
+        <attvalue for="category" value="Not Categorized"></attvalue>
+      </attvalues>
+      <viz:position x="1944.5065" y="69.45787"></viz:position>
+      <viz:color r="219" g="211" b="23"></viz:color>
+    </node>
+    <node id="thepolaris10" label="thepolaris10">
+      <attvalues>
+        <attvalue for="category" value="Not Categorized"></attvalue>
+      </attvalues>
+      <viz:position x="656.0382" y="111.44972"></viz:position>
+      <viz:color r="219" g="211" b="23"></viz:color>
+    </node>
+    <node id="yutani1981" label="yutani1981">
+      <attvalues>
+        <attvalue for="category" value="Not Categorized"></attvalue>
+      </attvalues>
+      <viz:position x="1813.7844" y="223.26038"></viz:position>
+      <viz:color r="219" g="211" b="23"></viz:color>
+    </node>
+    <node id="baheyah" label="baheyah">
+      <attvalues>
+        <attvalue for="category" value="Not Categorized"></attvalue>
+      </attvalues>
+      <viz:position x="1555.1847" y="192.1457"></viz:position>
+      <viz:color r="219" g="211" b="23"></viz:color>
+    </node>
+    <node id="monasosh" label="monasosh">
+      <attvalues>
+        <attvalue for="category" value="Hispanic"></attvalue>
+      </attvalues>
+      <viz:position x="762.97925" y="-74.28868"></viz:position>
+      <viz:color r="65" g="119" b="193"></viz:color>
+    </node>
+    <node id="blackxanonymous" label="blackxanonymous">
+      <attvalues>
+        <attvalue for="category" value="Not Categorized"></attvalue>
+      </attvalues>
+      <viz:position x="-112.28827" y="-986.805"></viz:position>
+      <viz:color r="219" g="211" b="23"></viz:color>
+    </node>
+    <node id="BuJabal" label="BuJabal">
+      <attvalues>
+        <attvalue for="category" value="Not Categorized"></attvalue>
+      </attvalues>
+      <viz:position x="432.25345" y="-1148.1154"></viz:position>
+      <viz:color r="219" g="211" b="23"></viz:color>
+    </node>
+    <node id="ByLasKo" label="ByLasKo">
+      <attvalues>
+        <attvalue for="category" value="Not Categorized"></attvalue>
+      </attvalues>
+      <viz:position x="-18.911184" y="-183.57146"></viz:position>
+      <viz:color r="219" g="211" b="23"></viz:color>
+    </node>
+    <node id="fliesinamber" label="fliesinamber">
+      <attvalues>
+        <attvalue for="category" value="Not Categorized"></attvalue>
+      </attvalues>
+      <viz:position x="-387.75745" y="-1454.3909"></viz:position>
+      <viz:color r="219" g="211" b="23"></viz:color>
+    </node>
+    <node id="fokito" label="fokito">
+      <attvalues>
+        <attvalue for="category" value="Not Categorized"></attvalue>
+      </attvalues>
+      <viz:position x="-681.1839" y="-972.10223"></viz:position>
+      <viz:color r="219" g="211" b="23"></viz:color>
+    </node>
+    <node id="Gheblawi" label="Gheblawi">
+      <attvalues>
+        <attvalue for="category" value="Not Categorized"></attvalue>
+      </attvalues>
+      <viz:position x="-263.42325" y="-1514.5223"></viz:position>
+      <viz:color r="219" g="211" b="23"></viz:color>
+    </node>
+    <node id="Jezabeldiablo" label="Jezabeldiablo">
+      <attvalues>
+        <attvalue for="category" value="Not Categorized"></attvalue>
+      </attvalues>
+      <viz:position x="-1382.1118" y="-1837.5254"></viz:position>
+      <viz:color r="219" g="211" b="23"></viz:color>
+    </node>
+    <node id="Liliopatra" label="Liliopatra">
+      <attvalues>
+        <attvalue for="category" value="Not Categorized"></attvalue>
+      </attvalues>
+      <viz:position x="-437.5342" y="-1285.9143"></viz:position>
+      <viz:color r="219" g="211" b="23"></viz:color>
+    </node>
+    <node id="mfatta7" label="mfatta7">
+      <attvalues>
+        <attvalue for="category" value="Hispanic"></attvalue>
+      </attvalues>
+      <viz:position x="382.93677" y="-370.0941"></viz:position>
+      <viz:color r="65" g="119" b="193"></viz:color>
+    </node>
+    <node id="Nellie_Gants" label="Nellie_Gants">
+      <attvalues>
+        <attvalue for="category" value="Not Categorized"></attvalue>
+      </attvalues>
+      <viz:position x="-348.8199" y="-1569.9653"></viz:position>
+      <viz:color r="219" g="211" b="23"></viz:color>
+    </node>
+    <node id="TunObs" label="TunObs">
+      <attvalues>
+        <attvalue for="category" value="Not Categorized"></attvalue>
+      </attvalues>
+      <viz:position x="-504.35437" y="-1175.7523"></viz:position>
+      <viz:color r="219" g="211" b="23"></viz:color>
+    </node>
+    <node id="ze_dach" label="ze_dach">
+      <attvalues>
+        <attvalue for="category" value="Not Categorized"></attvalue>
+      </attvalues>
+      <viz:position x="-634.4593" y="-1273.3838"></viz:position>
+      <viz:color r="219" g="211" b="23"></viz:color>
+    </node>
+    <node id="Bad_way" label="Bad_way">
+      <attvalues>
+        <attvalue for="category" value="Not Categorized"></attvalue>
+      </attvalues>
+      <viz:position x="1000.1422" y="-985.2443"></viz:position>
+      <viz:color r="219" g="211" b="23"></viz:color>
+    </node>
+    <node id="demaghmak" label="demaghmak">
+      <attvalues>
+        <attvalue for="category" value="Hispanic"></attvalue>
+      </attvalues>
+      <viz:position x="876.75183" y="-902.62994"></viz:position>
+      <viz:color r="65" g="119" b="193"></viz:color>
+    </node>
+    <node id="naif0001" label="naif0001">
+      <attvalues>
+        <attvalue for="category" value="Not Categorized"></attvalue>
+      </attvalues>
+      <viz:position x="957.3422" y="154.96095"></viz:position>
+      <viz:color r="219" g="211" b="23"></viz:color>
+    </node>
+    <node id="ihabhalim" label="ihabhalim">
+      <attvalues>
+        <attvalue for="category" value="Not Categorized"></attvalue>
+      </attvalues>
+      <viz:position x="1604.0374" y="-379.29462"></viz:position>
+      <viz:color r="219" g="211" b="23"></viz:color>
+    </node>
+    <node id="shadymediabay" label="shadymediabay">
+      <attvalues>
+        <attvalue for="category" value="Not Categorized"></attvalue>
+      </attvalues>
+      <viz:position x="1216.6658" y="-371.26257"></viz:position>
+      <viz:color r="219" g="211" b="23"></viz:color>
+    </node>
+  </nodes>
+  <edges>
+    <edge source="SGardinier" target="HopefulMona" start="1295914590" end="1295914650" weight="0">
+      <attvalues>
+        <attvalue for="weight" value="1" start="1295914590" end="1295914650"/>
+      </attvalues>
+      <slices>
+        <slice start="1295914590" end="1295914650" />
+      </slices>
+    </edge>
+    <edge source="downwithtyranny" target="farrellhamann" start="1295916901" end="1295916961" weight="0">
+      <attvalues>
+        <attvalue for="weight" value="1" start="1295916901" end="1295916961"/>
+      </attvalues>
+      <slices>
+        <slice start="1295916901" end="1295916961" />
+      </slices>
+    </edge>
+    <edge source="downwithtyranny" target="jerseyblueboy" start="1295916525" end="1295916585" weight="0">
+      <attvalues>
+        <attvalue for="weight" value="1" start="1295916525" end="1295916585"/>
+      </attvalues>
+      <slices>
+        <slice start="1295916525" end="1295916585" />
+      </slices>
+    </edge>
+    <edge source="memam8" target="WNOFAL" start="1295915193" end="1295915253" weight="0">
+      <attvalues>
+        <attvalue for="weight" value="1" start="1295915193" end="1295915253"/>
+      </attvalues>
+      <slices>
+        <slice start="1295915193" end="1295915253" />
+      </slices>
+    </edge>
+    <edge source="memam8" target="DollyAlashker" start="1295915828" end="1295915888" weight="0">
+      <attvalues>
+        <attvalue for="weight" value="1" start="1295915828" end="1295915888"/>
+      </attvalues>
+      <slices>
+        <slice start="1295915828" end="1295915888" />
+      </slices>
+    </edge>
+    <edge source="memam8" target="masrygdan" start="1295916939" end="1295916999" weight="0">
+      <attvalues>
+        <attvalue for="weight" value="1" start="1295916939" end="1295916999"/>
+      </attvalues>
+      <slices>
+        <slice start="1295916939" end="1295916999" />
+      </slices>
+    </edge>
+    <edge source="memam8" target="esraa_ali" start="1295915847" end="1295915907" weight="0">
+      <attvalues>
+        <attvalue for="weight" value="1" start="1295915847" end="1295915907"/>
+      </attvalues>
+      <slices>
+        <slice start="1295915847" end="1295915907" />
+      </slices>
+    </edge>
+    <edge source="ManarMohsen" target="gerrydir" start="1295915485" end="1295915545" weight="0">
+      <attvalues>
+        <attvalue for="weight" value="1" start="1295915485" end="1295915545"/>
+      </attvalues>
+      <slices>
+        <slice start="1295915485" end="1295915545" />
+      </slices>
+    </edge>
+    <edge source="Global_Arab_Net" target="Loupo85" start="1295916137" end="1295916197" weight="0">
+      <attvalues>
+        <attvalue for="weight" value="1" start="1295916137" end="1295916197"/>
+      </attvalues>
+      <slices>
+        <slice start="1295916137" end="1295916197" />
+      </slices>
+    </edge>
+    <edge source="ccav77" target="sushi2037" start="1295913600" end="1295913660" weight="0">
+      <attvalues>
+        <attvalue for="weight" value="1" start="1295913600" end="1295913660"/>
+      </attvalues>
+      <slices>
+        <slice start="1295913600" end="1295913660" />
+      </slices>
+    </edge>
+    <edge source="ccav77" target="direct3d" start="1295916309" end="1295916369" weight="0">
+      <attvalues>
+        <attvalue for="weight" value="1" start="1295916309" end="1295916369"/>
+      </attvalues>
+      <slices>
+        <slice start="1295916309" end="1295916369" />
+      </slices>
+    </edge>
+    <edge source="ccav77" target="free_all_POC" start="1295913703" end="1295913763" weight="0">
+      <attvalues>
+        <attvalue for="weight" value="1" start="1295913703" end="1295913763"/>
+      </attvalues>
+      <slices>
+        <slice start="1295913703" end="1295913763" />
+      </slices>
+    </edge>
+    <edge source="Calcoo" target="cousine" start="1295917099" end="1295917159" weight="0">
+      <attvalues>
+        <attvalue for="weight" value="1" start="1295917099" end="1295917159"/>
+      </attvalues>
+      <slices>
+        <slice start="1295917099" end="1295917159" />
+      </slices>
+    </edge>
+    <edge source="botshi007" target="_aHussein" start="1295917173" end="1295917233" weight="0">
+      <attvalues>
+        <attvalue for="weight" value="1" start="1295917173" end="1295917233"/>
+      </attvalues>
+      <slices>
+        <slice start="1295917173" end="1295917233" />
+      </slices>
+    </edge>
+    <edge source="bandidoofoz" target="Numendil" start="1295914644" end="1295914704" weight="0">
+      <attvalues>
+        <attvalue for="weight" value="1" start="1295914644" end="1295914704"/>
+      </attvalues>
+      <slices>
+        <slice start="1295914644" end="1295914704" />
+      </slices>
+    </edge>
+    <edge source="amnesty" target="katalystprods" start="1295914934" end="1295914994" weight="0">
+      <attvalues>
+        <attvalue for="weight" value="1" start="1295914934" end="1295914994"/>
+      </attvalues>
+      <slices>
+        <slice start="1295914934" end="1295914994" />
+      </slices>
+    </edge>
+    <edge source="amnesty" target="TheSherio" start="1295914379" end="1295914439" weight="0">
+      <attvalues>
+        <attvalue for="weight" value="1" start="1295914379" end="1295914439"/>
+      </attvalues>
+      <slices>
+        <slice start="1295914379" end="1295914439" />
+      </slices>
+    </edge>
+    <edge source="amnesty" target="justicentric" start="1295916181" end="1295916241" weight="0">
+      <attvalues>
+        <attvalue for="weight" value="1" start="1295916181" end="1295916241"/>
+      </attvalues>
+      <slices>
+        <slice start="1295916181" end="1295916241" />
+      </slices>
+    </edge>
+    <edge source="amnesty" target="Anon_VV" start="1295914353" end="1295914413" weight="0">
+      <attvalues>
+        <attvalue for="weight" value="1" start="1295914353" end="1295914413"/>
+      </attvalues>
+      <slices>
+        <slice start="1295914353" end="1295914413" />
+      </slices>
+    </edge>
+    <edge source="TareqSamy" target="7usfahmy" start="1295914780" end="1295914840" weight="0">
+      <attvalues>
+        <attvalue for="weight" value="1" start="1295914780" end="1295914840"/>
+      </attvalues>
+      <slices>
+        <slice start="1295914780" end="1295914840" />
+      </slices>
+    </edge>
+    <edge source="ReemAbdellatif" target="Gsquare86" start="1295916815" end="1295916875" weight="0">
+      <attvalues>
+        <attvalue for="weight" value="1" start="1295916815" end="1295916875"/>
+      </attvalues>
+      <slices>
+        <slice start="1295916815" end="1295916875" />
+      </slices>
+    </edge>
+    <edge source="ReemAbdellatif" target="ahmed_ossama" start="1295916879" end="1295916939" weight="0">
+      <attvalues>
+        <attvalue for="weight" value="1" start="1295916879" end="1295916939"/>
+      </attvalues>
+      <slices>
+        <slice start="1295916879" end="1295916939" />
+      </slices>
+    </edge>
+    <edge source="ReemAbdellatif" target="esraa_ali" start="1295916622" end="1295916682" weight="0">
+      <attvalues>
+        <attvalue for="weight" value="1" start="1295916622" end="1295916682"/>
+      </attvalues>
+      <slices>
+        <slice start="1295916622" end="1295916682" />
+      </slices>
+    </edge>
+    <edge source="o_salem" target="meltuhamy" start="1295915547" end="1295915607" weight="0">
+      <attvalues>
+        <attvalue for="weight" value="1" start="1295915547" end="1295915607"/>
+      </attvalues>
+      <slices>
+        <slice start="1295915547" end="1295915607" />
+      </slices>
+    </edge>
+    <edge source="kichimaruH" target="Snntitn" start="1295916456" end="1295916516" weight="0">
+      <attvalues>
+        <attvalue for="weight" value="1" start="1295916456" end="1295916516"/>
+      </attvalues>
+      <slices>
+        <slice start="1295916456" end="1295916516" />
+      </slices>
+    </edge>
+    <edge source="SayCyd" target="I_Am_SantaBaby" start="1295916940" end="1295917000" weight="0">
+      <attvalues>
+        <attvalue for="weight" value="1" start="1295916940" end="1295917000"/>
+      </attvalues>
+      <slices>
+        <slice start="1295916940" end="1295917000" />
+      </slices>
+    </edge>
+    <edge source="RenadAmjad" target="AsmaAbd" start="1295916848" end="1295916908" weight="0">
+      <attvalues>
+        <attvalue for="weight" value="1" start="1295916848" end="1295916908"/>
+      </attvalues>
+      <slices>
+        <slice start="1295916848" end="1295916908" />
+      </slices>
+    </edge>
+    <edge source="AaronKleinShow" target="RBOBlog" start="1295916285" end="1295916345" weight="0">
+      <attvalues>
+        <attvalue for="weight" value="1" start="1295916285" end="1295916345"/>
+      </attvalues>
+      <slices>
+        <slice start="1295916285" end="1295916345" />
+      </slices>
+    </edge>
+    <edge source="youm7" target="shadymediabay" start="1295913816" end="1295913876" weight="0">
+      <attvalues>
+        <attvalue for="weight" value="1" start="1295913816" end="1295913876"/>
+      </attvalues>
+      <slices>
+        <slice start="1295913816" end="1295913876" />
+      </slices>
+    </edge>
+    <edge source="youm7" target="ihabhalim" start="1295916437" end="1295916497" weight="0">
+      <attvalues>
+        <attvalue for="weight" value="1" start="1295916437" end="1295916497"/>
+      </attvalues>
+      <slices>
+        <slice start="1295916437" end="1295916497" />
+      </slices>
+    </edge>
+    <edge source="TIME" target="alyelattal" start="1295915467" end="1295915527" weight="0">
+      <attvalues>
+        <attvalue for="weight" value="1" start="1295915467" end="1295915527"/>
+      </attvalues>
+      <slices>
+        <slice start="1295915467" end="1295915527" />
+      </slices>
+    </edge>
+    <edge source="TIME" target="TamelaJaeger" start="1295913710" end="1295913770" weight="0">
+      <attvalues>
+        <attvalue for="weight" value="1" start="1295913710" end="1295913770"/>
+      </attvalues>
+      <slices>
+        <slice start="1295913710" end="1295913770" />
+      </slices>
+    </edge>
+    <edge source="TIME" target="MetroLatinoUSA" start="1295914630" end="1295914690" weight="0">
+      <attvalues>
+        <attvalue for="weight" value="1" start="1295914630" end="1295914690"/>
+      </attvalues>
+      <slices>
+        <slice start="1295914630" end="1295914690" />
+      </slices>
+    </edge>
+    <edge source="TIME" target="jiggee" start="1295915881" end="1295915941" weight="0">
+      <attvalues>
+        <attvalue for="weight" value="1" start="1295915881" end="1295915941"/>
+      </attvalues>
+      <slices>
+        <slice start="1295915881" end="1295915941" />
+      </slices>
+    </edge>
+    <edge source="TIME" target="excitingleon" start="1295916506" end="1295916566" weight="0">
+      <attvalues>
+        <attvalue for="weight" value="1" start="1295916506" end="1295916566"/>
+      </attvalues>
+      <slices>
+        <slice start="1295916506" end="1295916566" />
+      </slices>
+    </edge>
+    <edge source="TIME" target="majl01" start="1295915160" end="1295915220" weight="0">
+      <attvalues>
+        <attvalue for="weight" value="1" start="1295915160" end="1295915220"/>
+      </attvalues>
+      <slices>
+        <slice start="1295915160" end="1295915220" />
+      </slices>
+    </edge>
+    <edge source="TIME" target="jornalistavitor" start="1295914428" end="1295914488" weight="0">
+      <attvalues>
+        <attvalue for="weight" value="1" start="1295914428" end="1295914488"/>
+      </attvalues>
+      <slices>
+        <slice start="1295914428" end="1295914488" />
+      </slices>
+    </edge>
+    <edge source="TIME" target="CLosMedia" start="1295914167" end="1295914227" weight="0">
+      <attvalues>
+        <attvalue for="weight" value="1" start="1295914167" end="1295914227"/>
+      </attvalues>
+      <slices>
+        <slice start="1295914167" end="1295914227" />
+      </slices>
+    </edge>
+    <edge source="TIME" target="thepolaris10" start="1295914242" end="1295914302" weight="0">
+      <attvalues>
+        <attvalue for="weight" value="1" start="1295914242" end="1295914302"/>
+      </attvalues>
+      <slices>
+        <slice start="1295914242" end="1295914302" />
+      </slices>
+    </edge>
+    <edge source="TIME" target="RDC1987" start="1295916923" end="1295916983" weight="0">
+      <attvalues>
+        <attvalue for="weight" value="1" start="1295916923" end="1295916983"/>
+      </attvalues>
+      <slices>
+        <slice start="1295916923" end="1295916983" />
+      </slices>
+    </edge>
+    <edge source="TIME" target="Oh_Bella" start="1295914768" end="1295914828" weight="0">
+      <attvalues>
+        <attvalue for="weight" value="1" start="1295914768" end="1295914828"/>
+      </attvalues>
+      <slices>
+        <slice start="1295914768" end="1295914828" />
+      </slices>
+    </edge>
+    <edge source="TIME" target="100Dtour" start="1295915180" end="1295915240" weight="0">
+      <attvalues>
+        <attvalue for="weight" value="1" start="1295915180" end="1295915240"/>
+      </attvalues>
+      <slices>
+        <slice start="1295915180" end="1295915240" />
+      </slices>
+    </edge>
+    <edge source="TIME" target="ptotheolly" start="1295916134" end="1295916194" weight="0">
+      <attvalues>
+        <attvalue for="weight" value="1" start="1295916134" end="1295916194"/>
+      </attvalues>
+      <slices>
+        <slice start="1295916134" end="1295916194" />
+      </slices>
+    </edge>
+    <edge source="TIME" target="bjmlho" start="1295916183" end="1295916243" weight="0">
+      <attvalues>
+        <attvalue for="weight" value="1" start="1295916183" end="1295916243"/>
+      </attvalues>
+      <slices>
+        <slice start="1295916183" end="1295916243" />
+      </slices>
+    </edge>
+    <edge source="TIME" target="Chap_AZ" start="1295914166" end="1295914226" weight="0">
+      <attvalues>
+        <attvalue for="weight" value="1" start="1295914166" end="1295914226"/>
+      </attvalues>
+      <slices>
+        <slice start="1295914166" end="1295914226" />
+      </slices>
+    </edge>
+    <edge source="TIME" target="yutani1981" start="1295915564" end="1295915624" weight="0">
+      <attvalues>
+        <attvalue for="weight" value="1" start="1295915564" end="1295915624"/>
+      </attvalues>
+      <slices>
+        <slice start="1295915564" end="1295915624" />
+      </slices>
+    </edge>
+    <edge source="TIME" target="infinite_looper" start="1295915811" end="1295915871" weight="0">
+      <attvalues>
+        <attvalue for="weight" value="1" start="1295915811" end="1295915871"/>
+      </attvalues>
+      <slices>
+        <slice start="1295915811" end="1295915871" />
+      </slices>
+    </edge>
+    <edge source="TIME" target="danijelacuk" start="1295914634" end="1295914694" weight="0">
+      <attvalues>
+        <attvalue for="weight" value="1" start="1295914634" end="1295914694"/>
+      </attvalues>
+      <slices>
+        <slice start="1295914634" end="1295914694" />
+      </slices>
+    </edge>
+    <edge source="TIME" target="CannibalRobot" start="1295917080" end="1295917140" weight="0">
+      <attvalues>
+        <attvalue for="weight" value="1" start="1295917080" end="1295917140"/>
+      </attvalues>
+      <slices>
+        <slice start="1295917080" end="1295917140" />
+      </slices>
+    </edge>
+    <edge source="TeaCupThrills" target="Hazzabizzy" start="1295914873" end="1295914933" weight="0">
+      <attvalues>
+        <attvalue for="weight" value="1" start="1295914873" end="1295914933"/>
+      </attvalues>
+      <slices>
+        <slice start="1295914873" end="1295914933" />
+      </slices>
+    </edge>
+    <edge source="TeaCupThrills" target="TheSherio" start="1295915742" end="1295915802" weight="0">
+      <attvalues>
+        <attvalue for="weight" value="1" start="1295915742" end="1295915802"/>
+      </attvalues>
+      <slices>
+        <slice start="1295915742" end="1295915802" />
+      </slices>
+    </edge>
+    <edge source="libyanmaddog" target="dianapop" start="1295913781" end="1295913841" weight="0">
+      <attvalues>
+        <attvalue for="weight" value="1" start="1295913781" end="1295913841"/>
+      </attvalues>
+      <slices>
+        <slice start="1295913781" end="1295913841" />
+      </slices>
+    </edge>
+    <edge source="kwanousa" target="m_h_m_d25" start="1295916167" end="1295916227" weight="0">
+      <attvalues>
+        <attvalue for="weight" value="1" start="1295916167" end="1295916227"/>
+      </attvalues>
+      <slices>
+        <slice start="1295916167" end="1295916227" />
+      </slices>
+    </edge>
+    <edge source="keb_m" target="sheeemi" start="1295915212" end="1295915272" weight="0">
+      <attvalues>
+        <attvalue for="weight" value="1" start="1295915212" end="1295915272"/>
+      </attvalues>
+      <slices>
+        <slice start="1295915212" end="1295915272" />
+      </slices>
+    </edge>
+    <edge source="keb_m" target="NesrineBR1" start="1295915077" end="1295915137" weight="0">
+      <attvalues>
+        <attvalue for="weight" value="1" start="1295915077" end="1295915137"/>
+      </attvalues>
+      <slices>
+        <slice start="1295915077" end="1295915137" />
+      </slices>
+    </edge>
+    <edge source="keb_m" target="alihabibi1" start="1295915287" end="1295915347" weight="0">
+      <attvalues>
+        <attvalue for="weight" value="1" start="1295915287" end="1295915347"/>
+      </attvalues>
+      <slices>
+        <slice start="1295915287" end="1295915347" />
+      </slices>
+    </edge>
+    <edge source="keb_m" target="tounsiwaftakhir" start="1295915511" end="1295915571" weight="0">
+      <attvalues>
+        <attvalue for="weight" value="1" start="1295915511" end="1295915571"/>
+      </attvalues>
+      <slices>
+        <slice start="1295915511" end="1295915571" />
+      </slices>
+    </edge>
+    <edge source="HopefulMona" target="esraa_ali" start="1295915977" end="1295916037" weight="0">
+      <attvalues>
+        <attvalue for="weight" value="1" start="1295915977" end="1295916037"/>
+      </attvalues>
+      <slices>
+        <slice start="1295915977" end="1295916037" />
+      </slices>
+    </edge>
+    <edge source="Dima_Khatib" target="realrissa" start="1295916675" end="1295916735" weight="0">
+      <attvalues>
+        <attvalue for="weight" value="1" start="1295916675" end="1295916735"/>
+      </attvalues>
+      <slices>
+        <slice start="1295916675" end="1295916735" />
+      </slices>
+    </edge>
+    <edge source="Dima_Khatib" target="WNOFAL" start="1295914462" end="1295914522" weight="0">
+      <attvalues>
+        <attvalue for="weight" value="1" start="1295914462" end="1295914522"/>
+      </attvalues>
+      <slices>
+        <slice start="1295914462" end="1295914522" />
+      </slices>
+    </edge>
+    <edge source="Dima_Khatib" target="AnonymousIRC" start="1295914504" end="1295914564" weight="0">
+      <attvalues>
+        <attvalue for="weight" value="1" start="1295914504" end="1295914564"/>
+      </attvalues>
+      <slices>
+        <slice start="1295914504" end="1295914564" />
+      </slices>
+    </edge>
+    <edge source="Dima_Khatib" target="bea_dtj" start="1295914486" end="1295914546" weight="0">
+      <attvalues>
+        <attvalue for="weight" value="1" start="1295914486" end="1295914546"/>
+      </attvalues>
+      <slices>
+        <slice start="1295914486" end="1295914546" />
+      </slices>
+    </edge>
+    <edge source="Dima_Khatib" target="fatemaqaed" start="1295914663" end="1295914723" weight="0">
+      <attvalues>
+        <attvalue for="weight" value="1" start="1295914663" end="1295914723"/>
+      </attvalues>
+      <slices>
+        <slice start="1295914663" end="1295914723" />
+      </slices>
+    </edge>
+    <edge source="AERA_EGYPT" target="Snntitn" start="1295915485" end="1295915545" weight="0">
+      <attvalues>
+        <attvalue for="weight" value="1" start="1295915485" end="1295915545"/>
+      </attvalues>
+      <slices>
+        <slice start="1295915485" end="1295915545" />
+      </slices>
+    </edge>
+    <edge source="WNofal" target="Bad_way" start="1295914731" end="1295914791" weight="0">
+      <attvalues>
+        <attvalue for="weight" value="1" start="1295914731" end="1295914791"/>
+      </attvalues>
+      <slices>
+        <slice start="1295914731" end="1295914791" />
+      </slices>
+    </edge>
+    <edge source="WNofal" target="ReemAbdellatif" start="1295914920" end="1295914980" weight="0">
+      <attvalues>
+        <attvalue for="weight" value="1" start="1295914920" end="1295914980"/>
+      </attvalues>
+      <slices>
+        <slice start="1295914920" end="1295914980" />
+      </slices>
+    </edge>
+    <edge source="WNofal" target="Dr_Milad" start="1295914740" end="1295914870" weight="0">
+      <attvalues>
+        <attvalue for="weight" value="1" start="1295914740" end="1295914800"/>
+        <attvalue for="weight" value="1" start="1295914810" end="1295914870"/>
+      </attvalues>
+      <slices>
+        <slice start="1295914740" end="1295914800" />
+        <slice start="1295914810" end="1295914870" />
+      </slices>
+    </edge>
+    <edge source="WNofal" target="demaghmak" start="1295914746" end="1295914806" weight="0">
+      <attvalues>
+        <attvalue for="weight" value="1" start="1295914746" end="1295914806"/>
+      </attvalues>
+      <slices>
+        <slice start="1295914746" end="1295914806" />
+      </slices>
+    </edge>
+    <edge source="WNofal" target="naif0001" start="1295914799" end="1295914859" weight="0">
+      <attvalues>
+        <attvalue for="weight" value="1" start="1295914799" end="1295914859"/>
+      </attvalues>
+      <slices>
+        <slice start="1295914799" end="1295914859" />
+      </slices>
+    </edge>
+    <edge source="WNofal" target="baheyah" start="1295915190" end="1295915250" weight="0">
+      <attvalues>
+        <attvalue for="weight" value="1" start="1295915190" end="1295915250"/>
+      </attvalues>
+      <slices>
+        <slice start="1295915190" end="1295915250" />
+      </slices>
+    </edge>
+    <edge source="WNofal" target="SHaKaRiA" start="1295914780" end="1295914840" weight="0">
+      <attvalues>
+        <attvalue for="weight" value="1" start="1295914780" end="1295914840"/>
+      </attvalues>
+      <slices>
+        <slice start="1295914780" end="1295914840" />
+      </slices>
+    </edge>
+    <edge source="Tharwacolamus" target="HopefulMona" start="1295915067" end="1295915127" weight="0">
+      <attvalues>
+        <attvalue for="weight" value="1" start="1295915067" end="1295915127"/>
+      </attvalues>
+      <slices>
+        <slice start="1295915067" end="1295915127" />
+      </slices>
+    </edge>
+    <edge source="RelUnrelated" target="Wordydiva" start="1295914106" end="1295914166" weight="0">
+      <attvalues>
+        <attvalue for="weight" value="1" start="1295914106" end="1295914166"/>
+      </attvalues>
+      <slices>
+        <slice start="1295914106" end="1295914166" />
+      </slices>
+    </edge>
+    <edge source="moonsgirl" target="fish_eat_fish" start="1295916470" end="1295916530" weight="0">
+      <attvalues>
+        <attvalue for="weight" value="1" start="1295916470" end="1295916530"/>
+      </attvalues>
+      <slices>
+        <slice start="1295916470" end="1295916530" />
+      </slices>
+    </edge>
+    <edge source="moonsgirl" target="AidanDouda" start="1295916018" end="1295916078" weight="0">
+      <attvalues>
+        <attvalue for="weight" value="1" start="1295916018" end="1295916078"/>
+      </attvalues>
+      <slices>
+        <slice start="1295916018" end="1295916078" />
+      </slices>
+    </edge>
+    <edge source="iafify" target="ALADWANI76" start="1295914115" end="1295914175" weight="0">
+      <attvalues>
+        <attvalue for="weight" value="1" start="1295914115" end="1295914175"/>
+      </attvalues>
+      <slices>
+        <slice start="1295914115" end="1295914175" />
+      </slices>
+    </edge>
+    <edge source="BarrettBrownLOL" target="anontana" start="1295914638" end="1295914698" weight="0">
+      <attvalues>
+        <attvalue for="weight" value="1" start="1295914638" end="1295914698"/>
+      </attvalues>
+      <slices>
+        <slice start="1295914638" end="1295914698" />
+      </slices>
+    </edge>
+    <edge source="AhmedAbdalrhmen" target="Youngredrabbit" start="1295913650" end="1295913710" weight="0">
+      <attvalues>
+        <attvalue for="weight" value="1" start="1295913650" end="1295913710"/>
+      </attvalues>
+      <slices>
+        <slice start="1295913650" end="1295913710" />
+      </slices>
+    </edge>
+    <edge source="Kareemelansary" target="DFMorrison" start="1295915040" end="1295915100" weight="0">
+      <attvalues>
+        <attvalue for="weight" value="1" start="1295915040" end="1295915100"/>
+      </attvalues>
+      <slices>
+        <slice start="1295915040" end="1295915100" />
+      </slices>
+    </edge>
+    <edge source="Kareemelansary" target="amalFree" start="1295915085" end="1295915145" weight="0">
+      <attvalues>
+        <attvalue for="weight" value="1" start="1295915085" end="1295915145"/>
+      </attvalues>
+      <slices>
+        <slice start="1295915085" end="1295915145" />
+      </slices>
+    </edge>
+    <edge source="JawedOT" target="Zapa_out" start="1295913895" end="1295913955" weight="0">
+      <attvalues>
+        <attvalue for="weight" value="1" start="1295913895" end="1295913955"/>
+      </attvalues>
+      <slices>
+        <slice start="1295913895" end="1295913955" />
+      </slices>
+    </edge>
+    <edge source="gordon_reynolds" target="redbakersen" start="1295916971" end="1295917031" weight="0">
+      <attvalues>
+        <attvalue for="weight" value="1" start="1295916971" end="1295917031"/>
+      </attvalues>
+      <slices>
+        <slice start="1295916971" end="1295917031" />
+      </slices>
+    </edge>
+    <edge source="EngSeif" target="khduck" start="1295914519" end="1295914579" weight="0">
+      <attvalues>
+        <attvalue for="weight" value="1" start="1295914519" end="1295914579"/>
+      </attvalues>
+      <slices>
+        <slice start="1295914519" end="1295914579" />
+      </slices>
+    </edge>
+    <edge source="EngSeif" target="SHaKaRiA" start="1295914113" end="1295914491" weight="0">
+      <attvalues>
+        <attvalue for="weight" value="1" start="1295914113" end="1295914173"/>
+        <attvalue for="weight" value="1" start="1295914431" end="1295914491"/>
+      </attvalues>
+      <slices>
+        <slice start="1295914113" end="1295914173" />
+        <slice start="1295914431" end="1295914491" />
+      </slices>
+    </edge>
+    <edge source="DiAyDi" target="Fahrass" start="1295914250" end="1295914310" weight="0">
+      <attvalues>
+        <attvalue for="weight" value="1" start="1295914250" end="1295914310"/>
+      </attvalues>
+      <slices>
+        <slice start="1295914250" end="1295914310" />
+      </slices>
+    </edge>
+    <edge source="arabist" target="dianapop" start="1295913895" end="1295913955" weight="0">
+      <attvalues>
+        <attvalue for="weight" value="1" start="1295913895" end="1295913955"/>
+      </attvalues>
+      <slices>
+        <slice start="1295913895" end="1295913955" />
+      </slices>
+    </edge>
+    <edge source="Amira_Nosseir" target="Dr_Milad" start="1295915097" end="1295915157" weight="0">
+      <attvalues>
+        <attvalue for="weight" value="1" start="1295915097" end="1295915157"/>
+      </attvalues>
+      <slices>
+        <slice start="1295915097" end="1295915157" />
+      </slices>
+    </edge>
+    <edge source="Amira_Nosseir" target="Adel_Salib" start="1295916398" end="1295916458" weight="0">
+      <attvalues>
+        <attvalue for="weight" value="1" start="1295916398" end="1295916458"/>
+      </attvalues>
+      <slices>
+        <slice start="1295916398" end="1295916458" />
+      </slices>
+    </edge>
+    <edge source="Amira_Nosseir" target="mrwalid3moon" start="1295915255" end="1295915315" weight="0">
+      <attvalues>
+        <attvalue for="weight" value="1" start="1295915255" end="1295915315"/>
+      </attvalues>
+      <slices>
+        <slice start="1295915255" end="1295915315" />
+      </slices>
+    </edge>
+    <edge source="Amira_Nosseir" target="lioromio" start="1295915789" end="1295915849" weight="0">
+      <attvalues>
+        <attvalue for="weight" value="1" start="1295915789" end="1295915849"/>
+      </attvalues>
+      <slices>
+        <slice start="1295915789" end="1295915849" />
+      </slices>
+    </edge>
+    <edge source="Amira_Nosseir" target="esraa_ali" start="1295916495" end="1295916555" weight="0">
+      <attvalues>
+        <attvalue for="weight" value="1" start="1295916495" end="1295916555"/>
+      </attvalues>
+      <slices>
+        <slice start="1295916495" end="1295916555" />
+      </slices>
+    </edge>
+    <edge source="DollyAlashker" target="Radwan_Adam" start="1295914214" end="1295914274" weight="0">
+      <attvalues>
+        <attvalue for="weight" value="1" start="1295914214" end="1295914274"/>
+      </attvalues>
+      <slices>
+        <slice start="1295914214" end="1295914274" />
+      </slices>
+    </edge>
+    <edge source="animallover1607" target="wickedglitter1" start="1295914185" end="1295914245" weight="0">
+      <attvalues>
+        <attvalue for="weight" value="1" start="1295914185" end="1295914245"/>
+      </attvalues>
+      <slices>
+        <slice start="1295914185" end="1295914245" />
+      </slices>
+    </edge>
+    <edge source="animallover1607" target="lostpets" start="1295915122" end="1295915182" weight="0">
+      <attvalues>
+        <attvalue for="weight" value="1" start="1295915122" end="1295915182"/>
+      </attvalues>
+      <slices>
+        <slice start="1295915122" end="1295915182" />
+      </slices>
+    </edge>
+    <edge source="AJEnglish" target="s_a_cosgrove" start="1295917158" end="1295917218" weight="0">
+      <attvalues>
+        <attvalue for="weight" value="1" start="1295917158" end="1295917218"/>
+      </attvalues>
+      <slices>
+        <slice start="1295917158" end="1295917218" />
+      </slices>
+    </edge>
+    <edge source="weddady" target="katalystprods" start="1295914874" end="1295914934" weight="0">
+      <attvalues>
+        <attvalue for="weight" value="1" start="1295914874" end="1295914934"/>
+      </attvalues>
+      <slices>
+        <slice start="1295914874" end="1295914934" />
+      </slices>
+    </edge>
+    <edge source="weddady" target="blackxanonymous" start="1295914163" end="1295914223" weight="0">
+      <attvalues>
+        <attvalue for="weight" value="1" start="1295914163" end="1295914223"/>
+      </attvalues>
+      <slices>
+        <slice start="1295914163" end="1295914223" />
+      </slices>
+    </edge>
+    <edge source="weddady" target="ze_dach" start="1295915942" end="1295916002" weight="0">
+      <attvalues>
+        <attvalue for="weight" value="1" start="1295915942" end="1295916002"/>
+      </attvalues>
+      <slices>
+        <slice start="1295915942" end="1295916002" />
+      </slices>
+    </edge>
+    <edge source="weddady" target="ByLasKo" start="1295914663" end="1295914723" weight="0">
+      <attvalues>
+        <attvalue for="weight" value="1" start="1295914663" end="1295914723"/>
+      </attvalues>
+      <slices>
+        <slice start="1295914663" end="1295914723" />
+      </slices>
+    </edge>
+    <edge source="weddady" target="WNOFAL" start="1295914170" end="1295914230" weight="0">
+      <attvalues>
+        <attvalue for="weight" value="1" start="1295914170" end="1295914230"/>
+      </attvalues>
+      <slices>
+        <slice start="1295914170" end="1295914230" />
+      </slices>
+    </edge>
+    <edge source="weddady" target="Tharwacolamus" start="1295914450" end="1295914510" weight="0">
+      <attvalues>
+        <attvalue for="weight" value="1" start="1295914450" end="1295914510"/>
+      </attvalues>
+      <slices>
+        <slice start="1295914450" end="1295914510" />
+      </slices>
+    </edge>
+    <edge source="weddady" target="Jezabeldiablo" start="1295914338" end="1295914398" weight="0">
+      <attvalues>
+        <attvalue for="weight" value="1" start="1295914338" end="1295914398"/>
+      </attvalues>
+      <slices>
+        <slice start="1295914338" end="1295914398" />
+      </slices>
+    </edge>
+    <edge source="weddady" target="Numendil" start="1295914460" end="1295914520" weight="0">
+      <attvalues>
+        <attvalue for="weight" value="1" start="1295914460" end="1295914520"/>
+      </attvalues>
+      <slices>
+        <slice start="1295914460" end="1295914520" />
+      </slices>
+    </edge>
+    <edge source="weddady" target="fokito" start="1295915256" end="1295915316" weight="0">
+      <attvalues>
+        <attvalue for="weight" value="1" start="1295915256" end="1295915316"/>
+      </attvalues>
+      <slices>
+        <slice start="1295915256" end="1295915316" />
+      </slices>
+    </edge>
+    <edge source="weddady" target="fliesinamber" start="1295914076" end="1295914136" weight="0">
+      <attvalues>
+        <attvalue for="weight" value="1" start="1295914076" end="1295914136"/>
+      </attvalues>
+      <slices>
+        <slice start="1295914076" end="1295914136" />
+      </slices>
+    </edge>
+    <edge source="weddady" target="AnonymousIRC" start="1295914234" end="1295914294" weight="0">
+      <attvalues>
+        <attvalue for="weight" value="1" start="1295914234" end="1295914294"/>
+      </attvalues>
+      <slices>
+        <slice start="1295914234" end="1295914294" />
+      </slices>
+    </edge>
+    <edge source="weddady" target="Liliopatra" start="1295914030" end="1295914090" weight="0">
+      <attvalues>
+        <attvalue for="weight" value="1" start="1295914030" end="1295914090"/>
+      </attvalues>
+      <slices>
+        <slice start="1295914030" end="1295914090" />
+      </slices>
+    </edge>
+    <edge source="weddady" target="BuJabal" start="1295915905" end="1295915965" weight="0">
+      <attvalues>
+        <attvalue for="weight" value="1" start="1295915905" end="1295915965"/>
+      </attvalues>
+      <slices>
+        <slice start="1295915905" end="1295915965" />
+      </slices>
+    </edge>
+    <edge source="weddady" target="amalFree" start="1295914700" end="1295914760" weight="0">
+      <attvalues>
+        <attvalue for="weight" value="1" start="1295914700" end="1295914760"/>
+      </attvalues>
+      <slices>
+        <slice start="1295914700" end="1295914760" />
+      </slices>
+    </edge>
+    <edge source="weddady" target="mfatta7" start="1295914155" end="1295914215" weight="0">
+      <attvalues>
+        <attvalue for="weight" value="1" start="1295914155" end="1295914215"/>
+      </attvalues>
+      <slices>
+        <slice start="1295914155" end="1295914215" />
+      </slices>
+    </edge>
+    <edge source="weddady" target="Nellie_Gants" start="1295914515" end="1295914575" weight="0">
+      <attvalues>
+        <attvalue for="weight" value="1" start="1295914515" end="1295914575"/>
+      </attvalues>
+      <slices>
+        <slice start="1295914515" end="1295914575" />
+      </slices>
+    </edge>
+    <edge source="weddady" target="justicentric" start="1295915205" end="1295915265" weight="0">
+      <attvalues>
+        <attvalue for="weight" value="1" start="1295915205" end="1295915265"/>
+      </attvalues>
+      <slices>
+        <slice start="1295915205" end="1295915265" />
+      </slices>
+    </edge>
+    <edge source="weddady" target="Gheblawi" start="1295916868" end="1295916928" weight="0">
+      <attvalues>
+        <attvalue for="weight" value="1" start="1295916868" end="1295916928"/>
+      </attvalues>
+      <slices>
+        <slice start="1295916868" end="1295916928" />
+      </slices>
+    </edge>
+    <edge source="weddady" target="TunObs" start="1295914112" end="1295914172" weight="0">
+      <attvalues>
+        <attvalue for="weight" value="1" start="1295914112" end="1295914172"/>
+      </attvalues>
+      <slices>
+        <slice start="1295914112" end="1295914172" />
+      </slices>
+    </edge>
+    <edge source="thesultrysimone" target="arabellemllc" start="1295915633" end="1295915693" weight="0">
+      <attvalues>
+        <attvalue for="weight" value="1" start="1295915633" end="1295915693"/>
+      </attvalues>
+      <slices>
+        <slice start="1295915633" end="1295915693" />
+      </slices>
+    </edge>
+    <edge source="sonaliranade" target="calliopeconsult" start="1295914916" end="1295914976" weight="0">
+      <attvalues>
+        <attvalue for="weight" value="1" start="1295914916" end="1295914976"/>
+      </attvalues>
+      <slices>
+        <slice start="1295914916" end="1295914976" />
+      </slices>
+    </edge>
+    <edge source="RamyRaoof" target="ReemAbdellatif" start="1295913678" end="1295913738" weight="0">
+      <attvalues>
+        <attvalue for="weight" value="1" start="1295913678" end="1295913738"/>
+      </attvalues>
+      <slices>
+        <slice start="1295913678" end="1295913738" />
+      </slices>
+    </edge>
+    <edge source="RamyRaoof" target="ahmedzakiosman" start="1295916692" end="1295916752" weight="0">
+      <attvalues>
+        <attvalue for="weight" value="1" start="1295916692" end="1295916752"/>
+      </attvalues>
+      <slices>
+        <slice start="1295916692" end="1295916752" />
+      </slices>
+    </edge>
+    <edge source="RamyRaoof" target="egyreality_isis" start="1295913672" end="1295913732" weight="0">
+      <attvalues>
+        <attvalue for="weight" value="1" start="1295913672" end="1295913732"/>
+      </attvalues>
+      <slices>
+        <slice start="1295913672" end="1295913732" />
+      </slices>
+    </edge>
+    <edge source="RamyRaoof" target="Youngredrabbit" start="1295913792" end="1295913852" weight="0">
+      <attvalues>
+        <attvalue for="weight" value="1" start="1295913792" end="1295913852"/>
+      </attvalues>
+      <slices>
+        <slice start="1295913792" end="1295913852" />
+      </slices>
+    </edge>
+    <edge source="RamyRaoof" target="JoliePagaille" start="1295913667" end="1295913727" weight="0">
+      <attvalues>
+        <attvalue for="weight" value="1" start="1295913667" end="1295913727"/>
+      </attvalues>
+      <slices>
+        <slice start="1295913667" end="1295913727" />
+      </slices>
+    </edge>
+    <edge source="Original_Dubes" target="berksgal" start="1295914043" end="1295914103" weight="0">
+      <attvalues>
+        <attvalue for="weight" value="1" start="1295914043" end="1295914103"/>
+      </attvalues>
+      <slices>
+        <slice start="1295914043" end="1295914103" />
+      </slices>
+    </edge>
+    <edge source="monaeltahawy" target="VerdantSage" start="1295913781" end="1295913841" weight="0">
+      <attvalues>
+        <attvalue for="weight" value="1" start="1295913781" end="1295913841"/>
+      </attvalues>
+      <slices>
+        <slice start="1295913781" end="1295913841" />
+      </slices>
+    </edge>
+    <edge source="monaeltahawy" target="ReemAbdellatif" start="1295913862" end="1295913922" weight="0">
+      <attvalues>
+        <attvalue for="weight" value="1" start="1295913862" end="1295913922"/>
+      </attvalues>
+      <slices>
+        <slice start="1295913862" end="1295913922" />
+      </slices>
+    </edge>
+    <edge source="monaeltahawy" target="hothotsa" start="1295914248" end="1295914308" weight="0">
+      <attvalues>
+        <attvalue for="weight" value="1" start="1295914248" end="1295914308"/>
+      </attvalues>
+      <slices>
+        <slice start="1295914248" end="1295914308" />
+      </slices>
+    </edge>
+    <edge source="monaeltahawy" target="vincubusdante" start="1295916109" end="1295916169" weight="0">
+      <attvalues>
+        <attvalue for="weight" value="1" start="1295916109" end="1295916169"/>
+      </attvalues>
+      <slices>
+        <slice start="1295916109" end="1295916169" />
+      </slices>
+    </edge>
+    <edge source="monaeltahawy" target="dianapop" start="1295913720" end="1295913780" weight="0">
+      <attvalues>
+        <attvalue for="weight" value="1" start="1295913720" end="1295913780"/>
+      </attvalues>
+      <slices>
+        <slice start="1295913720" end="1295913780" />
+      </slices>
+    </edge>
+    <edge source="monaeltahawy" target="nelaontherun" start="1295913954" end="1295914014" weight="0">
+      <attvalues>
+        <attvalue for="weight" value="1" start="1295913954" end="1295914014"/>
+      </attvalues>
+      <slices>
+        <slice start="1295913954" end="1295914014" />
+      </slices>
+    </edge>
+    <edge source="lioromio" target="Ra5ama" start="1295913783" end="1295913843" weight="0">
+      <attvalues>
+        <attvalue for="weight" value="1" start="1295913783" end="1295913843"/>
+      </attvalues>
+      <slices>
+        <slice start="1295913783" end="1295913843" />
+      </slices>
+    </edge>
+    <edge source="gjmorley" target="eve_mikun" start="1295915685" end="1295915745" weight="0">
+      <attvalues>
+        <attvalue for="weight" value="1" start="1295915685" end="1295915745"/>
+      </attvalues>
+      <slices>
+        <slice start="1295915685" end="1295915745" />
+      </slices>
+    </edge>
+    <edge source="bloggingegypt" target="ishta_dreams" start="1295915767" end="1295915827" weight="0">
+      <attvalues>
+        <attvalue for="weight" value="1" start="1295915767" end="1295915827"/>
+      </attvalues>
+      <slices>
+        <slice start="1295915767" end="1295915827" />
+      </slices>
+    </edge>
+    <edge source="tounsiwaftakhir" target="ahmed_ossama" start="1295914528" end="1295914588" weight="0">
+      <attvalues>
+        <attvalue for="weight" value="1" start="1295914528" end="1295914588"/>
+      </attvalues>
+      <slices>
+        <slice start="1295914528" end="1295914588" />
+      </slices>
+    </edge>
+    <edge source="tounsiwaftakhir" target="TheSherio" start="1295914366" end="1295914426" weight="0">
+      <attvalues>
+        <attvalue for="weight" value="1" start="1295914366" end="1295914426"/>
+      </attvalues>
+      <slices>
+        <slice start="1295914366" end="1295914426" />
+      </slices>
+    </edge>
+    <edge source="tounsiwaftakhir" target="baheyah" start="1295914623" end="1295914683" weight="0">
+      <attvalues>
+        <attvalue for="weight" value="1" start="1295914623" end="1295914683"/>
+      </attvalues>
+      <slices>
+        <slice start="1295914623" end="1295914683" />
+      </slices>
+    </edge>
+    <edge source="SkyNewsBlogs" target="NewsNumpty" start="1295915010" end="1295915070" weight="0">
+      <attvalues>
+        <attvalue for="weight" value="1" start="1295915010" end="1295915070"/>
+      </attvalues>
+      <slices>
+        <slice start="1295915010" end="1295915070" />
+      </slices>
+    </edge>
+    <edge source="mohamed_shazly" target="esraa_ali" start="1295915968" end="1295916028" weight="0">
+      <attvalues>
+        <attvalue for="weight" value="1" start="1295915968" end="1295916028"/>
+      </attvalues>
+      <slices>
+        <slice start="1295915968" end="1295916028" />
+      </slices>
+    </edge>
+    <edge source="marmite_news" target="Caer23" start="1295915494" end="1295915554" weight="0">
+      <attvalues>
+        <attvalue for="weight" value="1" start="1295915494" end="1295915554"/>
+      </attvalues>
+      <slices>
+        <slice start="1295915494" end="1295915554" />
+      </slices>
+    </edge>
+    <edge source="marmite_news" target="rk70534" start="1295915208" end="1295915292" weight="0">
+      <attvalues>
+        <attvalue for="weight" value="1" start="1295915208" end="1295915231"/>
+        <attvalue for="weight" value="2" start="1295915232" end="1295915268"/>
+        <attvalue for="weight" value="1" start="1295915269" end="1295915292"/>
+      </attvalues>
+      <slices>
+        <slice start="1295915208" end="1295915231" />
+        <slice start="1295915232" end="1295915268" />
+        <slice start="1295915269" end="1295915292" />
+      </slices>
+    </edge>
+    <edge source="kelseymuseum" target="janellepeters" start="1295914041" end="1295914101" weight="0">
+      <attvalues>
+        <attvalue for="weight" value="1" start="1295914041" end="1295914101"/>
+      </attvalues>
+      <slices>
+        <slice start="1295914041" end="1295914101" />
+      </slices>
+    </edge>
+    <edge source="justicentric" target="ma2rofa" start="1295916175" end="1295916235" weight="0">
+      <attvalues>
+        <attvalue for="weight" value="1" start="1295916175" end="1295916235"/>
+      </attvalues>
+      <slices>
+        <slice start="1295916175" end="1295916235" />
+      </slices>
+    </edge>
+    <edge source="iRevolt" target="axion1123" start="1295915691" end="1295915751" weight="0">
+      <attvalues>
+        <attvalue for="weight" value="1" start="1295915691" end="1295915751"/>
+      </attvalues>
+      <slices>
+        <slice start="1295915691" end="1295915751" />
+      </slices>
+    </edge>
+    <edge source="iRevolt" target="theblackrabbit" start="1295914220" end="1295914280" weight="0">
+      <attvalues>
+        <attvalue for="weight" value="1" start="1295914220" end="1295914280"/>
+      </attvalues>
+      <slices>
+        <slice start="1295914220" end="1295914280" />
+      </slices>
+    </edge>
+    <edge source="AkherElAkhbar" target="DollyAlashker" start="1295916391" end="1295916451" weight="0">
+      <attvalues>
+        <attvalue for="weight" value="1" start="1295916391" end="1295916451"/>
+      </attvalues>
+      <slices>
+        <slice start="1295916391" end="1295916451" />
+      </slices>
+    </edge>
+    <edge source="wael" target="monasosh" start="1295914585" end="1295914645" weight="0">
+      <attvalues>
+        <attvalue for="weight" value="1" start="1295914585" end="1295914645"/>
+      </attvalues>
+      <slices>
+        <slice start="1295914585" end="1295914645" />
+      </slices>
+    </edge>
+    <edge source="fakroona" target="youssefbouayed" start="1295914235" end="1295914295" weight="0">
+      <attvalues>
+        <attvalue for="weight" value="1" start="1295914235" end="1295914295"/>
+      </attvalues>
+      <slices>
+        <slice start="1295914235" end="1295914295" />
+      </slices>
+    </edge>
+    <edge source="fakroona" target="mand0z" start="1295914532" end="1295914592" weight="0">
+      <attvalues>
+        <attvalue for="weight" value="1" start="1295914532" end="1295914592"/>
+      </attvalues>
+      <slices>
+        <slice start="1295914532" end="1295914592" />
+      </slices>
+    </edge>
+    <edge source="fakroona" target="TheSherio" start="1295914424" end="1295914484" weight="0">
+      <attvalues>
+        <attvalue for="weight" value="1" start="1295914424" end="1295914484"/>
+      </attvalues>
+      <slices>
+        <slice start="1295914424" end="1295914484" />
+      </slices>
+    </edge>
+    <edge source="fakroona" target="Numendil" start="1295914451" end="1295914511" weight="0">
+      <attvalues>
+        <attvalue for="weight" value="1" start="1295914451" end="1295914511"/>
+      </attvalues>
+      <slices>
+        <slice start="1295914451" end="1295914511" />
+      </slices>
+    </edge>
+    <edge source="fakroona" target="lioromio" start="1295914576" end="1295914636" weight="0">
+      <attvalues>
+        <attvalue for="weight" value="1" start="1295914576" end="1295914636"/>
+      </attvalues>
+      <slices>
+        <slice start="1295914576" end="1295914636" />
+      </slices>
+    </edge>
+    <edge source="AhmadWasiem" target="Dr_Milad" start="1295915312" end="1295915372" weight="0">
+      <attvalues>
+        <attvalue for="weight" value="1" start="1295915312" end="1295915372"/>
+      </attvalues>
+      <slices>
+        <slice start="1295915312" end="1295915372" />
+      </slices>
+    </edge>
+  </edges>
+  </graph>
+</gexf>

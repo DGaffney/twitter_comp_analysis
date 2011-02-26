@@ -1,5 +1,6 @@
 ActionController::Routing::Routes.draw do |map|
   map.thread_api "/threads/:id.js", :controller => "tweets_chosen_threads", :action => "thread_response"
+  map.thread_graph "/graph/threads/:id", :controller => "tweets_chosen_threads", :action => "graph"
   map.friends "/friends/:id.json", :controller => "edges", :action => "friends"
   map.followers "/followers/:id.json", :controller => "edges", :action => "followers"
   # map.resources :users
