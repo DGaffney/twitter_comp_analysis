@@ -82,6 +82,31 @@ class TweetsChosenThreadsController < ApplicationController
   end
   
   def thread_response
+    # result = Rails.cache.fetch("threads_tree_#{params[:id]}"){
+    #   root = TweetsChosenThread.find(:first, :conditions => {:thread_id => params[:id]}, :order => "pubdate asc")
+    #   tweet = Tweet.find_by_twitter_id(root.twitter_id)
+    #   if tweet.in_reply_to_status_id && tweet.in_reply_to_status_id != 0
+    #     root = TweetsChosenThread.tweet_data(tweet.in_reply_to_status_id)
+    #     in_reply_to_status_id = root.class==Array ? root.first["in_reply_to_status_id"] : root.in_reply_to_status_id
+    #     while in_reply_to_status_id && in_reply_to_status_id != 0 
+    #       root = TweetsChosenThread.tweet_data(tweet.in_reply_to_status_id)
+    #       in_reply_to_status_id = root.class==Array ? root.first["in_reply_to_status_id"] : root.in_reply_to_status_id        
+    #     end
+    #   end
+    #   TweetsChosenThread.return_child_js(root, nil, params[:id])      
+    # }
+    result = thread_json
+    render :json => result
+  end
+  
+  def graph
+    @json = thread_json
+    respond_to do |format|
+      format.html
+    end
+  end
+  
+  def thread_json
     result = Rails.cache.fetch("threads_tree_#{params[:id]}"){
       root = TweetsChosenThread.find(:first, :conditions => {:thread_id => params[:id]}, :order => "pubdate asc")
       tweet = Tweet.find_by_twitter_id(root.twitter_id)
@@ -95,6 +120,7 @@ class TweetsChosenThreadsController < ApplicationController
       end
       TweetsChosenThread.return_child_js(root, nil, params[:id])      
     }
-    render :json => result.to_json
+    return result.to_json
   end
+  
 end
