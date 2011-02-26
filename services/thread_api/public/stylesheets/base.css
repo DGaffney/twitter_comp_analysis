@@ -106,6 +106,7 @@ a {
     margin:auto;
     overflow:hidden;
     background:#333;
+    cursor:move;
 }
 
 /*TOOLTIPS*/

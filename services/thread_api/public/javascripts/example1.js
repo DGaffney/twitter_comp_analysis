@@ -1,5 +1,7 @@
 var labelType, useGradients, nativeTextSupport, animate;
 
+var st;
+
 (function() {
   var ua = navigator.userAgent,
       iStuff = ua.match(/iPhone/i) || ua.match(/iPad/i),
@@ -762,7 +764,8 @@ function init(json){
     //end
     //init Spacetree
     //Create a new ST instance
-    var st = new $jit.ST({
+    // var
+    st = new $jit.ST({
         //id of viz container element
         injectInto: 'infovis',
         //set duration for the animation
@@ -771,7 +774,8 @@ function init(json){
         transition: $jit.Trans.Quart.easeInOut,
         //set distance between node and its children
         levelDistance: 50,
-        levelsToShow: 6,
+        levelsToShow: 20,
+        constrained: false,
         //enable panning
         Navigation: {
           enable:true,
@@ -782,7 +786,7 @@ function init(json){
         //nodes or edges
         Node: {
             height: 12,
-            width: 60,
+            width: 80,
             type: 'none',
             color: '#999',
             overridable: true
@@ -822,17 +826,18 @@ function init(json){
             };
             //set label styles
             var style = label.style;
-            style.width = 60 + 'px';
+            style.width = 80 + 'px';
             style.height = 17 + 'px';            
             style.cursor = 'pointer';
             style.color = '#23A4FF';
             style.fontSize = '0.8em';
             style.textAlign= 'left';
             // style.paddingTop = '3px';
+            // style.paddingBottom = '2px';
             style.paddingLeft = '3px';
             
-            if(node.anySubnode("exist"))
-              console.log(node)
+            // if(node.anySubnode("exist"))
+              // console.log(node)
             // console.log(node.anySubnode("exist"))
         },
         
@@ -844,10 +849,21 @@ function init(json){
         onBeforePlotNode: function(node){
             //add some color to the nodes in the path between the
             //root node and the selected node.
-            if(node.anySubnode("exist"))
-              console.log(node)
+            // if(node.anySubnode("exist"))
+            //   console.log(node)
+            
+            if (node.anySubnode()) {
+              // console.log(node.id+'');
+              var div = document.getElementById(node.id);
+              if (div != null)
+                div.style.color = "#13E4FF";
+            }
+            
             if (node.selected) {
-                node.data.$color = "#ff7";
+              var div = document.getElementById(node.id);
+              if (div != null)
+                div.style.fontWeight = "bold";
+                // node.data.$color = "#ff7";
             }
             else {
                 delete node.data.$color;
@@ -891,23 +907,23 @@ function init(json){
     st.onClick(st.root);
     //end
     //Add event handlers to switch spacetree orientation.
-    var top = $jit.id('r-top'), 
-        left = $jit.id('r-left'), 
-        bottom = $jit.id('r-bottom'), 
-        right = $jit.id('r-right'),
-        normal = $jit.id('s-normal');
-        
-    
-    function changeHandler() {
-        if(this.checked) {
-            top.disabled = bottom.disabled = right.disabled = left.disabled = true;
-            st.switchPosition(this.value, "animate", {
-                onComplete: function(){
-                    top.disabled = bottom.disabled = right.disabled = left.disabled = false;
-                }
-            });
-        }
-    };
+    // var top = $jit.id('r-top'), 
+    //     left = $jit.id('r-left'), 
+    //     bottom = $jit.id('r-bottom'), 
+    //     right = $jit.id('r-right'),
+    //     normal = $jit.id('s-normal');
+    //     
+    // 
+    // function changeHandler() {
+    //     if(this.checked) {
+    //         top.disabled = bottom.disabled = right.disabled = left.disabled = true;
+    //         st.switchPosition(this.value, "animate", {
+    //             onComplete: function(){
+    //                 top.disabled = bottom.disabled = right.disabled = left.disabled = false;
+    //             }
+    //         });
+    //     }
+    // };
     
     // top.onchange = left.onchange = bottom.onchange = right.onchange = changeHandler;
     //end
