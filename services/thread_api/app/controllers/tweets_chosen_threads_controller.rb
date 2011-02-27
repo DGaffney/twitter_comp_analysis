@@ -1,5 +1,5 @@
 class TweetsChosenThreadsController < ApplicationController
-  require 'lib/hash.rb'
+  # require 'lib/hash.rb'
   # GET /tweets_chosen_threads
   # GET /tweets_chosen_threads.xml
   def index
@@ -88,12 +88,12 @@ class TweetsChosenThreadsController < ApplicationController
   end
   
   def graph
-    @json = thread_hash
+    @json = thread_json
+    @actor_index = actor_index.to_json
     respond_to do |format|
       format.html
     end
   end
-  
 
   def thread_hash
     # thread_ids = ActiveRecord::Base.connection.execute("select distinct(thread_id) from tweets_chosen_threads").all_hashes.collect{|x| x["thread_id"]}

@@ -19,6 +19,18 @@
 
 
 <script>
+
+  var actor_colors = {0:"#FEFF80",
+                      1:"#80FE80",
+                      2:"#809FFE",
+                      3:"#D580FE",
+                      4:"#FE8080",
+                      5:"#FECC80",
+                      6:"#80FFFE",
+                      7:"#FE80DF",
+                      8:"#BFE3FE",
+                      "uncategorized":"#ccc"}
+  var actor_index = <%= @actor_index %>
   var json = <%= @json %>
 </script>
 
@@ -29,6 +41,16 @@
 <div id="infovis"></div>
 
 <div id="log"></div>
+
+<div id="info">
+  <script>
+    for (var i=0;i<9;i++) {
+      document.write('<span style="color:'+actor_colors[i]+'">&#149; Actor Type '+i+'</span><br />')
+    }
+    document.write('<span style="color:'+actor_colors['uncategorized']+'">&#149; Uncategorized</span><br />')
+  </script>
+</div>
+
 </div>
 </body>
 </html>
