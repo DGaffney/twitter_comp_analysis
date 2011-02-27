@@ -1,5 +1,5 @@
 class TweetsChosenThreadsController < ApplicationController
-  # require 'lib/hash.rb'
+  require 'lib/hash.rb'
   # GET /tweets_chosen_threads
   # GET /tweets_chosen_threads.xml
   def index
