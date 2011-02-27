@@ -93,9 +93,10 @@ a {
 #log {
     position:absolute;
     top:10px;
-    font-size:1.0em;
+    left:10px;
+    font-size:10px;
     font-weight:bold;
-    color:#23A4FF;
+    color:#999;
 }
 
 
