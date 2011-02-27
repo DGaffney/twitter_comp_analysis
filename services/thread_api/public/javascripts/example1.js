@@ -61,6 +61,8 @@ function init(json){
         
         Edge: {
             type: 'bezier',
+            // color:"#ecd0ac",
+            color:"#666",
             overridable: true
         },
         
@@ -96,16 +98,17 @@ function init(json){
             style.width = 80 + 'px';
             style.height = 17 + 'px';            
             style.cursor = 'pointer';
-            style.color = '#23A4FF';
+            // style.color = actor_colors["uncategorized"];//'#23A4FF';
             style.fontSize = '10px';
             style.textAlign= 'left';
             // style.paddingTop = '3px';
             // style.paddingBottom = '2px';
             style.paddingLeft = '3px';
             
-            // if(node.anySubnode("exist"))
-              // console.log(node)
-            // console.log(node.anySubnode("exist"))
+            var actor_type = actor_index[node.name.toLowerCase()] || "uncategorized";
+            style.color = actor_colors[actor_type];
+            if (actor_type != "uncategorized")
+              style.fontWeight = "bold"
         },
         
         //This method is called right before plotting
@@ -117,31 +120,50 @@ function init(json){
             //add some color to the nodes in the path between the
             //root node and the selected node.
             
-            var div = document.getElementById(node.id);
-            
-            if (node.selected) {
-              if (div != null) {
-                div.style.fontWeight = "bold";
-                div.style.color = "#13E4FF"
-              }
-            } else {
-              if (div != null) {
-                div.style.fontWeight = "normal";
-                div.style.color = "#23A4FF"
-                if (node.anySubnode())
-                  div.style.fontWeight = "bold"
-              }
-              delete node.data.$color;
-              //if the node belongs to the last plotted level
-              if(!node.anySubnode("exist")) {
-                //count children number
-                var count = 0;
-                node.eachSubnode(function(n) { count++; });
-                //assign a node color based on
-                //how many children it has
-                node.data.$color = ['#aaa', '#baa', '#caa', '#daa', '#eaa', '#faa'][count];        
+            var label = document.getElementById(node.id);
+            if (label != null) {
+              if (node.selected) {
+                label.style.fontWeight = "bold";
+              } else {
+                var actor_type = actor_index[node.name.toLowerCase()] || "uncategorized";
+                if (actor_type == "uncategorized")
+                  label.style.fontWeight = "normal";
               }
             }
+                // div.style.color = "#23A4FF"
+                // if (node.anySubnode())
+                  // div.style.fontWeight = "bold"
+            
+            // if (node.selected) {
+            //   if (div != null) {
+            //     div.style.fontWeight = "bold";
+            //     // div.style.color = "#13E4FF"
+            //   }
+            // } else {
+            //   if (div != null) {
+            //     div.style.fontWeight = "normal";
+            //     // div.style.color = "#23A4FF"
+            //     // if (node.anySubnode())
+            //       // div.style.fontWeight = "bold"
+            //   }
+            //   delete node.data.$color;
+            //   //if the node belongs to the last plotted level
+            //   if(!node.anySubnode("exist")) {
+            //     //count children number
+            //     var count = 0;
+            //     node.eachSubnode(function(n) { count++; });
+            //     //assign a node color based on
+            //     //how many children it has
+            //     node.data.$color = ['#aaa', '#baa', '#caa', '#daa', '#eaa', '#faa'][count];        
+            //   }
+            // }
+            
+            // if (div != null) {
+            //   var actor_type = actor_index[node.name.toLowerCase()] || "uncategorized";
+            //   div.style.color = actor_colors[actor_type];
+            //   if (actor_type != "uncategorized")
+            //     div.style.fontWeight = "bold"
+            // }
         },
         
         //This method is called right before plotting
