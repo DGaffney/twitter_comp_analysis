@@ -107,12 +107,11 @@ class TweetsChosenThreadsController < ApplicationController
   end
   
   def actor_breakdown
-    puts thread_hash.inspect
     thread = thread_hash
     result = {}
     actor_type_index = actor_index
-    result[:originator] = {:screen_name => thread["name"], :actor_type => actor_type_index[thread["name"]]}
-    users = all_children(thread)
+    result[:originator] = {:screen_name => thread["name"], :actor_type => actor_type_index[thread["name"].downcase]}
+    users = all_children(thread).collect {|u| u.downcase }
     users.delete(thread["name"])
     actor_type_breakdown = {}
     for user in users
@@ -132,7 +131,7 @@ class TweetsChosenThreadsController < ApplicationController
   def actor_index
     r = ActiveRecord::Base.connection.execute("select p_screen_name, p_type from profiles").all_hashes
     index = {}
-    r.each {|h| index[h["p_screen_name"]] = h["p_type"].to_i }
+    r.each {|h| index[h["p_screen_name"].downcase] = h["p_type"].to_i }
     return index
   end
   
