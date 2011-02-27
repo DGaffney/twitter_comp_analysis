@@ -82,19 +82,6 @@ class TweetsChosenThreadsController < ApplicationController
   end
   
   def thread_response
-    # result = Rails.cache.fetch("threads_tree_#{params[:id]}"){
-    #   root = TweetsChosenThread.find(:first, :conditions => {:thread_id => params[:id]}, :order => "pubdate asc")
-    #   tweet = Tweet.find_by_twitter_id(root.twitter_id)
-    #   if tweet.in_reply_to_status_id && tweet.in_reply_to_status_id != 0
-    #     root = TweetsChosenThread.tweet_data(tweet.in_reply_to_status_id)
-    #     in_reply_to_status_id = root.class==Array ? root.first["in_reply_to_status_id"] : root.in_reply_to_status_id
-    #     while in_reply_to_status_id && in_reply_to_status_id != 0 
-    #       root = TweetsChosenThread.tweet_data(tweet.in_reply_to_status_id)
-    #       in_reply_to_status_id = root.class==Array ? root.first["in_reply_to_status_id"] : root.in_reply_to_status_id        
-    #     end
-    #   end
-    #   TweetsChosenThread.return_child_js(root, nil, params[:id])      
-    # }
     result = thread_json
     render :json => result
   end
@@ -106,6 +93,7 @@ class TweetsChosenThreadsController < ApplicationController
     end
   end
   
+
   def thread_json
     thread_ids.each do |thread_id|
       params = {:id => thread_id}
@@ -125,6 +113,46 @@ class TweetsChosenThreadsController < ApplicationController
       }
     end
     return result.to_json
+  end
+  
+  def actor_breakdown
+    thread = thread_hash
+    result = {}
+    actor_type_index = actor_index
+    result[:originator] = {:screen_name => thread["name"], :actor_type => actor_type_index[thread["name"].downcase]}
+    users = all_children(thread).collect {|u| u.downcase }
+    users.delete(thread["name"])
+    actor_type_breakdown = {}
+    for user in users
+      actor_type = actor_type_index[user] || "uncategorized"
+      if actor_type_breakdown.has_key?(actor_type)
+        actor_type_breakdown[actor_type][:count] += 1
+      else
+        actor_type_breakdown[actor_type] = {:count => 1}
+      end
+    end
+    total = users.length.to_f
+    actor_type_breakdown.each {|k,v| actor_type_breakdown[k][:percent] = (v[:count] / total)}
+    result[:actor_types] = actor_type_breakdown
+    render :json => result.to_json
+  end
+
+  def actor_index
+    r = ActiveRecord::Base.connection.execute("select p_screen_name, p_type from profiles").all_hashes
+    index = {}
+    r.each {|h| index[h["p_screen_name"].downcase] = h["p_type"].to_i }
+    return index
+  end
+  
+  def all_children(hash)
+    children = []
+    children << hash["name"]
+    hash["children"].each {|h| children += all_children(h) }
+    return children.uniq
+  end
+  
+  def thread_json
+    return thread_hash.to_json
   end
   
 end
