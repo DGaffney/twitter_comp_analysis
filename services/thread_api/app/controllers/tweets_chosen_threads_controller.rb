@@ -116,14 +116,14 @@ class TweetsChosenThreadsController < ApplicationController
     users.delete(thread["name"])
     actor_type_breakdown = {}
     for user in users
-      actor_type = actor_type_index[user]
+      actor_type = actor_type_index[user] || "uncategorized"
       if actor_type_breakdown.has_key?(actor_type)
         actor_type_breakdown[actor_type][:count] += 1
       else
         actor_type_breakdown[actor_type] = {:count => 1}
       end
     end
-    total = (users.length - 1).to_f
+    total = users.length.to_f
     actor_type_breakdown.each {|k,v| actor_type_breakdown[k][:percent] = (v[:count] / total)}
     result[:actor_types] = actor_type_breakdown
     render :json => result.to_json
