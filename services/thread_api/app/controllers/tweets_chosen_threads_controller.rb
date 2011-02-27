@@ -1,4 +1,5 @@
 class TweetsChosenThreadsController < ApplicationController
+  require 'lib/hash.rb'
   # GET /tweets_chosen_threads
   # GET /tweets_chosen_threads.xml
   def index
@@ -82,21 +83,21 @@ class TweetsChosenThreadsController < ApplicationController
   end
   
   def thread_response
-    result = thread_json
+    result = thread_hash.to_json
     render :json => result
   end
   
   def graph
-    @json = thread_json
+    @json = thread_hash
     respond_to do |format|
       format.html
     end
   end
   
 
-  def thread_json
-    thread_ids.each do |thread_id|
-      params = {:id => thread_id}
+  def thread_hash
+    # thread_ids.each do |thread_id|
+      # params = {:id => thread_id}
       result = Rails.cache.fetch("threads_tree_#{params[:id]}"){
         root = TweetsChosenThread.find(:first, :conditions => {:thread_id => params[:id]}, :order => "pubdate asc")
         tweet = Tweet.find_by_twitter_id(root.twitter_id) || TweetsChosenThread.tweet_data(root.twitter_id)
@@ -111,8 +112,34 @@ class TweetsChosenThreadsController < ApplicationController
         end
         TweetsChosenThread.return_child_js(root, params[:id])
       }
+    # end
+    return result
+  end
+  
+  def actor_paths
+    result = Rails.cache.fetch("actor_paths_#{params[:id]}"){
+      threads = thread_hash
+      actor_type_index = actor_index
+      scrubbed_threads = {}
+      scrubbed_threads[threads["name"]] = actor_path(threads["children"])
+      paths = scrubbed_threads.flatify("^^").keys.collect{|keys| keys.split("^^").collect{|u| Profile.classification(u)}.join("")}
+      result = {}
+      paths.each do |path|
+        result[path] = 0 if result[path].nil?
+        result[path]+=1
+      end
+      result      
+    }
+    render :json => result.to_json
+  end
+  
+  def actor_path(children)
+    results = {}
+    children.each do |child|
+      results[child["name"]] = actor_path(child["children"])
     end
-    return result.to_json
+    results = [] if results.empty?
+    return results
   end
   
   def actor_breakdown

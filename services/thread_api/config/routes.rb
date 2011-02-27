@@ -4,6 +4,7 @@ ActionController::Routing::Routes.draw do |map|
   map.friends "/friends/:id.json", :controller => "edges", :action => "friends"
   map.followers "/followers/:id.json", :controller => "edges", :action => "followers"
   map.actor_breakdown "/threads/actors/:id.json", :controller => "tweets_chosen_threads", :action => "actor_breakdown"
+  map.actor_paths "/threads/actor_paths/:id.json", :controller => "tweets_chosen_threads", :action => "actor_paths"
   # map.resources :users
   # 
   # map.resources :tweets
