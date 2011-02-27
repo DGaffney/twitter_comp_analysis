@@ -1,0 +1,51 @@
+<h1>New chosen_thread</h1>
+
+<% form_for(@chosen_thread) do |f| %>
+  <%= f.error_messages %>
+
+  <p>
+    <%= f.label :count %><br />
+    <%= f.text_field :count %>
+  </p>
+  <p>
+    <%= f.label :source_type %><br />
+    <%= f.text_field :source_type %>
+  </p>
+  <p>
+    <%= f.label :first_text %><br />
+    <%= f.text_area :first_text %>
+  </p>
+  <p>
+    <%= f.label :identified %><br />
+    <%= f.text_field :identified %>
+  </p>
+  <p>
+    <%= f.label :mentioned %><br />
+    <%= f.text_area :mentioned %>
+  </p>
+  <p>
+    <%= f.label :start %><br />
+    <%= f.datetime_select :start %>
+  </p>
+  <p>
+    <%= f.label :end %><br />
+    <%= f.datetime_select :end %>
+  </p>
+  <p>
+    <%= f.label :notes %><br />
+    <%= f.text_area :notes %>
+  </p>
+  <p>
+    <%= f.label :duration %><br />
+    <%= f.text_field :duration %>
+  </p>
+  <p>
+    <%= f.label :duration_str %><br />
+    <%= f.text_field :duration_str %>
+  </p>
+  <p>
+    <%= f.submit 'Create' %>
+  </p>
+<% end %>
+
+<%= link_to 'Back', chosen_threads_path %>

@@ -1,0 +1,68 @@
+<p>
+  <b>Text:</b>
+  <%=h @tweets_chosen_thread.text %>
+</p>
+
+<p>
+  <b>Pubdate:</b>
+  <%=h @tweets_chosen_thread.pubdate %>
+</p>
+
+<p>
+  <b>Link:</b>
+  <%=h @tweets_chosen_thread.link %>
+</p>
+
+<p>
+  <b>Author:</b>
+  <%=h @tweets_chosen_thread.author %>
+</p>
+
+<p>
+  <b>Realname:</b>
+  <%=h @tweets_chosen_thread.realname %>
+</p>
+
+<p>
+  <b>Storyquery:</b>
+  <%=h @tweets_chosen_thread.storyquery %>
+</p>
+
+<p>
+  <b>Thread:</b>
+  <%=h @tweets_chosen_thread.thread_id %>
+</p>
+
+<p>
+  <b>Words:</b>
+  <%=h @tweets_chosen_thread.words %>
+</p>
+
+<p>
+  <b>Shared words:</b>
+  <%=h @tweets_chosen_thread.shared_words %>
+</p>
+
+<p>
+  <b>Hashtags:</b>
+  <%=h @tweets_chosen_thread.hashtags %>
+</p>
+
+<p>
+  <b>Mentions:</b>
+  <%=h @tweets_chosen_thread.mentions %>
+</p>
+
+<p>
+  <b>Datetime:</b>
+  <%=h @tweets_chosen_thread.datetime %>
+</p>
+
+<p>
+  <b>Twitter:</b>
+  <%=h @tweets_chosen_thread.twitter_id %>
+</p>
+
+
+<%= link_to 'Edit', edit_tweets_chosen_thread_path(@tweets_chosen_thread) %> |
+<%= link_to 'Back', tweets_chosen_threads_path %>

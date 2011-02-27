@@ -1,0 +1,34 @@
+<h1>Listing datasets</h1>
+
+<table>
+  <tr>
+    <th>Scrape type</th>
+    <th>Start time</th>
+    <th>Length</th>
+    <th>Created at</th>
+    <th>Updated at</th>
+    <th>Scrape finished</th>
+    <th>Instance</th>
+    <th>Params</th>
+  </tr>
+
+<% @datasets.each do |dataset| %>
+  <tr>
+    <td><%=h dataset.scrape_type %></td>
+    <td><%=h dataset.start_time %></td>
+    <td><%=h dataset.length %></td>
+    <td><%=h dataset.created_at %></td>
+    <td><%=h dataset.updated_at %></td>
+    <td><%=h dataset.scrape_finished %></td>
+    <td><%=h dataset.instance_id %></td>
+    <td><%=h dataset.params %></td>
+    <td><%= link_to 'Show', dataset %></td>
+    <td><%= link_to 'Edit', edit_dataset_path(dataset) %></td>
+    <td><%= link_to 'Destroy', dataset, :confirm => 'Are you sure?', :method => :delete %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New dataset', new_dataset_path %>

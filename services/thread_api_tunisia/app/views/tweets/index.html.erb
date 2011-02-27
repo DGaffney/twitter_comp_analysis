@@ -1,0 +1,88 @@
+<h1>Listing tweets</h1>
+
+<table>
+  <tr>
+    <th>Twitter</th>
+    <th>Tweet</th>
+    <th>Text</th>
+    <th>Language</th>
+    <th>Source</th>
+    <th>User</th>
+    <th>Screen name</th>
+    <th>Username</th>
+    <th>Location</th>
+    <th>In reply to status</th>
+    <th>In reply to user</th>
+    <th>Truncated</th>
+    <th>In reply to screen name</th>
+    <th>Created at</th>
+    <th>Updated at</th>
+    <th>Published</th>
+    <th>Flagged</th>
+    <th>Dataset</th>
+    <th>Lat</th>
+    <th>Lon</th>
+    <th>Dataset</th>
+    <th>Pubdate</th>
+    <th>Link</th>
+    <th>Author</th>
+    <th>Realname</th>
+    <th>Storyquery</th>
+    <th>Datetime</th>
+    <th>Message</th>
+    <th>Analysis finished</th>
+    <th>Tweet collector</th>
+    <th>User name</th>
+    <th>Retweet count</th>
+    <th>Thread</th>
+    <th>Shared words</th>
+    <th>Words</th>
+  </tr>
+
+<% @tweets.each do |tweet| %>
+  <tr>
+    <td><%=h tweet.twitter_id %></td>
+    <td><%=h tweet.tweet_id %></td>
+    <td><%=h tweet.text %></td>
+    <td><%=h tweet.language %></td>
+    <td><%=h tweet.source %></td>
+    <td><%=h tweet.user_id %></td>
+    <td><%=h tweet.screen_name %></td>
+    <td><%=h tweet.username %></td>
+    <td><%=h tweet.location %></td>
+    <td><%=h tweet.in_reply_to_status_id %></td>
+    <td><%=h tweet.in_reply_to_user_id %></td>
+    <td><%=h tweet.truncated %></td>
+    <td><%=h tweet.in_reply_to_screen_name %></td>
+    <td><%=h tweet.created_at %></td>
+    <td><%=h tweet.updated_at %></td>
+    <td><%=h tweet.published %></td>
+    <td><%=h tweet.flagged %></td>
+    <td><%=h tweet.dataset_id %></td>
+    <td><%=h tweet.lat %></td>
+    <td><%=h tweet.lon %></td>
+    <td><%=h tweet.dataset_id %></td>
+    <td><%=h tweet.pubdate %></td>
+    <td><%=h tweet.link %></td>
+    <td><%=h tweet.author %></td>
+    <td><%=h tweet.realname %></td>
+    <td><%=h tweet.storyquery %></td>
+    <td><%=h tweet.datetime %></td>
+    <td><%=h tweet.message %></td>
+    <td><%=h tweet.analysis_finished %></td>
+    <td><%=h tweet.tweet_collector_id %></td>
+    <td><%=h tweet.user_name %></td>
+    <td><%=h tweet.retweet_count %></td>
+    <td><%=h tweet.thread_id %></td>
+    <td><%=h tweet.shared_words %></td>
+    <td><%=h tweet.words %></td>
+    <td><%= link_to 'Show', tweet %></td>
+    <td><%= link_to 'Edit', edit_tweet_path(tweet) %></td>
+    <td><%= link_to 'Destroy', tweet, :confirm => 'Are you sure?', :method => :delete %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New tweet', new_tweet_path %>

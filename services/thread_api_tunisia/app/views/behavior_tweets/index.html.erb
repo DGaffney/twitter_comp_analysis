@@ -1,0 +1,82 @@
+<h1>Listing behavior_tweets</h1>
+
+<table>
+  <tr>
+    <th>Twitter</th>
+    <th>Tweet</th>
+    <th>Text</th>
+    <th>Language</th>
+    <th>Source</th>
+    <th>User</th>
+    <th>Screen name</th>
+    <th>Username</th>
+    <th>Location</th>
+    <th>In reply to status</th>
+    <th>In reply to user</th>
+    <th>Truncated</th>
+    <th>In reply to screen name</th>
+    <th>Created at</th>
+    <th>Updated at</th>
+    <th>Flagged</th>
+    <th>Dataset</th>
+    <th>Lat</th>
+    <th>Lon</th>
+    <th>Dataset</th>
+    <th>Pubdate</th>
+    <th>Link</th>
+    <th>Author</th>
+    <th>Realname</th>
+    <th>Storyquery</th>
+    <th>Datetime</th>
+    <th>Message</th>
+    <th>Analysis finished</th>
+    <th>Tweet collector</th>
+    <th>User name</th>
+    <th>Retweet count</th>
+    <th>Shared words</th>
+  </tr>
+
+<% @behavior_tweets.each do |behavior_tweet| %>
+  <tr>
+    <td><%=h behavior_tweet.twitter_id %></td>
+    <td><%=h behavior_tweet.tweet_id %></td>
+    <td><%=h behavior_tweet.text %></td>
+    <td><%=h behavior_tweet.language %></td>
+    <td><%=h behavior_tweet.source %></td>
+    <td><%=h behavior_tweet.user_id %></td>
+    <td><%=h behavior_tweet.screen_name %></td>
+    <td><%=h behavior_tweet.username %></td>
+    <td><%=h behavior_tweet.location %></td>
+    <td><%=h behavior_tweet.in_reply_to_status_id %></td>
+    <td><%=h behavior_tweet.in_reply_to_user_id %></td>
+    <td><%=h behavior_tweet.truncated %></td>
+    <td><%=h behavior_tweet.in_reply_to_screen_name %></td>
+    <td><%=h behavior_tweet.created_at %></td>
+    <td><%=h behavior_tweet.updated_at %></td>
+    <td><%=h behavior_tweet.flagged %></td>
+    <td><%=h behavior_tweet.dataset_id %></td>
+    <td><%=h behavior_tweet.lat %></td>
+    <td><%=h behavior_tweet.lon %></td>
+    <td><%=h behavior_tweet.dataset_id %></td>
+    <td><%=h behavior_tweet.pubdate %></td>
+    <td><%=h behavior_tweet.link %></td>
+    <td><%=h behavior_tweet.author %></td>
+    <td><%=h behavior_tweet.realname %></td>
+    <td><%=h behavior_tweet.storyquery %></td>
+    <td><%=h behavior_tweet.datetime %></td>
+    <td><%=h behavior_tweet.message %></td>
+    <td><%=h behavior_tweet.analysis_finished %></td>
+    <td><%=h behavior_tweet.tweet_collector_id %></td>
+    <td><%=h behavior_tweet.user_name %></td>
+    <td><%=h behavior_tweet.retweet_count %></td>
+    <td><%=h behavior_tweet.shared_words %></td>
+    <td><%= link_to 'Show', behavior_tweet %></td>
+    <td><%= link_to 'Edit', edit_behavior_tweet_path(behavior_tweet) %></td>
+    <td><%= link_to 'Destroy', behavior_tweet, :confirm => 'Are you sure?', :method => :delete %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New behavior_tweet', new_behavior_tweet_path %>

@@ -1,0 +1,38 @@
+<h1>Listing chosen_threads</h1>
+
+<table>
+  <tr>
+    <th>Count</th>
+    <th>Source type</th>
+    <th>First text</th>
+    <th>Identified</th>
+    <th>Mentioned</th>
+    <th>Start</th>
+    <th>End</th>
+    <th>Notes</th>
+    <th>Duration</th>
+    <th>Duration str</th>
+  </tr>
+
+<% @chosen_threads.each do |chosen_thread| %>
+  <tr>
+    <td><%=h chosen_thread.count %></td>
+    <td><%=h chosen_thread.source_type %></td>
+    <td><%=h chosen_thread.first_text %></td>
+    <td><%=h chosen_thread.identified %></td>
+    <td><%=h chosen_thread.mentioned %></td>
+    <td><%=h chosen_thread.start %></td>
+    <td><%=h chosen_thread.end %></td>
+    <td><%=h chosen_thread.notes %></td>
+    <td><%=h chosen_thread.duration %></td>
+    <td><%=h chosen_thread.duration_str %></td>
+    <td><%= link_to 'Show', chosen_thread %></td>
+    <td><%= link_to 'Edit', edit_chosen_thread_path(chosen_thread) %></td>
+    <td><%= link_to 'Destroy', chosen_thread, :confirm => 'Are you sure?', :method => :delete %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New chosen_thread', new_chosen_thread_path %>

@@ -1,0 +1,25 @@
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+
+one:
+  count: 1
+  source_type: 1
+  first_text: MyText
+  identified: MyString
+  mentioned: MyText
+  start: 2011-02-22 19:09:10
+  end: 2011-02-22 19:09:10
+  notes: MyText
+  duration: 1
+  duration_str: MyString
+
+two:
+  count: 1
+  source_type: 1
+  first_text: MyText
+  identified: MyString
+  mentioned: MyText
+  start: 2011-02-22 19:09:10
+  end: 2011-02-22 19:09:10
+  notes: MyText
+  duration: 1
+  duration_str: MyString
