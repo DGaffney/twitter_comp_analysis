@@ -8,14 +8,13 @@ class TweetsChosenThread < ActiveRecord::Base
   def self.children(tct, thread_id)
     text = tct.class==Array ? tct.first["text"] : tct.text
     text = "" if text.nil?
-    pubdate = tct.class==Array ? Time.parse(tct.first["created_at"]).strftime("%Y-%m-%d %H:%M:%S") : tct.pubdate.strftime("%Y-%m-%d %H:%M:%S") rescue (Time.now-1.year).strftime("%Y-%m-%d %H:%M:%S")
-    ambiguous_children = ActiveRecord::Base.connection.execute("SELECT tweets_chosen_threads.* FROM tweets_chosen_threads INNER JOIN tweets ON tweets.twitter_id = tweets_chosen_threads.twitter_id WHERE tweets_chosen_threads.thread_id=#{thread_id} and tweets_chosen_threads.pubdate > '#{pubdate}'").all_hashes
+    ambiguous_children = TweetsChosenThread.find(:all, :conditions => {:thread_id => thread_id})
     provenance = TweetsChosenThread.all_parents(tct).downcase.gsub("  ", " ").gsub(":", "")
-    children = ambiguous_children.select{|x| x["text"].downcase.gsub("  ", " ").gsub(":", "")=="#{provenance}#{text.downcase.gsub("  ", " ").gsub(":", "").gsub(/rt \@(\w*) rt \@$1/, "")}"}.compact.collect{|x| TweetsChosenThread.new(x)}
+    children = ambiguous_children.select{|x| x.text.downcase.gsub("  ", " ").gsub(":", "")=="#{provenance}#{text.downcase.gsub("  ", " ").gsub(":", "").gsub(/rt \@(\w*) rt \@$1/, "")}"}.compact
     return children
   end
 
-  def self.return_child_js(tct, thread_id)
+  def self.return_child_js(tct, thread_id, included_ids=[])
     #HERE, TCT is used loosely, could be anything, really, twitter data, a TCT, or a Tweet...
     result = {}
     result["id"] = tct.class==Array ? tct.first["id"] : tct.twitter_id.to_s
@@ -23,7 +22,10 @@ class TweetsChosenThread < ActiveRecord::Base
     result["data"] = {}
     children_data = []
     TweetsChosenThread.children(tct, thread_id).each do |child|
-      children_data << TweetsChosenThread.return_child_js(child, thread_id)
+      if !included_ids.include?(child.twitter_id)
+        included_ids << child.twitter_id
+        children_data << TweetsChosenThread.return_child_js(child, thread_id, included_ids)
+      end
     end
     result["children"] = children_data
     return result
@@ -68,14 +70,18 @@ class TweetsChosenThread < ActiveRecord::Base
   end
   
   def self.url_pull(url, retries)
-    data = nil
-    api_url = "http://api.twitter.com/1/account/rate_limit_status.json"
-    json = JSON.parse(open(api_url).read) rescue nil
-    if json
-      puts "#{json["remaining_hits"]} hits left, next reset in #{Time.parse(json["reset_time"])-Time.now} seconds. Sleeping for #{(Time.parse(json["reset_time"])-Time.now).abs} seconds."
-      sleep((Time.parse(json["reset_time"])-Time.now).abs/json["remaining_hits"].to_i)
+    begin
+      data = nil
+      api_url = "http://api.twitter.com/1/account/rate_limit_status.json"
+      json = JSON.parse(open(api_url).read) rescue nil
+      if json
+        puts "#{json["remaining_hits"]} hits left, next reset in #{Time.parse(json["reset_time"])-Time.now} seconds. Sleeping for #{(Time.parse(json["reset_time"])-Time.now).abs} seconds."
+        sleep((Time.parse(json["reset_time"])-Time.now).abs/json["remaining_hits"].to_i)
+      end
+      1.upto(retries) {|i| raw = open(url).read rescue nil; data = JSON.parse(raw) rescue nil; break if !data.nil? }
+    rescue Timeout::Error
+      return data
     end
-    1.upto(retries) {|i| data = JSON.parse(open(url).read) rescue nil; break if !data.nil? }
     return data
   end
   

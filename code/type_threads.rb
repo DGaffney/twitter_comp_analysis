@@ -12,7 +12,9 @@ module TypeThreads
     thread_ids = DataMapper.repository(:default).adapter.select("select distinct(thread_id) from tweets_chosen_threads")
     thread_ids.each do |thread_id|
       tweets = TweetsChosenThread.all(:thread_id => thread_id).sort{|x,y| x.pubdate<=>y.pubdate}
-      path = tweets.collect{|}
+      path = tweets.collect{||}
     end
   end
 end
+
+gg = DataMapper.repository(:default).adapter.select("select distinct(author) from tweets_chosen_threads")

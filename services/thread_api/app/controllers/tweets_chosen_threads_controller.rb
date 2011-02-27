@@ -107,19 +107,23 @@ class TweetsChosenThreadsController < ApplicationController
   end
   
   def thread_json
-    result = Rails.cache.fetch("threads_tree_#{params[:id]}"){
-      root = TweetsChosenThread.find(:first, :conditions => {:thread_id => params[:id]}, :order => "pubdate asc")
-      tweet = Tweet.find_by_twitter_id(root.twitter_id)
-      if tweet.in_reply_to_status_id && tweet.in_reply_to_status_id != 0
-        root = TweetsChosenThread.tweet_data(tweet.in_reply_to_status_id)
-        in_reply_to_status_id = root.class==Array ? root.first["in_reply_to_status_id"] : root.in_reply_to_status_id
-        while in_reply_to_status_id && in_reply_to_status_id != 0 
-          root = TweetsChosenThread.tweet_data(tweet.in_reply_to_status_id)
-          in_reply_to_status_id = root.class==Array ? root.first["in_reply_to_status_id"] : root.in_reply_to_status_id        
+    thread_ids.each do |thread_id|
+      params = {:id => thread_id}
+      result = Rails.cache.fetch("threads_tree_#{params[:id]}"){
+        root = TweetsChosenThread.find(:first, :conditions => {:thread_id => params[:id]}, :order => "pubdate asc")
+        tweet = Tweet.find_by_twitter_id(root.twitter_id) || TweetsChosenThread.tweet_data(root.twitter_id)
+        in_reply_to_status_id = tweet.class==Array ? tweet.first["in_reply_to_status_id"]||tweet.first["retweeted_status"]&&tweet.first["retweeted_status"]["id"] : tweet.in_reply_to_status_id
+        if in_reply_to_status_id && in_reply_to_status_id != 0
+          root = TweetsChosenThread.tweet_data(in_reply_to_status_id)
+          in_reply_to_status_id = root.class==Array ? root.first["in_reply_to_status_id"]||root.first["retweeted_status"]&&root.first["retweeted_status"]["id"] : root.in_reply_to_status_id
+          while in_reply_to_status_id && in_reply_to_status_id != 0 
+            root = TweetsChosenThread.tweet_data(tweet.in_reply_to_status_id)
+            in_reply_to_status_id = root.class==Array ? root.first["in_reply_to_status_id"]||tweet.first["retweeted_status"]&&root.first["retweeted_status"]["id"] : root.in_reply_to_status_id        
+          end
         end
-      end
-      TweetsChosenThread.return_child_js(root, params[:id])
-    }
+        TweetsChosenThread.return_child_js(root, params[:id])
+      }
+    end
     return result.to_json
   end
   
