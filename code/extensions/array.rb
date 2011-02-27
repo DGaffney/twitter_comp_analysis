@@ -13,4 +13,12 @@ class Array
     end
     chunks
   end
+  
+  def repack
+    set = []
+    self.each do |slice|
+      set<<slice
+      yield set
+    end
+  end
 end
