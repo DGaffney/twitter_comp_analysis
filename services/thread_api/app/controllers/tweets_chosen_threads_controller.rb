@@ -96,7 +96,9 @@ class TweetsChosenThreadsController < ApplicationController
   
 
   def thread_hash
+    # thread_ids = ActiveRecord::Base.connection.execute("select distinct(thread_id) from tweets_chosen_threads").all_hashes.collect{|x| x["thread_id"]}
     # thread_ids.each do |thread_id|
+      # puts thread_id
       # params = {:id => thread_id}
       result = Rails.cache.fetch("threads_tree_#{params[:id]}"){
         root = TweetsChosenThread.find(:first, :conditions => {:thread_id => params[:id]}, :order => "pubdate asc")
