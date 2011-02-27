@@ -2,6 +2,7 @@ require 'fastercsv'
 
 class Analysis
   def self.to_csv(dataset, filename, path="analytical_results/")
+    path.split("/").repack {|piece| `mkdir #{piece.join("/")}`}
     keys, values = dataset.first.keys, dataset.first.values
     FasterCSV.open(path+filename, "w") do |csv|
       csv << keys
