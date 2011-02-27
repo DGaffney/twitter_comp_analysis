@@ -119,7 +119,7 @@ class TweetsChosenThreadsController < ApplicationController
   end
   
   def actor_paths
-    result = Rails.cache.fetch("actor_paths_#{params[:id]}"){
+    # result = Rails.cache.fetch("actor_paths_#{params[:id]}"){
       threads = thread_hash
       actor_type_index = actor_index
       scrubbed_threads = {}
@@ -130,11 +130,12 @@ class TweetsChosenThreadsController < ApplicationController
         result[path] = 0 if result[path].nil?
         result[path]+=1
       end
-      result      
-    }
+      # result      
+    # }
     render :json => result.to_json
   end
   
+  def actor_paths
   def actor_path(children)
     results = {}
     children.each do |child|
