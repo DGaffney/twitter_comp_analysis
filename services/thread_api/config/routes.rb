@@ -3,6 +3,7 @@ ActionController::Routing::Routes.draw do |map|
   map.thread_graph "/graph/threads/:id", :controller => "tweets_chosen_threads", :action => "graph"
   map.friends "/friends/:id.json", :controller => "edges", :action => "friends"
   map.followers "/followers/:id.json", :controller => "edges", :action => "followers"
+  map.actor_breakdown "/threads/actors/:id.json", :controller => "tweets_chosen_threads", :action => "actor_breakdown"
   # map.resources :users
   # 
   # map.resources :tweets
