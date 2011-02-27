@@ -118,7 +118,7 @@ class TweetsChosenThreadsController < ApplicationController
           in_reply_to_status_id = root.class==Array ? root.first["in_reply_to_status_id"] : root.in_reply_to_status_id        
         end
       end
-      TweetsChosenThread.return_child_js(root, nil, params[:id])      
+      TweetsChosenThread.return_child_js(root, params[:id])
     }
     return result.to_json
   end
