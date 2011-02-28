@@ -2,7 +2,7 @@
 #   gem install sqlite3-ruby (not necessary on OS X Leopard)
 development:
   adapter: mysql
-  database: 140kit_scratch_2
+  database: 140kit_scratch_1
   username: gonkclub
   password: cakebread
   host: deebee.yourdefaulthomepage.com
