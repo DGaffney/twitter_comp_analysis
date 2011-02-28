@@ -96,10 +96,10 @@ class TweetsChosenThreadsController < ApplicationController
   end
 
   def thread_hash
-    thread_ids = ActiveRecord::Base.connection.execute("select distinct(thread_id) from tweets_chosen_threads").all_hashes.collect{|x| x["thread_id"]}
-    thread_ids.each do |thread_id|
-      puts thread_id
-      params = {:id => thread_id}
+    # thread_ids = ActiveRecord::Base.connection.execute("select distinct(thread_id) from tweets_chosen_threads").all_hashes.collect{|x| x["thread_id"]}
+    # thread_ids.each do |thread_id|
+    #   puts thread_id
+    #   params = {:id => thread_id}
       result = Rails.cache.fetch("threads_tree_#{params[:id]}"){
         root = TweetsChosenThread.find(:first, :conditions => {:thread_id => params[:id]}, :order => "pubdate asc")
         tweet = Tweet.find_by_twitter_id(root.twitter_id) || TweetsChosenThread.tweet_data(root.twitter_id)
@@ -114,7 +114,7 @@ class TweetsChosenThreadsController < ApplicationController
         end
         TweetsChosenThread.return_child_js(root, params[:id])
       }
-    end
+    # end
     return result
   end
   
