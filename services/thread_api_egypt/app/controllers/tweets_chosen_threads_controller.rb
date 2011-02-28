@@ -3,11 +3,12 @@ class TweetsChosenThreadsController < ApplicationController
   # GET /tweets_chosen_threads
   # GET /tweets_chosen_threads.xml
   def index
+    # @tweets_chosen_threads = TweetsChosenThread.all
     @thread_ids = ActiveRecord::Base.connection.execute("select distinct thread_id from tweets_chosen_threads").all_hashes.collect {|h| h["thread_id"].to_i }
 
     respond_to do |format|
       format.html # index.html.erb
-      format.xml  { render :xml => @tweets_chosen_threads }
+      format.xml  { render :xml => @thread_ids }
     end
   end
 
@@ -120,16 +121,32 @@ class TweetsChosenThreadsController < ApplicationController
   
   def actor_paths
     # result = Rails.cache.fetch("actor_paths_#{params[:id]}"){
+    result = {}
+    if params[:id]!=0
       threads = thread_hash
       actor_type_index = actor_index
       scrubbed_threads = {}
       scrubbed_threads[threads["name"]] = actor_path(threads["children"])
-      paths = scrubbed_threads.flatify("^^").keys.collect{|keys| keys.split("^^").collect{|u| Profile.classification(u)}.join(",")}
-      result = {}
+      paths = scrubbed_threads.flatify("^^").keys.collect{|keys| keys.split("^^").collect{|u| Profile.classification(u)}.join("")}
       paths.each do |path|
         result[path] = 0 if result[path].nil?
         result[path]+=1
       end
+    else
+      thread_ids = ActiveRecord::Base.connection.execute("select distinct(thread_id) from tweets_chosen_threads").all_hashes.collect{|x| x["thread_id"]}
+      thread_ids.each do |thread_id|
+        params = {:id => thread_id}
+        threads = Rails.cache.fetch("threads_tree_#{params[:id]}")
+        actor_type_index = actor_index
+        scrubbed_threads = {}
+        scrubbed_threads[threads["name"]] = actor_path(threads["children"])
+        paths = scrubbed_threads.flatify("^^").keys.collect{|keys| keys.split("^^").collect{|u| Profile.classification(u)}.join("")}
+        paths.each do |path|
+          result[path] = 0 if result[path].nil?
+          result[path]+=1
+        end
+      end
+    end
       # result      
     # }
     render :json => result.to_json

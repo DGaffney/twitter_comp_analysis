@@ -13,7 +13,7 @@
 
 <p>* Actor Breakdown: A breakdown of all tweets sent out by actor type. In the case of egypt thread 158, it looks like this: {"actor_types":{"0":{"percent":1.0,"count":1}},"originator":{"screen_name":"MafurAiris","actor_type":0}} Which means that throughout the thread, there were 1 actors, accounting for 100 Percent of the data. In any thread, it will tell you the number of participants and the breakdown of actors within it, along with the originator and their own actor type.</p>
 
-<p>* Actor Paths: The full Path breakdown for the given thread - In the case of egypt thread id 346, the data looks like: {"699":5,"690":1,"69":89,"60":2,"693":1,"62":1,"63":2} Which means that on 5 occasions, data went from actor type six and then to a non-actor (9 in our dataset, 13 in the full), and then to another non-actor from there. The number is related to the Profile.p_type field.</p>
+<p>* Actor Paths: The full Path breakdown for the given thread - In the case of egypt thread id 346, the data looks like: {"699":5,"690":1,"69":89,"60":2,"693":1,"62":1,"63":2} Which means that on 5 occasions, data went from actor type six and then to a non-actor (9 in our dataset, 13 in the full), and then to another non-actor from there. The number is related to the Profile.p_type field. To get a breakdown of all data across all threads, pass 0 in as the id.</p>
 
 
 <table>
@@ -44,5 +44,7 @@
 Replacing ":id" accordingly. This will search the Users table, which includes all users in the profiles table as well.<br />
 Run the inverse of this process, finding all followers, by running this command:   
   <br /><a href="#">/followers/:id.json</a><br />
+Friends and followers are limited to people within the dataset - no outside users are tracked in this.
 </p>
+
   
