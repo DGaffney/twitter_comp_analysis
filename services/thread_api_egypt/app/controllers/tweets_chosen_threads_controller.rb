@@ -124,7 +124,7 @@ class TweetsChosenThreadsController < ApplicationController
       actor_type_index = actor_index
       scrubbed_threads = {}
       scrubbed_threads[threads["name"]] = actor_path(threads["children"])
-      paths = scrubbed_threads.flatify("^^").keys.collect{|keys| keys.split("^^").collect{|u| Profile.classification(u)}.join("")}
+      paths = scrubbed_threads.flatify("^^").keys.collect{|keys| keys.split("^^").collect{|u| Profile.classification(u)}.join(",")}
       result = {}
       paths.each do |path|
         result[path] = 0 if result[path].nil?
