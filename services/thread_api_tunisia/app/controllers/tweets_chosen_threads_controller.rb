@@ -3,11 +3,12 @@ class TweetsChosenThreadsController < ApplicationController
   # GET /tweets_chosen_threads
   # GET /tweets_chosen_threads.xml
   def index
-    @tweets_chosen_threads = TweetsChosenThread.all
+    # @tweets_chosen_threads = TweetsChosenThread.all
+    @thread_ids = ActiveRecord::Base.connection.execute("select distinct thread_id from tweets_chosen_threads").all_hashes.collect {|h| h["thread_id"].to_i }
 
     respond_to do |format|
       format.html # index.html.erb
-      format.xml  { render :xml => @tweets_chosen_threads }
+      format.xml  { render :xml => @thread_ids }
     end
   end
 

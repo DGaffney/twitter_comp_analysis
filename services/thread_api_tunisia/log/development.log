@@ -3719,3 +3719,63 @@ Cache hit: threads_tree_363 ({})
   [4;35;1mSQL (112.1ms)[0m   [0mselect p_screen_name, p_type from profiles[0m
   [4;36;1mSQL (86.0ms)[0m   [0;1mselect p_screen_name, p_type from profiles[0m
 Completed in 229ms (View: 1, DB: 235) | 200 OK [http://127.0.0.1/threads/actor_paths/363.json]
+  [4;36;1mSQL (730.6ms)[0m   [0;1mSET SQL_AUTO_IS_NULL=0[0m
+
+
+Processing TweetsChosenThreadsController#index (for 127.0.0.1 at 2011-02-27 21:59:30) [GET]
+  [4;35;1mSQL (280.3ms)[0m   [0mselect distinct thread_id from tweets_chosen_threads[0m
+Rendering template within layouts/tweets_chosen_threads
+Rendering tweets_chosen_threads/index
+Completed in 596ms (View: 313, DB: 1011) | 200 OK [http://localhost/threads/]
+  [4;36;1mSQL (797.0ms)[0m   [0;1mSET SQL_AUTO_IS_NULL=0[0m
+
+
+Processing TweetsChosenThreadsController#index (for 127.0.0.1 at 2011-02-27 22:00:51) [GET]
+  [4;35;1mSQL (1269.9ms)[0m   [0mselect distinct thread_id from tweets_chosen_threads[0m
+Rendering template within layouts/tweets_chosen_threads
+Rendering tweets_chosen_threads/index
+Completed in 1480ms (View: 207, DB: 2067) | 200 OK [http://localhost/threads]
+  [4;36;1mSQL (699.1ms)[0m   [0;1mSET SQL_AUTO_IS_NULL=0[0m
+
+
+Processing TweetsChosenThreadsController#index (for 127.0.0.1 at 2011-02-27 22:01:00) [GET]
+  [4;35;1mSQL (1811.7ms)[0m   [0mselect distinct thread_id from tweets_chosen_threads[0m
+Rendering template within layouts/tweets_chosen_threads
+Rendering tweets_chosen_threads/index
+Completed in 2196ms (View: 381, DB: 2511) | 200 OK [http://localhost/threads]
+  [4;36;1mSQL (106.0ms)[0m   [0;1mSET SQL_AUTO_IS_NULL=0[0m
+
+
+Processing TweetsChosenThreadsController#index (for 127.0.0.1 at 2011-02-27 22:03:03) [GET]
+  [4;35;1mSQL (514.7ms)[0m   [0mselect distinct thread_id from tweets_chosen_threads[0m
+Rendering template within layouts/tweets_chosen_threads
+Rendering tweets_chosen_threads/index
+Completed in 715ms (View: 198, DB: 621) | 200 OK [http://localhost/threads]
+  [4;36;1mSQL (1796.5ms)[0m   [0;1mSET SQL_AUTO_IS_NULL=0[0m
+
+
+Processing TweetsChosenThreadsController#index (for 127.0.0.1 at 2011-02-27 22:03:39) [GET]
+  [4;35;1mSQL (315.0ms)[0m   [0mselect distinct thread_id from tweets_chosen_threads[0m
+Rendering template within layouts/tweets_chosen_threads
+Rendering tweets_chosen_threads/index
+Completed in 654ms (View: 336, DB: 2112) | 200 OK [http://localhost/threads]
+  [4;36;1mSQL (97.1ms)[0m   [0;1mSET SQL_AUTO_IS_NULL=0[0m
+
+
+Processing TweetsChosenThreadsController#graph (for 127.0.0.1 at 2011-02-27 22:03:47) [GET]
+  Parameters: {"id"=>"20"}
+Cache miss: threads_tree_20 ({})
+  [4;35;1mTweetsChosenThread Load (2123.8ms)[0m   [0mSELECT * FROM `tweets_chosen_threads` WHERE (`tweets_chosen_threads`.`thread_id` = '20') ORDER BY pubdate asc LIMIT 1[0m
+  [4;36;1mTweetsChosenThread Columns (215.2ms)[0m   [0;1mSHOW FIELDS FROM `tweets_chosen_threads`[0m
+  [4;35;1mTweet Columns (110.2ms)[0m   [0mSHOW FIELDS FROM `tweets`[0m
+  [4;36;1mTweet Load (99.7ms)[0m   [0;1mSELECT * FROM `tweets` WHERE (`tweets`.`twitter_id` = 25186154911367168) LIMIT 1[0m
+Cache miss: http%3A%2F%2Fapi.twitter.com%2F1%2Fstatuses%2Fshow%2F25185598390149120.json ({})
+Cache write (will save 647.32ms): http%3A%2F%2Fapi.twitter.com%2F1%2Fstatuses%2Fshow%2F25185598390149120.json
+  [4;35;1mTweetsChosenThread Load (3049.9ms)[0m   [0mSELECT * FROM `tweets_chosen_threads` WHERE (`tweets_chosen_threads`.`thread_id` = '20') [0m
+  [4;36;1mTweet Load (98.0ms)[0m   [0;1mSELECT * FROM `tweets` WHERE (`tweets`.`twitter_id` = 25185598390149120) LIMIT 1[0m
+Cache hit: http%3A%2F%2Fapi.twitter.com%2F1%2Fstatuses%2Fshow%2F25185598390149120.json ({})
+Cache write (will save 6863.73ms): threads_tree_20
+  [4;35;1mSQL (529.1ms)[0m   [0mselect p_screen_name, p_type from profiles[0m
+Rendering template within layouts/tweets_chosen_threads
+Rendering tweets_chosen_threads/graph
+Completed in 7430ms (View: 5, DB: 6323) | 200 OK [http://localhost/graph/threads/20]
