@@ -135,7 +135,6 @@ class TweetsChosenThreadsController < ApplicationController
     render :json => result.to_json
   end
   
-  def actor_paths
   def actor_path(children)
     results = {}
     children.each do |child|
