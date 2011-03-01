@@ -88,7 +88,7 @@ class TweetsChosenThreadsController < ApplicationController
     render :json => result
   end
   
-  def graph
+  def graph_old
     @json = thread_json
     @actor_index = actor_index.to_json
     respond_to do |format|
@@ -199,6 +199,50 @@ class TweetsChosenThreadsController < ApplicationController
   
   def thread_json
     return thread_hash.to_json
+  end
+  
+  def graph
+    tweets = TweetsChosenThread.all(:conditions => {:thread_id => params[:id]})
+    roots = []
+    tweets.each {|t| roots += t.text.scan(/\brt @(\w+)/i).flatten }
+    roots.collect! {|r| r.downcase }
+    roots.uniq!
+    root_pubdate = {}
+    for root in roots
+      root_tweet = TweetsChosenThread.first(:conditions => {:author => root, :thread_id => params[:id]})
+      root_pubdate[root] = root_tweet.pubdate if !root_tweet.nil?
+    end
+    edges = []
+    for tweet in tweets.sort {|x,y| x.pubdate <=> y.pubdate }
+      tweet_roots = tweet.text.scan(/\brt @(\w+)/i).flatten.uniq
+      most_recent_root = nil
+      for root in tweet_roots
+        # this is the fudgy part:
+        root_pubdate[root] = tweet.pubdate if root_pubdate[root].nil?
+        most_recent_root = root if (most_recent_root.nil? || root_pubdate[root] >= root_pubdate[most_recent_root])
+      end
+      edges << {:parent => most_recent_root, :child => tweet.author} if !most_recent_root.nil?
+    end
+    subthreads = {}
+    edges.collect {|e| e[:parent] }.uniq.each {|p| subthreads[p] = [] }
+    edges.each {|e| subthreads[e[:parent]] << e[:child] }
+    threads = {}
+    for parent in subthreads.keys.sort {|x,y| root_pubdate[y] <=> root_pubdate[x] }
+      children = []
+      for child in subthreads[parent]
+        subchildren = subthreads.has_key?(child) ? subthreads[child] : []
+        children << {:name => child, :id => child, :children => subchildren, :data => {}}
+      end
+      subthreads[parent] = children
+    end
+    oldest_parent = subthreads.keys.sort {|x,y| root_pubdate[x] <=> root_pubdate[y] }.first
+    thread = {:name => oldest_parent, :id => oldest_parent, :children => subthreads[oldest_parent], :data => {}}
+    
+    @json = thread.to_json
+    @actor_index = actor_index.to_json
+    respond_to do |format|
+      format.html
+    end
   end
   
 end
