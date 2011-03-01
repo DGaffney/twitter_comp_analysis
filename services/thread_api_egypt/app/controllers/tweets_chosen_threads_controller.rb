@@ -203,6 +203,9 @@ class TweetsChosenThreadsController < ApplicationController
   
   def graph
     tweets = TweetsChosenThread.all(:conditions => {:thread_id => params[:id]})
+    earliest_tweets = {}
+    tweets.sort {|x,y| y.pubdate <=> x.pubdate }.each {|t| earliest_tweets[t.author] = t }
+    tweets = earliest_tweets.values
     roots = []
     tweets.each {|t| roots += t.text.scan(/\brt @(\w+)/i).flatten }
     roots.collect! {|r| r.downcase }
