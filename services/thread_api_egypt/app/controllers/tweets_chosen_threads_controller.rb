@@ -88,7 +88,7 @@ class TweetsChosenThreadsController < ApplicationController
     render :json => result
   end
   
-  def graph_old
+  def graph
     @json = thread_json
     @actor_index = actor_index.to_json
     respond_to do |format|
@@ -201,7 +201,7 @@ class TweetsChosenThreadsController < ApplicationController
     return thread_hash.to_json
   end
   
-  def graph
+  def graph_new
     tweets = TweetsChosenThread.all(:conditions => {:thread_id => params[:id]})
     earliest_tweets = {}
     tweets.sort {|x,y| y.pubdate <=> x.pubdate }.each {|t| earliest_tweets[t.author] = t }
