@@ -203,28 +203,25 @@ class TweetsChosenThreadsController < ApplicationController
   
   def graph_new
     tweets = TweetsChosenThread.all(:conditions => {:thread_id => params[:id]})
-    earliest_tweets = {}
-    tweets.sort {|x,y| y.pubdate <=> x.pubdate }.each {|t| earliest_tweets[t.author] = t }
-    tweets = earliest_tweets.values
-    roots = []
-    tweets.each {|t| roots += t.text.scan(/\brt @(\w+)/i).flatten }
-    roots.collect! {|r| r.downcase }
-    roots.uniq!
-    root_pubdate = {}
-    for root in roots
-      root_tweet = TweetsChosenThread.first(:conditions => {:author => root, :thread_id => params[:id]})
-      root_pubdate[root] = root_tweet.pubdate if !root_tweet.nil?
-    end
+    tweet_in_reply_to_status_ids = {}
+    Tweet.find(:all, :conditions => {:twitter_id => tweets.collect{|x| x.twitter_id}}).collect{|t| tweet_in_reply_to_status_ids[t.twitter_id] = t.in_reply_to_status_id}
     edges = []
-    for tweet in tweets.sort {|x,y| x.pubdate <=> y.pubdate }
-      tweet_roots = tweet.text.scan(/\brt @(\w+)/i).flatten.uniq
-      most_recent_root = nil
-      for root in tweet_roots
-        # this is the fudgy part:
-        root_pubdate[root] = tweet.pubdate if root_pubdate[root].nil?
-        most_recent_root = root if (most_recent_root.nil? || root_pubdate[root] >= root_pubdate[most_recent_root])
+    tweets.each do |tweet|
+      debugger
+      twitter_id = tweet.class==Array ? tweet.first["id"] : tweet.twitter_id
+      in_reply_to_status_id = tweet_in_reply_to_status_ids[twitter_id]
+      child_screen_name = tweet.author
+      child_twitter_id = tweet.twitter_id
+      while !in_reply_to_status_id.nil? && in_reply_to_status_id != 0 
+        parent = TweetsChosenThread.tweet_data(in_reply_to_status_id)
+        parent_screen_name = parent.class==Array ? parent.last["screen_name"] : parent.screen_name
+        in_reply_to_status_id = parent.class==Array ? parent.first["in_reply_to_status_id"]||parent.first["retweeted_status"]&&parent.first["retweeted_status"]["id"] : parent.in_reply_to_status_id
+        edge = {:parent => parent_screen_name, :child => child_screen_name, :id => child_twitter_id}
+        edges << edge if !edges.include?(edge)
+        tweet = parent
+        child_screen_name = tweet.class==Array ? tweet.last["screen_name"] : tweet.author
+        child_twitter_id = tweet.class==Array ? tweet.first["id"] : tweet.twitter_id
       end
-      edges << {:parent => most_recent_root, :child => tweet.author} if !most_recent_root.nil?
     end
     subthreads = {}
     edges.collect {|e| e[:parent] }.uniq.each {|p| subthreads[p] = [] }
