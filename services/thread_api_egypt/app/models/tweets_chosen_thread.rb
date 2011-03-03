@@ -46,6 +46,7 @@ class TweetsChosenThread < ActiveRecord::Base
   end
   
   def self.tweet_data(twitter_id)
+    puts twitter_id
     data = Tweet.find_by_twitter_id(twitter_id) || TweetsChosenThread.safe_pull("http://api.twitter.com/1/statuses/show/#{twitter_id}.json")
     if data && data!=1 && data.class==Hash
       user = data.delete("user")

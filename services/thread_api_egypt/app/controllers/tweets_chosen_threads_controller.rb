@@ -200,45 +200,71 @@ class TweetsChosenThreadsController < ApplicationController
   def thread_json
     return thread_hash.to_json
   end
+
+  def root_tweet(thread_id)
+    root = TweetsChosenThread.find(:first, :conditions => {:thread_id => thread_id}, :order => "pubdate asc")
+    tweet = TweetsChosenThread.tweet_data(root.twitter_id)
+    in_reply_to_status_id = tweet.class==Array ? tweet.first["in_reply_to_status_id"]||tweet.first["retweeted_status"]&&tweet.first["retweeted_status"]["id"] : tweet.in_reply_to_status_id
+    if in_reply_to_status_id && in_reply_to_status_id != 0
+      root = TweetsChosenThread.tweet_data(in_reply_to_status_id)
+      in_reply_to_status_id = root.class==Array ? root.first["in_reply_to_status_id"]||root.first["retweeted_status"]&&root.first["retweeted_status"]["id"] : root.in_reply_to_status_id
+      while in_reply_to_status_id && in_reply_to_status_id != 0 
+        root = TweetsChosenThread.tweet_data(in_reply_to_status_id)
+        in_reply_to_status_id = root.class==Array ? root.first["in_reply_to_status_id"]||root.first["retweeted_status"]&&root.first["retweeted_status"]["id"] : root.in_reply_to_status_id
+      end
+    end
+    return root
+  end
+  
+  def find_children(root_name, root_twitter_id, edges, included_ids=[])
+    result = {}
+    result["id"] = root_twitter_id
+    result["name"] = root_name
+    children_data = []
+    children = root_edges = edges.select{|e| e[:parent]==root_name&&e[:irtsi]==root_twitter_id}
+    children.each do |child|
+      if !included_ids.include?(child[:id])
+        included_ids << child[:id]
+        children_data << find_children(child[:child], child[:id], edges, included_ids=[])
+      end
+    end
+    result["children"] = children_data
+    return result
+  end
   
   def graph_new
-    tweets = TweetsChosenThread.all(:conditions => {:thread_id => params[:id]})
-    tweet_in_reply_to_status_ids = {}
-    Tweet.find(:all, :conditions => {:twitter_id => tweets.collect{|x| x.twitter_id}}).collect{|t| tweet_in_reply_to_status_ids[t.twitter_id] = t.in_reply_to_status_id}
-    edges = []
-    tweets.each do |tweet|
-      debugger
-      twitter_id = tweet.class==Array ? tweet.first["id"] : tweet.twitter_id
-      in_reply_to_status_id = tweet_in_reply_to_status_ids[twitter_id]
-      child_screen_name = tweet.author
-      child_twitter_id = tweet.twitter_id
-      while !in_reply_to_status_id.nil? && in_reply_to_status_id != 0 
-        parent = TweetsChosenThread.tweet_data(in_reply_to_status_id)
-        parent_screen_name = parent.class==Array ? parent.last["screen_name"] : parent.screen_name
-        in_reply_to_status_id = parent.class==Array ? parent.first["in_reply_to_status_id"]||parent.first["retweeted_status"]&&parent.first["retweeted_status"]["id"] : parent.in_reply_to_status_id
-        edge = {:parent => parent_screen_name, :child => child_screen_name, :id => child_twitter_id}
-        edges << edge if !edges.include?(edge)
-        tweet = parent
-        child_screen_name = tweet.class==Array ? tweet.last["screen_name"] : tweet.author
-        child_twitter_id = tweet.class==Array ? tweet.first["id"] : tweet.twitter_id
+    result = Rails.cache.fetch("graph_new_#{params[:id]}"){
+      tweets = TweetsChosenThread.all(:conditions => {:thread_id => params[:id]})
+      tweet_in_reply_to_status_ids = {}
+      Tweet.find(:all, :conditions => {:twitter_id => tweets.collect{|x| x.twitter_id}}).collect{|t| tweet_in_reply_to_status_ids[t.twitter_id] = t.in_reply_to_status_id}
+      root = root_tweet(params[:id])
+      edges = []
+      tweets.each do |tweet|
+        twitter_id = tweet.class==Array ? tweet.first["id"] : tweet.twitter_id
+        in_reply_to_status_id = tweet_in_reply_to_status_ids[twitter_id]
+        child_screen_name = tweet.author
+        child_twitter_id = tweet.twitter_id
+        while !in_reply_to_status_id.nil? && in_reply_to_status_id != 0 
+          parent = TweetsChosenThread.tweet_data(in_reply_to_status_id)
+          parent_screen_name = parent.class==Array ? parent.last["screen_name"] : parent.screen_name
+          edge = {:parent => parent_screen_name, :child => child_screen_name, :id => child_twitter_id, :irtsi => in_reply_to_status_id}
+          edges << edge if !edges.include?(edge)
+          in_reply_to_status_id = parent.class==Array ? parent.first["in_reply_to_status_id"]||parent.first["retweeted_status"]&&parent.first["retweeted_status"]["id"] : parent.in_reply_to_status_id
+          tweet = parent
+          child_screen_name = tweet.class==Array ? tweet.last["screen_name"] : tweet.author
+          child_twitter_id = tweet.class==Array ? tweet.first["id"] : tweet.twitter_id
+        end
       end
-    end
-    subthreads = {}
-    edges.collect {|e| e[:parent] }.uniq.each {|p| subthreads[p] = [] }
-    edges.each {|e| subthreads[e[:parent]] << e[:child] }
-    threads = {}
-    for parent in subthreads.keys.sort {|x,y| root_pubdate[y] <=> root_pubdate[x] }
-      children = []
-      for child in subthreads[parent]
-        subchildren = subthreads.has_key?(child) ? subthreads[child] : []
-        children << {:name => child, :id => child, :children => subchildren, :data => {}}
-      end
-      subthreads[parent] = children
-    end
-    oldest_parent = subthreads.keys.sort {|x,y| root_pubdate[x] <=> root_pubdate[y] }.first
-    thread = {:name => oldest_parent, :id => oldest_parent, :children => subthreads[oldest_parent], :data => {}}
-    
-    @json = thread.to_json
+      result = {}
+      root_name = root.class==Array ? root.last["screen_name"] : root.author
+      root_twitter_id = root.class==Array ? root.first["id"] : root.twitter_id
+      result[root_name] = {}
+      result[root_name]["name"] = root_name
+      result[root_name]["id"] = root_twitter_id
+      result[root_name]["children"] = find_children(root_name, root_twitter_id, edges)
+      result
+    }
+    @json = result.to_json
     @actor_index = actor_index.to_json
     respond_to do |format|
       format.html
