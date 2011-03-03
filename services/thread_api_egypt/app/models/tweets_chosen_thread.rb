@@ -46,10 +46,12 @@ class TweetsChosenThread < ActiveRecord::Base
   end
   
   def self.tweet_data(twitter_id)
-    data = TweetsChosenThread.safe_pull("http://api.twitter.com/1/statuses/show/#{twitter_id}.json")
-    if data && data!=1
+    data = Tweet.find_by_twitter_id(twitter_id) || TweetsChosenThread.safe_pull("http://api.twitter.com/1/statuses/show/#{twitter_id}.json")
+    if data && data!=1 && data.class==Hash
       user = data.delete("user")
       return data, user
+    elsif !data.nil? && data!=1
+      return data
     else return {},{}
     end
   end
@@ -75,7 +77,7 @@ class TweetsChosenThread < ActiveRecord::Base
       api_url = "http://api.twitter.com/1/account/rate_limit_status.json"
       json = JSON.parse(open(api_url).read) rescue nil
       if json
-        puts "#{json["remaining_hits"]} hits left, next reset in #{Time.parse(json["reset_time"])-Time.now} seconds. Sleeping for #{(Time.parse(json["reset_time"])-Time.now).abs} seconds."
+        puts "#{json["remaining_hits"]} hits left, next reset in #{Time.parse(json["reset_time"])-Time.now} seconds. Sleeping for #{(Time.parse(json["reset_time"])-Time.now).abs/json["remaining_hits"].to_i} seconds."
         sleep((Time.parse(json["reset_time"])-Time.now).abs/json["remaining_hits"].to_i)
       end
       1.upto(retries) {|i| raw = open(url).read rescue nil; data = JSON.parse(raw) rescue nil; break if !data.nil? }

@@ -1,0 +1,59 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<title>Spacetree - Tree Animation</title>
+
+<!-- CSS Files -->
+<link type="text/css" href="/stylesheets/base.css" rel="stylesheet" />
+<link type="text/css" href="/stylesheets/Spacetree.css" rel="stylesheet" />
+
+<!--[if IE]><script language="javascript" type="text/javascript" src="../../Extras/excanvas.js"></script><![endif]-->
+
+<!-- JIT Library File -->
+<script language="javascript" type="text/javascript" src="/javascripts/jit.js"></script>
+
+<!-- Example File -->
+<script language="javascript" type="text/javascript" src="/javascripts/example1.js"></script>
+</head>
+
+
+<script>
+
+  var actor_colors = {0:"#FEFF80",
+                      1:"#CCFE80",
+                      2:"#80FE80",
+                      3:"#80FFFE",
+                      4:"#809FFE",
+                      5:"#AA80FE",
+                      6:"#D580FE",
+                      7:"#FE80DF",
+                      8:"#FE8080",
+                      9:"#FEB380",
+                      10:"#FECC80",
+                      11:"#FEE680",
+                      "uncategorized":"#ccc"}
+  var actor_index = <%= @actor_index %>
+  var json = <%= @json %>
+</script>
+
+
+<body onload="init(json);">
+<div id="container">
+
+<div id="infovis"></div>
+
+<div id="log"></div>
+
+<div id="info">
+  <script>
+    for (var i=0;i<12;i++) {
+      document.write('<span style="color:'+actor_colors[i]+'">&#149; Actor Type '+i+'</span><br />')
+    }
+    document.write('<span style="color:'+actor_colors['uncategorized']+'">&#149; Uncategorized</span><br />')
+  </script>
+</div>
+
+</div>
+</body>
+</html>

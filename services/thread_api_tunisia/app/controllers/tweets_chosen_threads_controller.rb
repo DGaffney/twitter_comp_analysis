@@ -3,11 +3,12 @@ class TweetsChosenThreadsController < ApplicationController
   # GET /tweets_chosen_threads
   # GET /tweets_chosen_threads.xml
   def index
-    @tweets_chosen_threads = TweetsChosenThread.all
+    # @tweets_chosen_threads = TweetsChosenThread.all
+    @thread_ids = ActiveRecord::Base.connection.execute("select distinct thread_id from tweets_chosen_threads").all_hashes.collect {|h| h["thread_id"].to_i }
 
     respond_to do |format|
       format.html # index.html.erb
-      format.xml  { render :xml => @tweets_chosen_threads }
+      format.xml  { render :xml => @thread_ids }
     end
   end
 
@@ -98,8 +99,8 @@ class TweetsChosenThreadsController < ApplicationController
   def thread_hash
     # thread_ids = ActiveRecord::Base.connection.execute("select distinct(thread_id) from tweets_chosen_threads").all_hashes.collect{|x| x["thread_id"]}
     # thread_ids.each do |thread_id|
-      # puts thread_id
-      # params = {:id => thread_id}
+    #   puts thread_id
+    #   params = {:id => thread_id}
       result = Rails.cache.fetch("threads_tree_#{params[:id]}"){
         root = TweetsChosenThread.find(:first, :conditions => {:thread_id => params[:id]}, :order => "pubdate asc")
         tweet = Tweet.find_by_twitter_id(root.twitter_id) || TweetsChosenThread.tweet_data(root.twitter_id)
@@ -108,8 +109,8 @@ class TweetsChosenThreadsController < ApplicationController
           root = TweetsChosenThread.tweet_data(in_reply_to_status_id)
           in_reply_to_status_id = root.class==Array ? root.first["in_reply_to_status_id"]||root.first["retweeted_status"]&&root.first["retweeted_status"]["id"] : root.in_reply_to_status_id
           while in_reply_to_status_id && in_reply_to_status_id != 0 
-            root = TweetsChosenThread.tweet_data(tweet.in_reply_to_status_id)
-            in_reply_to_status_id = root.class==Array ? root.first["in_reply_to_status_id"]||tweet.first["retweeted_status"]&&root.first["retweeted_status"]["id"] : root.in_reply_to_status_id        
+            root = TweetsChosenThread.tweet_data(in_reply_to_status_id)
+            in_reply_to_status_id = root.class==Array ? root.first["in_reply_to_status_id"]||root.first["retweeted_status"]&&root.first["retweeted_status"]["id"] : root.in_reply_to_status_id
           end
         end
         TweetsChosenThread.return_child_js(root, params[:id])
@@ -120,16 +121,32 @@ class TweetsChosenThreadsController < ApplicationController
   
   def actor_paths
     # result = Rails.cache.fetch("actor_paths_#{params[:id]}"){
+    result = {}
+    if params[:id]!=0
       threads = thread_hash
       actor_type_index = actor_index
       scrubbed_threads = {}
       scrubbed_threads[threads["name"]] = actor_path(threads["children"])
       paths = scrubbed_threads.flatify("^^").keys.collect{|keys| keys.split("^^").collect{|u| Profile.classification(u)}.join("")}
-      result = {}
       paths.each do |path|
         result[path] = 0 if result[path].nil?
         result[path]+=1
       end
+    else
+      thread_ids = ActiveRecord::Base.connection.execute("select distinct(thread_id) from tweets_chosen_threads").all_hashes.collect{|x| x["thread_id"]}
+      thread_ids.each do |thread_id|
+        params = {:id => thread_id}
+        threads = Rails.cache.fetch("threads_tree_#{params[:id]}")
+        actor_type_index = actor_index
+        scrubbed_threads = {}
+        scrubbed_threads[threads["name"]] = actor_path(threads["children"])
+        paths = scrubbed_threads.flatify("^^").keys.collect{|keys| keys.split("^^").collect{|u| Profile.classification(u)}.join("")}
+        paths.each do |path|
+          result[path] = 0 if result[path].nil?
+          result[path]+=1
+        end
+      end
+    end
       # result      
     # }
     render :json => result.to_json

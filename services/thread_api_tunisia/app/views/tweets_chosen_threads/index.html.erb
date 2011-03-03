@@ -1,44 +1,50 @@
-<h1>Listing tweets_chosen_threads</h1>
+<a name="top"></a>
+<a href="#threads">Threads</a> | <a href="#ff">Friends/Followers</a>
+
+<a name="threads"><h1>Threads</h1></a>
+
+<p>**NOTE: the server that runs all this stuff is notoriously bad. It will fail on every other request on a bad day. Expect issues, but expect to solve them by refreshing. If something doesn't work after two refreshes, there is a problem other than it being on a shit server.**</p>
+
+<p>Each of these process yields unique data. Here are the rundowns:</p>
+
+<p>* Graph JSON: A representation of tree data directly from the raw json. In the example of egypt thread 158, Data returned looks like: {"name":"MafurAiris","data":{},"id":"29650934086770690","children":[]}</p>
+
+<p>* Graph: A graphical representation of the tree data a-la Jit (<a href="http://thejit.org/static/v20/Jit/Examples/Spacetree/example1.html">http://thejit.org/static/v20/Jit/Examples/Spacetree/example1.html</a>). Plug in within an iframe for super wins. </p>
+
+<p>* Actor Breakdown: A breakdown of all tweets sent out by actor type. In the case of egypt thread 158, it looks like this: {"actor_types":{"0":{"percent":1.0,"count":1}},"originator":{"screen_name":"MafurAiris","actor_type":0}} Which means that throughout the thread, there were 1 actors, accounting for 100 Percent of the data. In any thread, it will tell you the number of participants and the breakdown of actors within it, along with the originator and their own actor type.</p>
+
+<p>* Actor Paths: The full Path breakdown for the given thread - In the case of egypt thread id 346, the data looks like: {"699":5,"690":1,"69":89,"60":2,"693":1,"62":1,"63":2} Which means that on 5 occasions, data went from actor type six and then to a non-actor (9 in our dataset, 13 in the full), and then to another non-actor from there. The number is related to the Profile.p_type field. To get a breakdown of all data across all threads, pass 0 in as the id.</p>
+
 
 <table>
   <tr>
-    <th>Text</th>
-    <th>Pubdate</th>
-    <th>Link</th>
-    <th>Author</th>
-    <th>Realname</th>
-    <th>Storyquery</th>
-    <th>Thread</th>
-    <th>Words</th>
-    <th>Shared words</th>
-    <th>Hashtags</th>
-    <th>Mentions</th>
-    <th>Datetime</th>
-    <th>Twitter</th>
+    <th>thread id</th>
+    <th>graph json</th>
+    <th>graph</th>
+    <th>actor breakdown</th>
+    <th>actor paths</th>
   </tr>
 
-<% @tweets_chosen_threads.each do |tweets_chosen_thread| %>
+<% @thread_ids.each do |thread_id| %>
   <tr>
-    <td><%=h tweets_chosen_thread.text %></td>
-    <td><%=h tweets_chosen_thread.pubdate %></td>
-    <td><%=h tweets_chosen_thread.link %></td>
-    <td><%=h tweets_chosen_thread.author %></td>
-    <td><%=h tweets_chosen_thread.realname %></td>
-    <td><%=h tweets_chosen_thread.storyquery %></td>
-    <td><%=h tweets_chosen_thread.thread_id %></td>
-    <td><%=h tweets_chosen_thread.words %></td>
-    <td><%=h tweets_chosen_thread.shared_words %></td>
-    <td><%=h tweets_chosen_thread.hashtags %></td>
-    <td><%=h tweets_chosen_thread.mentions %></td>
-    <td><%=h tweets_chosen_thread.datetime %></td>
-    <td><%=h tweets_chosen_thread.twitter_id %></td>
-    <td><%= link_to 'Show', tweets_chosen_thread %></td>
-    <td><%= link_to 'Edit', edit_tweets_chosen_thread_path(tweets_chosen_thread) %></td>
-    <td><%= link_to 'Destroy', tweets_chosen_thread, :confirm => 'Are you sure?', :method => :delete %></td>
+    <td><%= thread_id %></td>
+    <td><%= link_to thread_api_path(thread_id), thread_api_path(thread_id) %></td>
+    <td><%= link_to thread_graph_path(thread_id), thread_graph_path(thread_id) %></td>
+    <td><%= link_to actor_breakdown_path(thread_id), actor_breakdown_path(thread_id) %></td>
+    <td><%= link_to actor_paths_path(thread_id), actor_paths_path(thread_id) %></td>
   </tr>
 <% end %>
 </table>
 
-<br />
+<a href="#top">Back To Top</a>
+<a name="ff"><h1>Friends/Followers</h1></a>
 
-<%= link_to 'New tweets_chosen_thread', new_tweets_chosen_thread_path %>
+<p>To use this process, enter in a user's twitter ID in urls as such:
+  <br /><a href="#">/friends/:id.json</a><br />
+Replacing ":id" accordingly. This will search the Users table, which includes all users in the profiles table as well.<br />
+Run the inverse of this process, finding all followers, by running this command:   
+  <br /><a href="#">/followers/:id.json</a><br />
+Friends and followers are limited to people within the dataset - no outside users are tracked in this.
+</p>
+
+  

@@ -3,11 +3,12 @@ class TweetsChosenThreadsController < ApplicationController
   # GET /tweets_chosen_threads
   # GET /tweets_chosen_threads.xml
   def index
-    @tweets_chosen_threads = TweetsChosenThread.all
+    # @tweets_chosen_threads = TweetsChosenThread.all
+    @thread_ids = ActiveRecord::Base.connection.execute("select distinct thread_id from tweets_chosen_threads").all_hashes.collect {|h| h["thread_id"].to_i }
 
     respond_to do |format|
       format.html # index.html.erb
-      format.xml  { render :xml => @tweets_chosen_threads }
+      format.xml  { render :xml => @thread_ids }
     end
   end
 
@@ -98,8 +99,8 @@ class TweetsChosenThreadsController < ApplicationController
   def thread_hash
     # thread_ids = ActiveRecord::Base.connection.execute("select distinct(thread_id) from tweets_chosen_threads").all_hashes.collect{|x| x["thread_id"]}
     # thread_ids.each do |thread_id|
-      # puts thread_id
-      # params = {:id => thread_id}
+    #   puts thread_id
+    #   params = {:id => thread_id}
       result = Rails.cache.fetch("threads_tree_#{params[:id]}"){
         root = TweetsChosenThread.find(:first, :conditions => {:thread_id => params[:id]}, :order => "pubdate asc")
         tweet = Tweet.find_by_twitter_id(root.twitter_id) || TweetsChosenThread.tweet_data(root.twitter_id)
@@ -108,8 +109,8 @@ class TweetsChosenThreadsController < ApplicationController
           root = TweetsChosenThread.tweet_data(in_reply_to_status_id)
           in_reply_to_status_id = root.class==Array ? root.first["in_reply_to_status_id"]||root.first["retweeted_status"]&&root.first["retweeted_status"]["id"] : root.in_reply_to_status_id
           while in_reply_to_status_id && in_reply_to_status_id != 0 
-            root = TweetsChosenThread.tweet_data(tweet.in_reply_to_status_id)
-            in_reply_to_status_id = root.class==Array ? root.first["in_reply_to_status_id"]||tweet.first["retweeted_status"]&&root.first["retweeted_status"]["id"] : root.in_reply_to_status_id        
+            root = TweetsChosenThread.tweet_data(in_reply_to_status_id)
+            in_reply_to_status_id = root.class==Array ? root.first["in_reply_to_status_id"]||root.first["retweeted_status"]&&root.first["retweeted_status"]["id"] : root.in_reply_to_status_id
           end
         end
         TweetsChosenThread.return_child_js(root, params[:id])
@@ -120,16 +121,32 @@ class TweetsChosenThreadsController < ApplicationController
   
   def actor_paths
     # result = Rails.cache.fetch("actor_paths_#{params[:id]}"){
+    result = {}
+    if params[:id]!=0
       threads = thread_hash
       actor_type_index = actor_index
       scrubbed_threads = {}
       scrubbed_threads[threads["name"]] = actor_path(threads["children"])
       paths = scrubbed_threads.flatify("^^").keys.collect{|keys| keys.split("^^").collect{|u| Profile.classification(u)}.join("")}
-      result = {}
       paths.each do |path|
         result[path] = 0 if result[path].nil?
         result[path]+=1
       end
+    else
+      thread_ids = ActiveRecord::Base.connection.execute("select distinct(thread_id) from tweets_chosen_threads").all_hashes.collect{|x| x["thread_id"]}
+      thread_ids.each do |thread_id|
+        params = {:id => thread_id}
+        threads = Rails.cache.fetch("threads_tree_#{params[:id]}")
+        actor_type_index = actor_index
+        scrubbed_threads = {}
+        scrubbed_threads[threads["name"]] = actor_path(threads["children"])
+        paths = scrubbed_threads.flatify("^^").keys.collect{|keys| keys.split("^^").collect{|u| Profile.classification(u)}.join("")}
+        paths.each do |path|
+          result[path] = 0 if result[path].nil?
+          result[path]+=1
+        end
+      end
+    end
       # result      
     # }
     render :json => result.to_json
@@ -182,6 +199,50 @@ class TweetsChosenThreadsController < ApplicationController
   
   def thread_json
     return thread_hash.to_json
+  end
+  
+  def graph_new
+    tweets = TweetsChosenThread.all(:conditions => {:thread_id => params[:id]})
+    tweet_in_reply_to_status_ids = {}
+    Tweet.find(:all, :conditions => {:twitter_id => tweets.collect{|x| x.twitter_id}}).collect{|t| tweet_in_reply_to_status_ids[t.twitter_id] = t.in_reply_to_status_id}
+    edges = []
+    tweets.each do |tweet|
+      debugger
+      twitter_id = tweet.class==Array ? tweet.first["id"] : tweet.twitter_id
+      in_reply_to_status_id = tweet_in_reply_to_status_ids[twitter_id]
+      child_screen_name = tweet.author
+      child_twitter_id = tweet.twitter_id
+      while !in_reply_to_status_id.nil? && in_reply_to_status_id != 0 
+        parent = TweetsChosenThread.tweet_data(in_reply_to_status_id)
+        parent_screen_name = parent.class==Array ? parent.last["screen_name"] : parent.screen_name
+        in_reply_to_status_id = parent.class==Array ? parent.first["in_reply_to_status_id"]||parent.first["retweeted_status"]&&parent.first["retweeted_status"]["id"] : parent.in_reply_to_status_id
+        edge = {:parent => parent_screen_name, :child => child_screen_name, :id => child_twitter_id}
+        edges << edge if !edges.include?(edge)
+        tweet = parent
+        child_screen_name = tweet.class==Array ? tweet.last["screen_name"] : tweet.author
+        child_twitter_id = tweet.class==Array ? tweet.first["id"] : tweet.twitter_id
+      end
+    end
+    subthreads = {}
+    edges.collect {|e| e[:parent] }.uniq.each {|p| subthreads[p] = [] }
+    edges.each {|e| subthreads[e[:parent]] << e[:child] }
+    threads = {}
+    for parent in subthreads.keys.sort {|x,y| root_pubdate[y] <=> root_pubdate[x] }
+      children = []
+      for child in subthreads[parent]
+        subchildren = subthreads.has_key?(child) ? subthreads[child] : []
+        children << {:name => child, :id => child, :children => subchildren, :data => {}}
+      end
+      subthreads[parent] = children
+    end
+    oldest_parent = subthreads.keys.sort {|x,y| root_pubdate[x] <=> root_pubdate[y] }.first
+    thread = {:name => oldest_parent, :id => oldest_parent, :children => subthreads[oldest_parent], :data => {}}
+    
+    @json = thread.to_json
+    @actor_index = actor_index.to_json
+    respond_to do |format|
+      format.html
+    end
   end
   
 end
