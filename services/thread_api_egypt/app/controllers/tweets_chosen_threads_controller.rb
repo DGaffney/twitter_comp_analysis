@@ -220,6 +220,7 @@ class TweetsChosenThreadsController < ApplicationController
     result = {}
     result["id"] = root_twitter_id
     result["name"] = root_name
+    result["data"] = {}
     children_data = []
     children = root_edges = edges.select{|e| e[:parent]==root_name&&e[:irtsi]==root_twitter_id}
     children.each do |child|
@@ -233,6 +234,7 @@ class TweetsChosenThreadsController < ApplicationController
   end
   
   def graph_new
+    debugger
     result = Rails.cache.fetch("graph_new_#{params[:id]}"){
       tweets = TweetsChosenThread.all(:conditions => {:thread_id => params[:id]})
       tweet_in_reply_to_status_ids = {}
@@ -258,10 +260,11 @@ class TweetsChosenThreadsController < ApplicationController
       result = {}
       root_name = root.class==Array ? root.last["screen_name"] : root.author
       root_twitter_id = root.class==Array ? root.first["id"] : root.twitter_id
-      result[root_name] = {}
-      result[root_name]["name"] = root_name
-      result[root_name]["id"] = root_twitter_id
-      result[root_name]["children"] = find_children(root_name, root_twitter_id, edges)
+      result = {}
+      result["name"] = root_name
+      result["id"] = root_twitter_id
+      result["data"] = root_twitter_id
+      result["children"] = find_children(root_name, root_twitter_id, edges)
       result
     }
     @json = result.to_json
