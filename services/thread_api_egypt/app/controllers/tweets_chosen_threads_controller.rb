@@ -263,8 +263,8 @@ class TweetsChosenThreadsController < ApplicationController
       result = {}
       result["name"] = root_name
       result["id"] = root_twitter_id
-      result["data"] = root_twitter_id
-      result["children"] = find_children(root_name, root_twitter_id, edges)
+      result["data"] = {}
+      result["children"] = [find_children(root_name, root_twitter_id, edges)]
       result
     }
     @json = result.to_json
