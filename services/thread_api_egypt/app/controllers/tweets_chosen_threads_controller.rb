@@ -89,6 +89,7 @@ class TweetsChosenThreadsController < ApplicationController
   end
   
   def graph
+    debugger
     @json = thread_json
     @actor_index = actor_index.to_json
     respond_to do |format|
@@ -233,33 +234,83 @@ class TweetsChosenThreadsController < ApplicationController
     return result
   end
   
+  def tweet_attribute(tweet, attribute)
+    val = nil
+    case attribute
+    when "in_reply_to_status_id"
+      if tweet.class==Array
+        val = tweet.first["in_reply_to_status_id"]||tweet.first["retweeted_status"]&&tweet.first["retweeted_status"]["id"]
+      elsif tweet.class==Tweet
+        val = tweet.in_reply_to_status_id
+      elsif tweet.class==TweetsChosenThread
+        tweet = TweetsChosenThread.tweet_data(tweet.twitter_id)
+        val = tweet.class==Array ? tweet.first["in_reply_to_status_id"]||tweet.first["retweeted_status"]&&tweet.first["retweeted_status"]["id"] : tweet.in_reply_to_status_id
+      end
+    when "id"
+      if tweet.class==Array
+        val = tweet.first["id"]
+      elsif tweet.class==Tweet
+        val = tweet.twitter_id
+      elsif tweet.class==TweetsChosenThread
+        val = tweet.twitter_id
+      end
+    when "screen_name"
+      if tweet.class==Array
+        val = tweet.last["screen_name"]
+      elsif tweet.class==Tweet
+        val = tweet.author
+      elsif tweet.class==TweetsChosenThread
+        val = tweet.author
+      end
+    end
+    return val
+  end
+  
+  def tweet_in_reply_to_status_ids(thread_id)
+    Rails.cache.fetch("tweet_in_reply_to_status_ids_#{thread_id}"){
+      tweets = TweetsChosenThread.all(:conditions => {:thread_id => thread_id})
+      tweet_in_reply_to_status_ids = {}
+      found_tweet_ids = Tweet.find(:all, :conditions => {:twitter_id => tweets.collect{|x| x.twitter_id}})
+      found_tweet_ids.collect{|t| tweet_in_reply_to_status_ids[t.twitter_id] = t.in_reply_to_status_id}
+      raw_found_tweet_ids = tweets.collect{|t|t.twitter_id}
+      (raw_found_tweet_ids-tweet_in_reply_to_status_ids.keys).each do |twitter_id|
+        tweet_in_reply_to_status_ids[twitter_id] = tweet_attribute(tweets.select{|t|t.twitter_id==twitter_id}, "in_reply_to_status_id")
+      end
+      tweet_in_reply_to_status_ids.each_pair do |twitter_id, irtsi|
+        if irtsi==0 || irtsi.nil?
+          tweet_in_reply_to_status_ids[twitter_id] = tweet_attribute(tweets.select{|t|t.twitter_id==twitter_id}, "in_reply_to_status_id")
+        end
+      end
+      tweet_in_reply_to_status_ids
+    }
+  end
+  
   def graph_new
     debugger
     result = Rails.cache.fetch("graph_new_#{params[:id]}"){
       tweets = TweetsChosenThread.all(:conditions => {:thread_id => params[:id]})
-      tweet_in_reply_to_status_ids = {}
-      Tweet.find(:all, :conditions => {:twitter_id => tweets.collect{|x| x.twitter_id}}).collect{|t| tweet_in_reply_to_status_ids[t.twitter_id] = t.in_reply_to_status_id}
+      tweet_in_reply_to_status_ids = tweet_in_reply_to_status_ids(params[:id])
       root = root_tweet(params[:id])
       edges = []
       tweets.each do |tweet|
-        twitter_id = tweet.class==Array ? tweet.first["id"] : tweet.twitter_id
+        twitter_id = tweet_attribute(tweet, "id")
         in_reply_to_status_id = tweet_in_reply_to_status_ids[twitter_id]
         child_screen_name = tweet.author
         child_twitter_id = tweet.twitter_id
         while !in_reply_to_status_id.nil? && in_reply_to_status_id != 0 
           parent = TweetsChosenThread.tweet_data(in_reply_to_status_id)
-          parent_screen_name = parent.class==Array ? parent.last["screen_name"] : parent.screen_name
+          parent_screen_name = tweet_attribute(parent, "screen_name")
           edge = {:parent => parent_screen_name, :child => child_screen_name, :id => child_twitter_id, :irtsi => in_reply_to_status_id}
           edges << edge if !edges.include?(edge)
-          in_reply_to_status_id = parent.class==Array ? parent.first["in_reply_to_status_id"]||parent.first["retweeted_status"]&&parent.first["retweeted_status"]["id"] : parent.in_reply_to_status_id
+          in_reply_to_status_id = tweet_attribute(parent, "in_reply_to_status_id")
           tweet = parent
-          child_screen_name = tweet.class==Array ? tweet.last["screen_name"] : tweet.author
-          child_twitter_id = tweet.class==Array ? tweet.first["id"] : tweet.twitter_id
+          child_screen_name = tweet_attribute(tweet, "screen_name")
+          child_twitter_id = tweet_attribute(tweet, "id")
         end
       end
       result = {}
-      root_name = root.class==Array ? root.last["screen_name"] : root.author
-      root_twitter_id = root.class==Array ? root.first["id"] : root.twitter_id
+      root_name = tweet_attribute(root, "screen_name")
+      root_twitter_id = tweet_attribute(root, "id")
       result = {}
       result["name"] = root_name
       result["id"] = root_twitter_id

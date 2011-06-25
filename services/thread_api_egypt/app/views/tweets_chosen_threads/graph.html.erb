@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-<title>Spacetree - Tree Animation</title>
+<title>Thread </title>
 
 <!-- CSS Files -->
 <link type="text/css" href="/stylesheets/base.css" rel="stylesheet" />
@@ -17,22 +17,33 @@
 <script language="javascript" type="text/javascript" src="/javascripts/example1.js"></script>
 </head>
 
-
+<% debugger %>
 <script>
 
-  var actor_colors = {0:"#FEFF80",
-                      1:"#CCFE80",
-                      2:"#80FE80",
-                      3:"#80FFFE",
-                      4:"#809FFE",
-                      5:"#AA80FE",
-                      6:"#D580FE",
-                      7:"#FE80DF",
-                      8:"#FE8080",
-                      9:"#FEB380",
-                      10:"#FECC80",
-                      11:"#FEE680",
-                      "uncategorized":"#ccc"}
+  var actor_colors = {1:"#FEFF80",
+                      2:"#CCFE80",
+                      3:"#80FE80",
+                      4:"#80FFFE",
+                      5:"#809FFE",
+                      6:"#AA80FE",
+                      7:"#D580FE",
+                      8:"#FE80DF",
+                      9:"#FE8080",
+                      10:"#FEB380",
+                      11:"#FECC80",
+                      14:"#FEE680"}
+  var actor_types = {1:"MSM",
+                      2:"Web News Org",
+                      3:"Non Media Org",
+                      4:"Journalist",
+                      5:"Digerati",
+                      6:"Political Actor",
+                      7:"Celeb",
+                      8:"Blogger",
+                      9:"Activist",
+                      10:"Other",
+                      11:"Researcher",
+                      14:"Bot"}
   var actor_index = <%= @actor_index %>
   var json = <%= @json %>
 </script>
@@ -47,8 +58,8 @@
 
 <div id="info">
   <script>
-    for (var i=0;i<12;i++) {
-      document.write('<span style="color:'+actor_colors[i]+'">&#149; Actor Type '+i+'</span><br />')
+    for (var key in actor_colors) {
+      document.write('<span style="color:'+actor_colors[key]+'">&#149;'+actor_types[key]+'</span><br />')
     }
     document.write('<span style="color:'+actor_colors['uncategorized']+'">&#149; Uncategorized</span><br />')
   </script>

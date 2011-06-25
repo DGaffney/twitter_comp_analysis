@@ -32,6 +32,32 @@ function init(json){
     //init Spacetree
     //Create a new ST instance
     // var
+	  var actor_colors = {"1":"#FEFF80",
+	                      "2":"#CCFE80",
+	                      "3":"#80FE80",
+	                      "4":"#80FFFE",
+	                      "5":"#809FFE",
+	                      "6":"#AA80FE",
+	                      "7":"#D580FE",
+	                      "8":"#FE80DF",
+	                      "9":"#FE8080",
+	                      "10":"#FEB380",
+	                      "11":"#FECC80",
+	                      "14":"#FEE680",
+	                      "uncategorized":"#ccc"}
+	  var actor_types = {1:"MSM",
+	                      2:"Web News Org",
+	                      3:"Non Media Org",
+	                      4:"Journalist",
+	                      5:"Digerati",
+	                      6:"Political Actor",
+	                      7:"Celeb",
+	                      8:"Blogger",
+	                      9:"Activist",
+	                      10:"Other",
+	                      11:"Researcher",
+	                      14:"Bot",
+	                      "Uncategorized Actor":"#ccc"}
     st = new $jit.ST({
         //id of viz container element
         injectInto: 'infovis',
@@ -104,9 +130,9 @@ function init(json){
             // style.paddingTop = '3px';
             // style.paddingBottom = '2px';
             style.paddingLeft = '3px';
-            
-            var actor_type = actor_index[node.name.toLowerCase()] || "uncategorized";
-            style.color = actor_colors[actor_type];
+            var actor_type = actor_types[actor_index[node.name.toLowerCase()]] || "uncategorized";
+						
+            style.color = actor_colors[actor_index[node.name.toLowerCase()]] || "#ccc";
             if (actor_type != "uncategorized")
               style.fontWeight = "bold"
         },
