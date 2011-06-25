@@ -86,15 +86,18 @@ module Gexf
     puts "Found #{edges.length} edges."
     users = edges.collect {|e| e.start_node } + edges.collect {|e| e.end_node }
     users.uniq!
-    categories = {1 => {:label => "White", :r => rand(256), :g => rand(256), :b => rand(256)},
-                  2 => {:label => "Black", :r => rand(256), :g => rand(256), :b => rand(256)},
-                  3 => {:label => "Hispanic", :r => rand(256), :g => rand(256), :b => rand(256)},
-                  4 => {:label => "Asian", :r => rand(256), :g => rand(256), :b => rand(256)},
-                  5 => {:label => "Other", :r => rand(256), :g => rand(256), :b => rand(256)},
+    categories = {1 => {:label => "1", :r => rand(256), :g => rand(256), :b => rand(256)},
+                  2 => {:label => "2", :r => rand(256), :g => rand(256), :b => rand(256)},
+                  3 => {:label => "3", :r => rand(256), :g => rand(256), :b => rand(256)},
+                  4 => {:label => "4", :r => rand(256), :g => rand(256), :b => rand(256)},
+                  5 => {:label => "5", :r => rand(256), :g => rand(256), :b => rand(256)},
+                  :gv => {:label => "Global Voices", :r => rand(256), :g => rand(256), :b => rand(256)},
                   nil => {:label => "Not Categorized", :r => rand(256), :g => rand(256), :b => rand(256)}}
     user_category = {}
-    csv = FasterCSV.parse(open('datasets/profile_categorization/source/egypt.csv').read)
-    csv.each {|uc| user_category[uc[0]] = uc[1].to_i }
+    # csv = FasterCSV.parse(open('datasets/profile_categorization/source/egypt.csv').read)
+    # csv.each {|uc| user_category[uc[0]] = uc[1].to_i }
+    global_voices = %w{ AmoonaE yslaise yawad ernestopriego MoussaBashir marwarakha emmab33 saigonese07 JulieOwono GVChinese gvferretnl asteris martaruco ahkyee ClaudiaCadelo presleysylwia globalvoices tzs ivonotes paulissima }
+    global_voices.each {|u| user_category[u] = :gv }
     edges_by_user = {}
     for edge in edges
       edges_by_user[edge.start_node] = {} if edges_by_user[edge.start_node].nil?
@@ -236,10 +239,14 @@ module Gexf
     #               4 => {:label => "Asian", :r => rand(256), :g => rand(256), :b => rand(256)},
     #               5 => {:label => "Other", :r => rand(256), :g => rand(256), :b => rand(256)},
     #               nil => {:label => "Not Categorized", :r => rand(256), :g => rand(256), :b => rand(256)}}
-    categories = {5=>{:b=>3, :r=>57, :g=>65, :label=>"Other"}, 1=>{:b=>137, :r=>190, :g=>37, :label=>"White"}, nil=>{:b=>23, :r=>219, :g=>211, :label=>"Not Categorized"}, 2=>{:b=>55, :r=>60, :g=>187, :label=>"Black"}, 3=>{:b=>193, :r=>65, :g=>119, :label=>"Hispanic"}, 4=>{:b=>29, :r=>225, :g=>2, :label=>"Asian"}}
+    # categories = {5=>{:b=>3, :r=>57, :g=>65, :label=>"Other"}, 1=>{:b=>137, :r=>190, :g=>37, :label=>"White"}, nil=>{:b=>23, :r=>219, :g=>211, :label=>"Not Categorized"}, 2=>{:b=>55, :r=>60, :g=>187, :label=>"Black"}, 3=>{:b=>193, :r=>65, :g=>119, :label=>"Hispanic"}, 4=>{:b=>29, :r=>225, :g=>2, :label=>"Asian"}}
+    categories = {:gv => {:label => "Global Voices", :r => rand(256), :g => rand(256), :b => rand(256)},
+                  nil => {:label => "Not Categorized", :r => 200, :g => 200, :b => 100} }
     user_category = {}
-    csv = FasterCSV.parse(open('datasets/profile_categorization/source/egypt.csv').read)
-    csv.each {|uc| user_category[uc[0]] = uc[1].to_i }
+    # csv = FasterCSV.parse(open('datasets/profile_categorization/source/egypt.csv').read)
+    # csv.each {|uc| user_category[uc[0]] = uc[1].to_i }
+    global_voices = %w{ AmoonaE yslaise yawad ernestopriego MoussaBashir marwarakha emmab33 saigonese07 JulieOwono GVChinese gvferretnl asteris martaruco ahkyee ClaudiaCadelo presleysylwia globalvoices tzs ivonotes paulissima }
+    global_voices.each {|u| user_category[u] = :gv }
     user_position = self.positions('graphs/1-25_positions.gexf')
     edges_by_user = {}
     for edge in edges
